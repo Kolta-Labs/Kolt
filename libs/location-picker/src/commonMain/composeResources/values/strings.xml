@@ -6,6 +6,7 @@
     <string name="location_picker_current_tab">Current</string>
     <string name="location_picker_manual_tab">Manual</string>
     <string name="location_picker_search_field">Search place</string>
+    <string name="location_picker_search_placeholder">Please enter place name</string>
     <string name="location_picker_searching">Searching…</string>
     <string name="location_picker_search_no_results">No matches</string>
     <string name="location_picker_use_current_location">Use current location</string>

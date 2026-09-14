@@ -46,3 +46,4 @@ replay_pid*.log
 .claude/
 .gemini/
 
+scripts/projects.txt

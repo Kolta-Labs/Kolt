@@ -7,7 +7,7 @@ standalone in [theming.md](theming.md) / [presentation-mvi.md](presentation-mvi.
 and works with zero Kolt dependency. That's the only thing optional here —
 *whether Kolt/libs exists in this workspace at all.* Once it's present, using
 what's in [Reuse as-is](#reuse-as-is-mandatory-when-present) below is not
-optional: don't write a new `AppsButton`, a new theme module, a new
+optional: don't write a new `KoltButton`, a new theme module, a new
 `AsyncState`, etc. once a vetted one already exists a few files over — that's
 exactly the duplication [architecture.md](architecture.md#reuse-over-duplication)
 forbids. "Evaluated on its actual merits" still applies in full, though:
@@ -25,13 +25,13 @@ anything — don't assume "it's in the KMP repo" means "it works on iOS."
 Before wiring the first Kolt dependency into a new project, check whether
 consumption is already decided: look for an `includeBuild(...)` pointing at
 `Kolt/libs` in `settings.gradle.kts`, a copied module directory, or an
-`io.appspiriment` coordinate in the version catalog. If none of those exist
+`io.github.koltsystems.koltx` coordinate in the version catalog. If none of those exist
 yet, **ask the user which mode to use — always, exactly once per project,
 never silently default:**
 
 1. **Composite build / direct link from disk** — `includeBuild("/Users/arunshankar/Projects/KMP/Kolt/libs")` in `settings.gradle.kts`. Not a copy: a live reference to the same files on this machine, edits in Kolt show up immediately with no publish step. Only works on this machine, at this path.
 2. **Copy the module(s) in** — vendor the source into this project's tree. Portable across machines/CI, but you own drift from the source from that point on; no free updates.
-3. **Gradle dependency on a published artifact** — `implementation("io.github.appspiriment.kolt:<module>:<version>")` (note: `compose-utils` is published under artifact ID `compose`, i.e. `io.github.appspiriment.kolt:compose:<version>`). Requires Kolt actually published (Maven local or remote) under that coordinate. Most portable/CI-friendly option, if publishing is set up.
+3. **Gradle dependency on a published artifact** — `implementation("io.github.koltsystems.koltx:<module>:<version>")` (note: `compose-utils` is published under artifact ID `compose`, i.e. `io.github.koltsystems.koltx:compose:<version>`). Requires Kolt actually published (Maven local or remote) under that coordinate. Most portable/CI-friendly option, if publishing is set up.
 
 Once answered, treat it as decided for the life of the project — don't
 re-ask on later tasks; re-check the project state above instead.
@@ -44,7 +44,7 @@ equivalent and don't treat this as a "pick whichever you feel like" menu.
 | Module | Path | Why it's safe |
 |---|---|---|
 | `compose-kmp` theme | `compose-kmp/src/{commonMain,androidMain,iosMain,desktopMain}/.../theme/` | Genuine `expect`/`actual` KMP. `Kolt` object + `LocalColors`/`LocalTypography`/`LocalSizes` + `CompositionBaseProvider` is exactly the pattern in [theming.md](theming.md). |
-| `compose-kmp` component library | `compose-kmp/src/commonMain/.../components/` — buttons, text/text fields, containers (card, accordion, tooltip, divider), messages (snackbar/banner/dialog), image, badges, progress, rating bar, slider, stepper, shimmer | `commonMain`-first; only `image/` drops to `androidMain`/`iosMain`/`desktopMain` `actual` (platform image loading — Coil on Android). This is the reusable-component target from [architecture.md](architecture.md#reuse-over-duplication) already built — check here before writing a new `AppsButton`/`AppsCard`/etc. |
+| `compose-kmp` component library | `compose-kmp/src/commonMain/.../components/` — buttons, text/text fields, containers (card, accordion, tooltip, divider), messages (snackbar/banner/dialog), image, badges, progress, rating bar, slider, stepper, shimmer | `commonMain`-first; only `image/` drops to `androidMain`/`iosMain`/`desktopMain` `actual` (platform image loading — Coil on Android). This is the reusable-component target from [architecture.md](architecture.md#reuse-over-duplication) already built — check here before writing a new `KoltButton`/`KoltCard`/etc. |
 | `utils` → `AsyncState` | `utils/src/commonMain/.../state/AsyncState.kt` | Plain `commonMain` sealed class (`Idle`/`Loading`/`Success`/`Error`) with `map`/`onSuccess`/`getOrElse`. Clean, no platform deps. Use it in `State` fields per [presentation-mvi.md](presentation-mvi.md). |
 | `logutils` | `logutils/` | Real `commonMain`/`androidMain`/`desktopMain`/`nativeMain` KMP logging, auto debug/release gating on Android via App Startup. Fine to use as-is. |
 | `location` | `location/` | Real KMP (`commonMain` + per-platform `actual`, including `wasmJs` via a hand-written `navigator.geolocation` binding — `kotlinx-browser` doesn't cover that API). Fine if a journey needs location. |
@@ -67,7 +67,7 @@ fakeable on their own).
 gates its own "use current location" trigger through
 `rememberLocationAccessGate` (Android `actual` only, no expect/actual
 counterpart needed): permission rationale and "permanently denied → open app
-settings" are each a `compose-kmp` `AppsBottomSheet` (not a dialog), with
+settings" are each a `compose-kmp` `KoltBottomSheet` (not a dialog), with
 every title/message/button label configurable via `LocationPickerConfig`'s
 `locationPermissionRationale*`/`locationPermissionSettings*` fields. A
 consuming app does **not** need to request
@@ -106,7 +106,7 @@ test-bundling gap in the browser test runner, unrelated to the tests
 themselves — they pass on Android and Desktop, which compile and run the
 exact same `commonTest` source).
 
-**Don't import `compose-utils`' `AppsBanner`/`AppsBottomSheet`/`AppsSnackbar`/
+**Don't import `compose-utils`' `KoltBanner`/`KoltBottomSheet`/`KoltSnackbar`/
 `DialogButtonStyle`/`MessageDialog`/`ColorUtils`** even though those
 filenames exist there too — they're 10-line backward-compat `typealias`
 stubs pointing at the `compose-kmp` versions above (each file says so in a
@@ -118,9 +118,9 @@ stub."). Import from `compose-kmp` directly.
 | Module | Path | Problem |
 |---|---|---|
 | `compose-utils` ViewModel bases | `compose-utils/.../utils/base/UiStateEventsViewModel.kt`, `UiStateEventsAndroidViewModel.kt`, `UiEventsViewModel.kt`, `UiEventsAndroidViewModel.kt` | Module has no `commonMain` at all — everything is under `src/main/java`. `UiStateEventsAndroidViewModel` extends `android.app.AndroidViewModel`. Building a real KMP presentation layer on these breaks the moment iOS is added. Use the `commonMain` `MviViewModel` in [presentation-mvi.md](presentation-mvi.md) instead. |
-| `compose-utils` nav helpers | `AppsBottomNavigationNavHost.kt`, `AppsNavType.kt` | `AppsNavType.genericNavType` imports `android.net.Uri` directly. The module's `build.gradle.kts` pulls the Android `navigation-compose` artifact via an Android-only convention plugin, not the KMP coordinate. Not usable outside Android — and independent of that, it's built on Navigation 2 (`NavController`/`NavGraphBuilder`), which [navigation.md](navigation.md) has this project moving off in favor of Navigation 3. |
+| `compose-utils` nav helpers | `KoltBottomNavigationNavHost.kt`, `KoltNavType.kt` | `KoltNavType.genericNavType` imports `android.net.Uri` directly. The module's `build.gradle.kts` pulls the Android `navigation-compose` artifact via an Android-only convention plugin, not the KMP coordinate. Not usable outside Android — and independent of that, it's built on Navigation 2 (`NavController`/`NavGraphBuilder`), which [navigation.md](navigation.md) has this project moving off in favor of Navigation 3. |
 | `utils` → `FlowUtils.collectState` / `collectFlows` | `utils/src/commonMain/.../extensions/FlowUtils.kt` | *Is* commonMain, but the pattern itself is one to avoid: callback-listener style predating structured concurrency (`successListener`/`errorListener`/`onLoading` triads), and `collect()` bakes in a hardcoded `delay(200)` after every emission — every consumer inherits 200ms of invisible latency. Use `stateIn` + `collectAsStateWithLifecycle` instead. |
-| `compose-utils` remaining components | dropdowns, `AppsTextField`/`AppsValidatedTextField`, `PageScaffold`, `AppsTopBar`, `AppsDrawerScaffold`, swipe-actions box, `Lottie`, `RememberSpeechToText`, photo picker | Genuinely useful, but Android-only (`src/main/java`, no `commonMain`) and *not* migrated to `compose-kmp` like the messages/ components were — no compat stub, no KMP equivalent exists yet. Fine to reuse only on a screen that will never ship iOS/desktop. Otherwise this is exactly the "extract once you need it" case from [architecture.md](architecture.md#reuse-over-duplication) — port the specific component you need into the shared KMP component module, don't block on porting all of them upfront. |
+| `compose-utils` remaining components | dropdowns, `KoltTextField`/`KoltValidatedTextField`, `PageScaffold`, `KoltTopBar`, `KoltDrawerScaffold`, swipe-actions box, `Lottie`, `RememberSpeechToText`, photo picker | Genuinely useful, but Android-only (`src/main/java`, no `commonMain`) and *not* migrated to `compose-kmp` like the messages/ components were — no compat stub, no KMP equivalent exists yet. Fine to reuse only on a screen that will never ship iOS/desktop. Otherwise this is exactly the "extract once you need it" case from [architecture.md](architecture.md#reuse-over-duplication) — port the specific component you need into the shared KMP component module, don't block on porting all of them upfront. |
 
 ## Dead code — don't copy the pattern
 

@@ -7,11 +7,12 @@
 
     <application
         android:allowBackup="true"
-        android:label="Appspiriment Demo"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:label="KoltX Demo"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.NoActionBar">
         
         <activity
-            android:name="io.github.appspiriment.kolt.demo.MainActivity"
+            android:name="io.github.koltsystems.koltx.demo.MainActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
             <intent-filter>

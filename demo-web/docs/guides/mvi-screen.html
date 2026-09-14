@@ -23,10 +23,10 @@
             <h2>Introduction</h2>
             <p>Kolt enforces a clean, unidirectional data flow (UDF) through a standard Model-View-Intent (MVI) pattern. In this guide, we will build a product details screen using real Kolt composables:</p>
             <ul>
-                <li><code>AppsPageScaffold</code> for page structure and top bar navigation.</li>
+                <li><code>KoltPageScaffold</code> for page structure and top bar navigation.</li>
                 <li><code>AsyncStateBox</code> to switch layout states dynamically (loading, success, error).</li>
-                <li><code>AppsButton</code> for interactive actions.</li>
-                <li><code>AppsBanner</code> for system notifications and warnings.</li>
+                <li><code>KoltButton</code> for interactive actions.</li>
+                <li><code>KoltBanner</code> for system notifications and warnings.</li>
             </ul>
 
             <h2>1. Define the Contracts</h2>
@@ -132,14 +132,14 @@ fun ProductDetailsScreen(
     onIntent: (ProductDetailsIntent) -> Unit,
     onBackClick: () -> Unit
 ) {
-    AppsPageScaffold(
+    KoltPageScaffold(
         title = AppBarTitle.Text("Details"),
         navigationMode = NavigationMode.Back,
         onNavigateBack = onBackClick
     ) {
         // Render system alert banner if message is present
         state.bannerMessage?.let { msg ->
-            AppsBanner(
+            KoltBanner(
                 title = "System Alert",
                 message = msg,
                 intent = BannerIntent.Warning,
@@ -152,11 +152,11 @@ fun ProductDetailsScreen(
             state = state.asyncState,
             loading = {
                 Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    AppsProgressIndicator.CircularIndeterminate()
+                    KoltProgressIndicator.CircularIndeterminate()
                 }
             },
             error = { error ->
-                AppsEmptyState(
+                KoltEmptyState(
                     title = "Failed to load product",
                     description = error.message ?: "An unexpected error occurred.",
                     actionLabel = "Try Again",
@@ -175,7 +175,7 @@ fun ProductDetailsScreen(
                 Spacer(Modifier.weight(1f))
 
                 // Action button styled with the primary brand colors
-                AppsButton(
+                KoltButton(
                     text = if (state.isFavorite) "Remove Favorite" else "Add to Favorites",
                     buttonStyle = ButtonStyle.primary(),
                     onClick = { onIntent(ProductDetailsIntent.ToggleFavorite) },

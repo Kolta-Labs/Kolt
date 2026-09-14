@@ -1,6 +1,6 @@
 # libs/logutils — KMP Structured Logging
 
-[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.appspiriment.kolt/logutils)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.koltsystems.koltx/logutils)
 [![Kotlin Multiplatform](https://img.shields.io/badge/KMP-Android%20%7C%20iOS%20%7C%20Desktop%20%7C%20Native-7F52FF?style=flat-square&logo=kotlin)](https://kotlinlang.org/docs/multiplatform.html)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange?style=flat-square)](../../LICENSE)
 [![Changelog](https://img.shields.io/badge/Changelog-view-lightgrey?style=flat-square)](CHANGELOG.md)
@@ -13,7 +13,7 @@ A thin Kotlin Multiplatform logging wrapper using `expect`/`actual` to switch be
 
 ```kotlin
 dependencies {
-    implementation("io.github.appspiriment.kolt:logutils:0.2.1.dev-00")
+    implementation("io.github.koltsystems.koltx:logutils:0.2.1.dev-00")
     // Kolt convention plugins add this automatically — opt out with `kolt { enableUtils.set(false) }`
 }
 ```
@@ -23,8 +23,8 @@ dependencies {
 ## Usage
 
 ```kotlin
-import io.github.appspiriment.kolt.logutils.Log
-import io.github.appspiriment.kolt.logutils.printLog
+import io.github.koltsystems.koltx.logutils.Log
+import io.github.koltsystems.koltx.logutils.printLog
 
 // Direct method calls
 Log.d("MyTag", "Debug message")

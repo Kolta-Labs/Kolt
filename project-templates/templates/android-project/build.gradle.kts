@@ -2,11 +2,11 @@
 // Do NOT put dependencies or android {} here.
 
 plugins {
-    // Android + Appspiriment convention plugins
-    alias(koltlibs.plugins.kolt.application)       apply false
-    alias(koltlibs.plugins.kolt.library)           apply false
-    alias(koltlibs.plugins.kolt.library.compose)   apply false
-    alias(koltlibs.plugins.kolt.library.hilt)      apply false
-    alias(koltlibs.plugins.kolt.library.hilt.compose) apply false
-    alias(koltlibs.plugins.kolt.data)              apply false
+    // Android + Kolt convention plugins
+    alias(koltxlibs.plugins.kolt.application)       apply false
+    alias(koltxlibs.plugins.kolt.library)           apply false
+    alias(koltxlibs.plugins.kolt.library.compose)   apply false
+    alias(koltxlibs.plugins.kolt.library.hilt)      apply false
+    alias(koltxlibs.plugins.kolt.library.hilt.compose) apply false
+    alias(koltxlibs.plugins.kolt.data)              apply false
 }

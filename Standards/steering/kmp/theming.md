@@ -61,6 +61,21 @@ excuse to special-case it per platform.
 
 - No `Color(0xFF...)`, `.sp`, `.dp` literals outside the `:theme` module.
   Screens reference `AppTheme.colors.primary`, `AppTheme.sizes.spacingM`, etc.
+  This still applies to the two cases that most often slip through review:
+  - **"On-X" contrast colors** — the text/icon color for content sitting on a
+    colored fill (e.g. "black text on a gold chip, white in dark mode") is a
+    token (`AppTheme.colors.onPrimary`, `onGold`, …), not an
+    `if (isDark) Color.Black else Color.White` repeated per screen. The
+    moment it appears in a second screen, extract it — the two copies drift
+    (one screen quietly using a different black than another) far more
+    easily than a single token would.
+  - **Categorical/identity palettes** — a fixed color per enum case (calendar
+    type, chart series, category tag) that's deliberately *invariant* across
+    light/dark, because it identifies that item rather than styling the
+    screen. These still belong physically inside the `:theme` module as a
+    plain function/map (not a `PanchangikaColors`-style light/dark pair) —
+    "it doesn't change with the theme" is not an excuse to hardcode it
+    beside the screen that happens to use it first.
 - No string literals for user-facing text in a composable — `Res.string.x`
   via Compose Multiplatform resources. (Log messages, internal tags, and
   test-only strings are fine as literals; this rule is about text a user

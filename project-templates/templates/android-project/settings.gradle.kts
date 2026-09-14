@@ -19,10 +19,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        // Appspiriment convention plugins + pinned Android library versions
-        create("koltlibs") {
-            from("io.github.appspiriment.kolt:appspiriment-catalog:0.1.6")
-            // Replace 0.1.0 with the current release from https://github.com/appspiriment/UtilsLibs/releases
+        // Kolt convention plugins + pinned Android library versions
+        create("koltxlibs") {
+            from("io.github.koltsystems.koltx:koltx-catalog:0.1.6")
+            // Replace 0.1.0 with the current release from https://github.com/kolt-systems/KoltX/releases
         }
     }
 }

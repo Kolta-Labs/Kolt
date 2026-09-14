@@ -1031,7 +1031,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 12. AppsDivider & Spacers Interactive Sync ---
+    // --- 12. KoltDivider & Spacers Interactive Sync ---
     const dividerThicknessSlider = document.getElementById('divider-thickness-slider');
     const dividerThicknessVal = document.getElementById('divider-thickness-val');
     const dividerColorSelect = document.getElementById('divider-color-select');
@@ -1083,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSpacerSize(spacerSizeSlider.value);
     }
     
-    // --- 13. AppsStatusTag Interactivity ---
+    // --- 13. KoltStatusTag Interactivity ---
     const statusTagContainer = document.getElementById('status-tag-container');
     const customTagText = document.getElementById('custom-tag-text');
     const customTagIntent = document.getElementById('custom-tag-intent');
@@ -1198,7 +1198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tagBorderSelect) tagBorderSelect.addEventListener('change', refreshTags);
     refreshTags();
 
-    // --- 14. AppsBadge & AppsTooltip Interactivity ---
+    // --- 14. KoltBadge & KoltTooltip Interactivity ---
     const demoBadgePill = document.getElementById('demo-badge-pill');
     const badgeCountInput = document.getElementById('badge-count-input');
     const badgeDecBtn = document.getElementById('badge-dec-btn');
@@ -1459,52 +1459,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 16. Text Helpers Setup ---
-    // AppspirimentText elements
-    const appspirimentText = document.getElementById('web-appspiriment-text');
-    const appspirimentTextContainer = document.getElementById('web-appspiriment-text-container');
-    const appspirimentTextInput = document.getElementById('appspiriment-text-input');
-    const appspirimentTextSelectable = document.getElementById('appspiriment-text-selectable');
-    const appspirimentTextStyleSelect = document.getElementById('appspiriment-text-style-select');
-    const appspirimentTextColorSelect = document.getElementById('appspiriment-text-color-select');
+    // KoltText elements
+    const koltxText = document.getElementById('web-koltx-text');
+    const koltxTextContainer = document.getElementById('web-koltx-text-container');
+    const koltxTextInput = document.getElementById('koltx-text-input');
+    const koltxTextSelectable = document.getElementById('koltx-text-selectable');
+    const koltxTextStyleSelect = document.getElementById('koltx-text-style-select');
+    const koltxTextColorSelect = document.getElementById('koltx-text-color-select');
 
-    if (appspirimentTextInput && appspirimentText) {
-        appspirimentTextInput.addEventListener('input', (e) => {
-            appspirimentText.textContent = e.target.value;
+    if (koltxTextInput && koltxText) {
+        koltxTextInput.addEventListener('input', (e) => {
+            koltxText.textContent = e.target.value;
         });
     }
 
-    if (appspirimentTextSelectable && appspirimentText && appspirimentTextContainer) {
-        appspirimentTextSelectable.addEventListener('change', (e) => {
+    if (koltxTextSelectable && koltxText && koltxTextContainer) {
+        koltxTextSelectable.addEventListener('change', (e) => {
             const isSelectable = e.target.checked;
-            appspirimentText.style.userSelect = isSelectable ? 'text' : 'none';
-            appspirimentText.style.webkitUserSelect = isSelectable ? 'text' : 'none';
-            appspirimentText.style.cursor = isSelectable ? 'text' : 'default';
+            koltxText.style.userSelect = isSelectable ? 'text' : 'none';
+            koltxText.style.webkitUserSelect = isSelectable ? 'text' : 'none';
+            koltxText.style.cursor = isSelectable ? 'text' : 'default';
             if (isSelectable) {
-                appspirimentTextContainer.classList.add('highlighted-selectable');
-                showToast("AppspirimentText selectable enabled (highlights & text-selection enabled)");
+                koltxTextContainer.classList.add('highlighted-selectable');
+                showToast("KoltText selectable enabled (highlights & text-selection enabled)");
             } else {
-                appspirimentTextContainer.classList.remove('highlighted-selectable');
+                koltxTextContainer.classList.remove('highlighted-selectable');
             }
         });
     }
 
-    if (appspirimentTextStyleSelect && appspirimentText) {
-        appspirimentTextStyleSelect.addEventListener('change', (e) => {
+    if (koltxTextStyleSelect && koltxText) {
+        koltxTextStyleSelect.addEventListener('change', (e) => {
             const val = e.target.value;
-            appspirimentText.classList.remove('appspiriment-style-textMedium', 'appspiriment-style-titleLarge', 'appspiriment-style-bodySmall');
-            appspirimentText.classList.add(`appspiriment-style-${val}`);
+            koltxText.classList.remove('koltx-style-textMedium', 'koltx-style-titleLarge', 'koltx-style-bodySmall');
+            koltxText.classList.add(`koltx-style-${val}`);
         });
     }
 
-    if (appspirimentTextColorSelect && appspirimentText) {
-        appspirimentTextColorSelect.addEventListener('change', (e) => {
+    if (koltxTextColorSelect && koltxText) {
+        koltxTextColorSelect.addEventListener('change', (e) => {
             const val = e.target.value;
-            appspirimentText.classList.remove('appspiriment-color-default', 'appspiriment-color-primary', 'appspiriment-color-success', 'appspiriment-color-error');
-            appspirimentText.classList.add(`appspiriment-color-${val}`);
+            koltxText.classList.remove('koltx-color-default', 'koltx-color-primary', 'koltx-color-success', 'koltx-color-error');
+            koltxText.classList.add(`koltx-color-${val}`);
         });
     }
 
-    // AppsCopyableText elements
+    // KoltCopyableText elements
     const copyableText = document.getElementById('web-copyable-text');
     const copyableTextInput = document.getElementById('copyable-text-input');
     const copyableTextShowIcon = document.getElementById('copyable-text-show-icon');
@@ -1555,7 +1555,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // AppsExpandableText elements
+    // KoltExpandableText elements
     const expandableText = document.getElementById('web-expandable-text');
     const expandableToggle = document.getElementById('web-expandable-toggle');
     const expandableBody = document.getElementById('web-expandable-body');
@@ -1626,7 +1626,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // AppsImageText elements
+    // KoltImageText elements
     const imageTextGap = document.getElementById('image-text-gap');
     const imageTextGapVal = document.getElementById('image-text-gap-val');
     const webImageTextContainer = document.getElementById('web-image-text-container');
@@ -1955,7 +1955,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateSwipeActionContents(); // initial setup
 
-    // --- 23. Highlight Text Search (AppsHighlightText) ---
+    // --- 23. Highlight Text Search (KoltHighlightText) ---
     const highlightSearchInput = document.getElementById('highlight-search-input');
     const highlightSourceText = document.getElementById('highlight-source-text');
     const highlightCaseToggle = document.getElementById('highlight-case-toggle');

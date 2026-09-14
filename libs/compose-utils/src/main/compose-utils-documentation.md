@@ -7,7 +7,7 @@ This document provides detailed documentation for the reusable Jetpack Compose c
 2.  [Wrappers](#wrappers)
 3.  [Containers](#containers)
     -   [PageScaffold](#pagescaffold)
-    -   [AppsTopBar](#appstopbar)
+    -   [KoltTopBar](#appstopbar)
     -   [Drawer Scaffolds](#drawer-scaffolds)
     -   [Bottom Navigation](#bottom-navigation)
 4.  [Core Components](#core-components)
@@ -19,15 +19,15 @@ This document provides detailed documentation for the reusable Jetpack Compose c
 
 ## Theme & Core
 
-### `AppspirimentTheme`
+### `KoltXTheme`
 
 The root theme for applying the `Kolt` design system. All composables should be wrapped in this theme.
 
--   **File Path**: `theme/AppspirimentTheme.kt`
+-   **File Path**: `theme/KoltXTheme.kt`
 -   **Description**: Applies the custom color scheme, typography, and sizing defined in `Kolt.colors`, `Kolt.typography`, and `Kolt.sizes`.
 -   **Usage**:
     ```kotlin
-    AppspirimentTheme {
+    KoltXTheme {
         Surface {
             // Your screen content
         }
@@ -83,11 +83,11 @@ The most basic scaffold for a screen, providing a top bar and loading state mana
 | `isLoading`| `Boolean` | `false` | If true, shows a loading indicator overlay. |
 | `content` | `@Composable (PaddingValues) -> Unit` | | The main content of the screen. |
 
-### `AppsTopBar`
+### `KoltTopBar`
 
 A customizable top app bar with support for navigation icons, titles, and actions.
 
--   **File Path**: `components/containers/AppsTopBar.kt`
+-   **File Path**: `components/containers/KoltTopBar.kt`
 -   **Description**: A customized `TopAppBar` that conforms to the `Kolt` design system.
 -   **Parameters**:
 | Name | Type | Default | Description |
@@ -97,21 +97,21 @@ A customizable top app bar with support for navigation icons, titles, and action
 | `appBarTitle` | `AppBarTitle?` | `null` | The title configuration. Can be text, logo, or text with an icon. |
 | `background` | `Color` | `Kolt.colors.topAppBar` | The background color. |
 | `onTopBarColor` | `Color` | `Kolt.colors.onTopAppBar` | The content color for text and icons. |
-| `actions` | `List<AppsTopBarButton>?`| `null` | List of action buttons on the right. |
+| `actions` | `List<KoltTopBarButton>?`| `null` | List of action buttons on the right. |
 | `actionsContent`| `@Composable RowScope.(Color) -> Unit` | `{}` | A trailing lambda for custom action content. |
 
 - **Supporting Types**:
   - `NavigationMode`: Enum (`BACK`, `DRAWER`, `EMPTY`) with an associated icon.
   - `AppBarTitle`: Sealed interface (`BrandLogo`, `ScreenTitle`, `ScreenTitleWithIcon`, `None`).
-  - `AppsTopBarButton`: Data class for actions (`icon: UiImage`, `onClick: () -> Unit`).
+  - `KoltTopBarButton`: Data class for actions (`icon: UiImage`, `onClick: () -> Unit`).
 - **Usage Example**:
   ```kotlin
-  AppsTopBar(
+  KoltTopBar(
       navMode = NavigationMode.BACK,
       navIconClick = { /* Handle back press */ },
       appBarTitle = AppBarTitle.ScreenTitle("My Screen".toUiText()),
       actions = listOf(
-          AppsTopBarButton(
+          KoltTopBarButton(
               icon = Icons.Default.Search.toUiImage(),
               onClick = { /* Handle search */ }
           )
@@ -121,22 +121,22 @@ A customizable top app bar with support for navigation icons, titles, and action
 
 ### Drawer Scaffolds
 
--   **File Path**: `components/containers/AppsDrawerScaffold.kt`
+-   **File Path**: `components/containers/KoltDrawerScaffold.kt`
 
-#### `AppsTitleDrawerScaffold`
+#### `KoltTitleDrawerScaffold`
 
-A high-level scaffold with a pre-configured `AppsTopBar` and a navigation drawer.
+A high-level scaffold with a pre-configured `KoltTopBar` and a navigation drawer.
 
--   **Description**: Ideal for standard screens needing a drawer. It simplifies setup by composing `AppsDrawerScaffold` with a standard top bar and drawer item list.
+-   **Description**: Ideal for standard screens needing a drawer. It simplifies setup by composing `KoltDrawerScaffold` with a standard top bar and drawer item list.
 -   **Parameters**:
 | Name | Type | Default | Description |
 |---|---|---|---|
-| `appBarTitle`| `AppBarTitle?` | `null` | Title for the integrated `AppsTopBar`. |
+| `appBarTitle`| `AppBarTitle?` | `null` | Title for the integrated `KoltTopBar`. |
 | `colors` | `ScaffoldColors` | `ScaffoldColors.defaults()` | Color scheme for all scaffold components. |
 | `gestureEnabled`| `Boolean`| `true` | Enables swipe gestures for the drawer. |
 | `drawerShape`| `Shape`| `RectangleShape` | The shape of the drawer container. |
 | `scrimColor`| `Color`| `DrawerDefaults.scrimColor` | Color of the overlay when the drawer is open. |
-| `actions`| `List<AppsTopBarButton>?`| `null` | Actions for the integrated `AppsTopBar`. |
+| `actions`| `List<KoltTopBarButton>?`| `null` | Actions for the integrated `KoltTopBar`. |
 | `drawerOptions`| `List<DrawerItem>?`| `null` | List of items to display in the drawer. |
 | `drawerHeader`| `(@Composable () -> Unit)?`| `null` | Optional composable for the drawer's header. |
 | `drawerFooter`| `(@Composable () -> Unit)?`| `null` | Optional composable for the drawer's footer. |
@@ -144,7 +144,7 @@ A high-level scaffold with a pre-configured `AppsTopBar` and a navigation drawer
 | `isLoading`| `Boolean`| `false` | Shows a loading overlay. |
 | `content`| `@Composable (PaddingValues) -> Unit`| | The main screen content. |
 
-#### `AppsDrawerScaffold`
+#### `KoltDrawerScaffold`
 
 A lower-level, flexible scaffold for building a custom navigation drawer experience.
 
@@ -157,9 +157,9 @@ A lower-level, flexible scaffold for building a custom navigation drawer experie
 
 ### Bottom Navigation
 
--   **File Path**: `components/containers/bottomnavigation/AppsBottomNavigation.kt`
+-   **File Path**: `components/containers/bottomnavigation/KoltBottomNavigation.kt`
 
-#### `AppsBottomNavigation`
+#### `KoltBottomNavigation`
 
 A `NavController`-aware bottom navigation bar with an overflow menu.
 
@@ -168,18 +168,18 @@ A `NavController`-aware bottom navigation bar with an overflow menu.
 | Name | Type | Default | Description |
 |---|---|---|---|
 | `navController` | `NavController` | | The navigation controller. |
-| `bottomBarRoutes`| `List<AppsBottomBarButton>`| | The list of all items for the bar. |
+| `bottomBarRoutes`| `List<KoltBottomBarButton>`| | The list of all items for the bar. |
 | `visibleItemsCount`| `Int`| `5` | Max visible items before showing a "More" menu. |
 | `selectedColor`| `Color`| `Kolt.colors.primary` | Color for selected item's text and icon. |
 | `unselectedColor`| `Color`| `Kolt.colors.onPrimaryCardContainer`| Color for unselected items. |
 | `selectedBubbleColor`| `Color`| `Color.Transparent` | Background color for the selected item's "bubble". |
 | `itemContent` | `@Composable RowScope.(...) -> Unit`| `DefaultBottomNavigationItem` | Lambda to define a custom item UI. |
 
--   **File Path**: `components/containers/bottomnavigation/AppsBottomNavigationNavHost.kt`
+-   **File Path**: `components/containers/bottomnavigation/KoltBottomNavigationNavHost.kt`
 
-#### `AppsBottomNavigationNavHost`
+#### `KoltBottomNavigationNavHost`
 
-A scaffold that seamlessly combines a `NavHost` with an `AppsBottomNavigation` bar.
+A scaffold that seamlessly combines a `NavHost` with an `KoltBottomNavigation` bar.
 
 -   **Description**: Reduces boilerplate by automatically showing or hiding the bottom navigation bar based on the current destination.
 -   **Parameters**:
@@ -187,23 +187,23 @@ A scaffold that seamlessly combines a `NavHost` with an `AppsBottomNavigation` b
 |---|---|---|---|
 | `navController`| `NavHostController`| | The navigation controller. |
 | `startDestination`| `Serializable` | | The starting route for the `NavHost`. |
-| `bottomBarRoutes`| `List<AppsBottomBarButton>`| | List of top-level routes for the bottom bar. |
+| `bottomBarRoutes`| `List<KoltBottomBarButton>`| | List of top-level routes for the bottom bar. |
 | `topDivider`| `@Composable (() -> Unit)?`| `HorizontalDivider(...)` | Composable for the divider above the bar. `null` to hide. |
 | `navGraphBuilderScope`| `(NavGraphBuilder) -> Unit`| | Required lambda to define the navigation graph. |
 ---
 
 ## Core Components
 
-### Text: `AppspirimentText`
-- **File Path**: `components/core/text/AppspirimentText.kt`
+### Text: `KoltText`
+- **File Path**: `components/core/text/KoltText.kt`
 - **Description**: A wrapper around `androidx.compose.material3.Text` that uses a `UiText` object for its `text` parameter and integrates with the `Kolt` theme.
 
-### Images & Icons: `AppsImage`, `AppsIcon`
-- **File Path**: `components/core/image/AppsImage.kt`, `components/core/image/AppsIcon.kt`
-- **Description**: Wrappers for `Image` and `Icon` that use `UiImage` for their data source and integrate with the theme. `AppsIcon` likely has tinting capabilities.
+### Images & Icons: `KoltImage`, `KoltIcon`
+- **File Path**: `components/core/image/KoltImage.kt`, `components/core/image/KoltIcon.kt`
+- **Description**: Wrappers for `Image` and `Icon` that use `UiImage` for their data source and integrate with the theme. `KoltIcon` likely has tinting capabilities.
 
-### Buttons: `AppsIconButton`
-- **File Path**: `components/core/buttons/AppsIconButton.kt`
+### Buttons: `KoltIconButton`
+- **File Path**: `components/core/buttons/KoltIconButton.kt`
 - **Description**: A themed `IconButton` that simplifies creating clickable icons consistent with the design system.
 
 ### Spacers: `VerticalSpacer`, `HorizontalSpacer`

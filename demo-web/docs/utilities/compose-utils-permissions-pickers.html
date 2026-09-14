@@ -75,7 +75,7 @@ fun ProfileAvatarEdit(viewModel: AvatarViewModel = viewModel()) {
     }
 
     // 2. Trigger picker from buttons or click modifiers
-    AppsButton(
+    KoltButton(
         text = "Select Profile Photo".toUiText(),
         onClick = {
             // Limits selection to a single photo
@@ -83,7 +83,7 @@ fun ProfileAvatarEdit(viewModel: AvatarViewModel = viewModel()) {
         }
     )
     
-    AppsButton(
+    KoltButton(
         text = "Select Gallery Images".toUiText(),
         onClick = {
             // Allows selecting up to 8 items in the picker

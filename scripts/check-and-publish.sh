@@ -61,7 +61,7 @@ get_bom_version() {
 is_published() {
     local artifact_id="$1"
     local version="$2"
-    local group_path="io/github/appspiriment/kolt"
+    local group_path="io/github/koltx/kolt"
     local url="https://repo1.maven.org/maven2/${group_path}/${artifact_id}/${version}/${artifact_id}-${version}.pom"
     
     # If not release, always publish (snapshots/local over-writes are allowed/expected)
@@ -119,8 +119,8 @@ ARTIFACTS=(
     "update-utils:update-utils::UPDATE_UTILS_MAJOR:UPDATE_UTILS_DEV:false"
     "location:location::LOCATION_MAJOR:LOCATION_DEV:false"
     "location-picker:location-picker::LOCATION_PICKER_MAJOR:LOCATION_PICKER_DEV:false"
-    "bom:kolt-bom::BOM_VERSION::true"
-    "conventions:koltlibs:build-logic:PLUGIN_MAJOR:PLUGIN_DEV:false"
+    "bom:koltx-bom::BOM_VERSION::true"
+    "conventions:koltxlibs:build-logic:PLUGIN_MAJOR:PLUGIN_DEV:false"
 )
 
 info "Analyzing version.properties and Maven Central status..."

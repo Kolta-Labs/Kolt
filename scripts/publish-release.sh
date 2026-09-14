@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────────────
-# publish-release.sh — Publish all Appspiriment artifacts to Maven Central
+# publish-release.sh — Publish all Kolt artifacts to Maven Central
 #
 # Runs each module in a SEPARATE Gradle invocation to avoid the known vanniktech
 # SonatypeRepositoryBuildService classloader conflict in multi-module builds.
@@ -52,20 +52,20 @@ if $IS_RELEASE; then
     PUBLISH_TASK="publishAllPublicationsToMavenCentralRepository"
     echo ""
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${CYAN}  Appspiriment — Release Publish to Maven Central${NC}"
+    echo -e "${CYAN}  Kolt — Release Publish to Maven Central${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     warn "Publishing SIGNED release. Ensure your GPG key is loaded."
 elif $LOCAL_ONLY; then
     PUBLISH_TASK="publishToMavenLocal"
     echo ""
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${CYAN}  Appspiriment — Publish to ~/.m2 (local)${NC}"
+    echo -e "${CYAN}  Kolt — Publish to ~/.m2 (local)${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 else
     PUBLISH_TASK="publishToMavenLocal"
     echo ""
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${CYAN}  Appspiriment — Dev Publish (MavenLocal)${NC}"
+    echo -e "${CYAN}  Kolt — Dev Publish (MavenLocal)${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     warn "Not a release build — publishing to ~/.m2 only. Use --release for Maven Central."
 fi

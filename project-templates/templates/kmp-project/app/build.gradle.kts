@@ -1,6 +1,6 @@
 // Android host module — thin launcher that starts the KMP shared module
 plugins {
-    id("io.github.appspiriment.kolt.kmp.application")
+    id("io.github.koltsystems.koltx.kmp.application")
 }
 
 android {
@@ -29,9 +29,9 @@ dependencies {
     implementation(project(":data"))
 
     // compose-utils for the Android launcher UI (if your :shared doesn't expose Compose).
-    // Version is pinned by the Appspiriment BOM the convention plugin injects — no version needed.
-    implementation("io.github.appspiriment.kolt:compose")
+    // Version is pinned by the Kolt BOM the convention plugin injects — no version needed.
+    implementation("io.github.koltsystems.koltx:compose")
 
     // Update dialog (optional)
-    // implementation("io.github.appspiriment.kolt:update-utils")
+    // implementation("io.github.koltsystems.koltx:update-utils")
 }

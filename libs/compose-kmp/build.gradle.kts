@@ -1,6 +1,6 @@
 plugins {
-    id("io.github.appspiriment.kolt.kmp.library-compose")
-    id("io.github.appspiriment.kolt.publish")
+    id("io.github.koltsystems.koltx.kmp.library-compose")
+    id("io.github.koltsystems.koltx.publish")
     alias(libs.plugins.dokka)
 }
 
@@ -13,7 +13,7 @@ kmp {
 }
 
 android {
-    namespace = "io.github.appspiriment.kolt.composekmp"
+    namespace = "io.github.koltsystems.koltx.composekmp"
 }
 
 dependencies {
@@ -31,8 +31,8 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "compose-kmp")
     pom {
-        name = "Kolt Compose KMP"
+        name = "KoltX Compose KMP"
         description = "Core Compose Multiplatform UI components and design system tokens."
-        url = "https://github.com/appspiriment/UtilsLibs"
+        url = "https://github.com/kolt-systems/KoltX"
     }
 }

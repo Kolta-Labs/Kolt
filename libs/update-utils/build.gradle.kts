@@ -1,14 +1,14 @@
 plugins {
-    id("io.github.appspiriment.kolt.library-compose")
-    id("io.github.appspiriment.kolt.publish")
+    id("io.github.koltsystems.koltx.library-compose")
+    id("io.github.koltsystems.koltx.publish")
     alias(libs.plugins.dokka)
 }
 
 android {
-    namespace = "io.github.appspiriment.kolt.updateutils"
+    namespace = "io.github.koltsystems.koltx.updateutils"
 }
 
-kolt {
+koltx {
     enableMinify = false
     // utils is needed (launchPlayStorePage), and logutils for debug tracing
     enableUtils = true
@@ -27,9 +27,9 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "update-utils")
     pom {
-        name = "Kolt Update Utils"
+        name = "KoltX Update Utils"
         description = "Lightweight Android library that simplifies Firebase Remote Config-driven " +
             "update flows with Compose UI for immediate and flexible update prompts."
-        url = "https://github.com/appspiriment/UtilsLibs"
+        url = "https://github.com/kolt-systems/KoltX"
     }
 }

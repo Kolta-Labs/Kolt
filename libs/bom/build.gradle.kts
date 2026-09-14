@@ -1,12 +1,12 @@
 // ──────────────────────────────────────────────────────────────────────────────
-// Kolt BOM (Bill of Materials)
+// KoltX BOM (Bill of Materials)
 //
-// A Maven platform POM that constrains all Kolt library versions to a
+// A Maven platform POM that constrains all KoltX library versions to a
 // known-compatible set. Consumers add this once:
 //
-//   implementation(platform("io.github.appspiriment.kolt:kolt-bom:<version>"))
+//   implementation(platform("io.github.koltsystems.koltx:koltx-bom:<version>"))
 //
-// After which all `io.github.appspiriment.kolt:*` artifacts can be declared without
+// After which all `io.github.koltsystems.koltx:*` artifacts can be declared without
 // explicit versions. The convention plugins automatically inject this BOM, so
 // most consumer projects never need to add it manually.
 //
@@ -16,7 +16,7 @@
 
 plugins {
     `java-platform`
-    id("io.github.appspiriment.kolt.publish")
+    id("io.github.koltsystems.koltx.publish")
 }
 
 // Lib versions are exposed as extra properties by the root build.gradle.kts,
@@ -30,23 +30,23 @@ val locationVersion:     String by rootProject.extra
 
 dependencies {
     constraints {
-        api("io.github.appspiriment.kolt:utils:$utilsVersion")
-        api("io.github.appspiriment.kolt:logutils:$logutilsVersion")
-        api("io.github.appspiriment.kolt:compose:$composeUtilsVersion")
-        api("io.github.appspiriment.kolt:compose-kmp:$composeKmpVersion")
-        api("io.github.appspiriment.kolt:update-utils:$updateUtilsVersion")
-        api("io.github.appspiriment.kolt:location:$locationVersion")
+        api("io.github.koltsystems.koltx:utils:$utilsVersion")
+        api("io.github.koltsystems.koltx:logutils:$logutilsVersion")
+        api("io.github.koltsystems.koltx:compose:$composeUtilsVersion")
+        api("io.github.koltsystems.koltx:compose-kmp:$composeKmpVersion")
+        api("io.github.koltsystems.koltx:update-utils:$updateUtilsVersion")
+        api("io.github.koltsystems.koltx:location:$locationVersion")
     }
 }
 
 mavenPublishing {
-    coordinates(artifactId = "kolt-bom")
+    coordinates(artifactId = "koltx-bom")
     pom {
-        name = "Kolt BOM"
-        description = "Bill of Materials for the Kolt library suite — " +
-            "constrains utils, logutils, compose, and update-utils to a " +
+        name = "KoltX BOM"
+        description = "Bill of Materials for the KoltX library suite — " +
+            "constrains utils, logutils, compose, compose-kmp, and update-utils to a " +
             "known-compatible version set."
-        url = "https://github.com/appspiriment/android-kmp-utils"
+        url = "https://github.com/kolt-systems/KoltX"
         licenses {
             license {
                 name = "Apache-2.0"
@@ -55,15 +55,15 @@ mavenPublishing {
         }
         developers {
             developer {
-                id = "appspiriment"
-                name = "Appspiriment"
-                url = "https://github.com/appspiriment"
+                id = "kolt-systems"
+                name = "Kolt Systems"
+                url = "https://github.com/kolt-systems"
             }
         }
         scm {
-            connection = "scm:git:git://github.com/appspiriment/android-kmp-utils.git"
-            developerConnection = "scm:git:ssh://github.com/appspiriment/android-kmp-utils.git"
-            url = "https://github.com/appspiriment/android-kmp-utils"
+            connection = "scm:git:git://github.com/kolt-systems/KoltX.git"
+            developerConnection = "scm:git:ssh://github.com/kolt-systems/KoltX.git"
+            url = "https://github.com/kolt-systems/KoltX"
         }
     }
 }

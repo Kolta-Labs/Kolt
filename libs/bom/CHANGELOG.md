@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Kolt BOM (`io.github.appspiriment.kolt:kolt-bom`)
+All notable changes to the Kolt BOM (`io.github.koltsystems.koltx:kolt-bom`)
 are documented here, newest first. The BOM version is calendar-based
 (`YYYY.MM.patch`) and bumps whenever any member library's version changes —
 see each library's own CHANGELOG.md for what actually changed.

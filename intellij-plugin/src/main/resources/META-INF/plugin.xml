@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>io.github.appspiriment.kolt.project-wizard</id>
+    <id>io.github.koltsystems.koltx.project-wizard</id>
     <name>Kolt Project Wizard</name>
-    <vendor email="support@appspiriment.io" url="https://github.com/appspiriment/UtilsLibs">
-        Appspiriment
+    <vendor email="support@koltx.io" url="https://github.com/kolt-systems/KoltX">
+        Kolt
     </vendor>
 
     <description><![CDATA[
@@ -10,7 +10,7 @@
         Creates a fully-configured <b>Android</b> or <b>Kotlin Multiplatform</b> project with:
         <ul>
             <li>Kolt convention plugins pre-applied</li>
-            <li>Version catalog wired (<code>koltlibs</code> / <code>kmplibs</code>)</li>
+            <li>Version catalog wired (<code>koltxlibs</code> / <code>kmplibs</code>)</li>
             <li>Gradle wrapper included (immediately buildable)</li>
             <li>Source directory tree at the correct package path</li>
             <li>AI-agent steering docs (<code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>docs/</code>)</li>
@@ -37,7 +37,7 @@
             Appears as a top-level entry alongside "Empty Project", "Kotlin", etc.
         -->
         <directoryProjectGenerator
-            implementation="io.github.appspiriment.kolt.intellij.KoltProjectGenerator"/>
+            implementation="io.github.koltsystems.koltx.intellij.KoltProjectGenerator"/>
 
         <!--
             Persists non-secret settings (OSSRH username, GPG key name, flags…)
@@ -45,16 +45,16 @@
             KoltCredentials (PasswordSafe).
         -->
         <applicationService
-            serviceImplementation="io.github.appspiriment.kolt.intellij.settings.KoltSettings"/>
+            serviceImplementation="io.github.koltsystems.koltx.intellij.settings.KoltSettings"/>
 
         <!--
             Adds Settings → Tools → Kolt panel.
         -->
         <applicationConfigurable
             parentId="tools"
-            id="io.github.appspiriment.kolt.settings"
+            id="io.github.koltsystems.koltx.settings"
             displayName="Kolt"
-            implementation="io.github.appspiriment.kolt.intellij.settings.KoltSettingsConfigurable"/>
+            implementation="io.github.koltsystems.koltx.intellij.settings.KoltSettingsConfigurable"/>
 
         <!--
             Notification group used by GradleTaskRunner for error toasts.
@@ -84,14 +84,14 @@
             <!-- Publish ALL modules to Maven Local in one Gradle run -->
             <action
                 id="Kolt.PublishAllMavenLocal"
-                class="io.github.appspiriment.kolt.intellij.actions.PublishToMavenLocalAction"
+                class="io.github.koltsystems.koltx.intellij.actions.PublishToMavenLocalAction"
                 text="Publish All → Maven Local"
                 description="Run publishAllToMavenLocal for all Kolt modules"/>
 
             <!-- Publish ALL modules to Maven Central (separate Gradle invocations per module) -->
             <action
                 id="Kolt.PublishAllMavenCentral"
-                class="io.github.appspiriment.kolt.intellij.actions.PublishToMavenCentralAction"
+                class="io.github.koltsystems.koltx.intellij.actions.PublishToMavenCentralAction"
                 text="Publish All → Maven Central (Release)"
                 description="Sign and publish all Kolt modules to Sonatype OSSRH"/>
 
@@ -100,7 +100,7 @@
             <!-- Pick a single module from a popup chooser -->
             <action
                 id="Kolt.PublishSingleModule"
-                class="io.github.appspiriment.kolt.intellij.actions.PublishSingleModuleAction"
+                class="io.github.koltsystems.koltx.intellij.actions.PublishSingleModuleAction"
                 text="Publish Single Module…"
                 description="Choose one Kolt module to publish"/>
 
@@ -109,7 +109,7 @@
             <!-- Bump the DEV counter in version.properties -->
             <action
                 id="Kolt.BumpDevVersion"
-                class="io.github.appspiriment.kolt.intellij.actions.BumpDevVersionAction"
+                class="io.github.koltsystems.koltx.intellij.actions.BumpDevVersionAction"
                 text="Bump Dev Version"
                 description="Increment the DEV counter in version.properties"/>
 

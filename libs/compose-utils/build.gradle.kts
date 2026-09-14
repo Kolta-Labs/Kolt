@@ -3,19 +3,19 @@ plugins {
     // the build-logic classpath — the SAME classloader the KMP library modules use. Applying
     // the Kotlin plugin directly here (with a version) would load a second copy of KGP and
     // crash the multi-module build (KotlinNativeBundleBuildService classloader conflict).
-    id("io.github.appspiriment.kolt.library-compose")
-    id("io.github.appspiriment.kolt.publish")
+    id("io.github.koltsystems.koltx.library-compose")
+    id("io.github.koltsystems.koltx.publish")
     alias(libs.plugins.dokka)
 }
 
 // This module IS compose-utils — don't let the plugin add the Kolt runtime libs
 // (utils/logutils/compose-utils) to itself. It pulls :libs:utils directly instead.
-kolt {
+koltx {
     enableUtils.set(false)
 }
 
 android {
-    namespace = "io.github.appspiriment.kolt.composeutils"
+    namespace = "io.github.koltsystems.koltx.composeutils"
 }
 
 dependencies {
@@ -48,8 +48,8 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "compose")
     pom {
-        name = "Kolt Compose"
+        name = "KoltX Compose"
         description = "Simple Compose components and utility functions for Android development."
-        url = "https://github.com/appspiriment/UtilsLibs"
+        url = "https://github.com/kolt-systems/KoltX"
     }
 }

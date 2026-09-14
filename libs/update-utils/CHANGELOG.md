@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `update-utils` (`io.github.appspiriment.kolt:update-utils`) are documented
+All notable changes to `update-utils` (`io.github.koltsystems.koltx:update-utils`) are documented
 here, newest first. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 

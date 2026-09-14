@@ -30,7 +30,7 @@
             <p><code>UiColor</code> manages standard Compose color objects, color XML resource identifiers, and hex code strings.</p>
 
             <h3>Class Definition &amp; Subclasses</h3>
-            <pre><code>package io.github.appspiriment.kolt.composekmp.wrappers
+            <pre><code>package io.github.koltsystems.koltx.composekmp.wrappers
 
 sealed class UiColor {
     companion object {
@@ -68,7 +68,7 @@ uiColorResource(R.color.background_dark)  // Composable helper</code></pre>
             <p><code>UiDimen</code> represents lengths, spacings, padding intervals, and font sizes (sp) from raw floats or resource structures.</p>
 
             <h3>Class Definition &amp; Subclasses</h3>
-            <pre><code>package io.github.appspiriment.kolt.composekmp.wrappers
+            <pre><code>package io.github.koltsystems.koltx.composekmp.wrappers
 
 sealed class UiDimen {
     data class DynamicDp(val value: Dp) : UiDimen() {
@@ -104,10 +104,10 @@ val fontSize: TextUnit = uiDimen.asSp()</code></pre>
             <p>This implementation showcases how to pass dynamic borders, background colors, and margin spacing from a common data structure to build a customizable UI banner.</p>
 
             <h3>1. Styling Configuration Model (commonMain)</h3>
-            <pre><code>import io.github.appspiriment.kolt.composekmp.wrappers.UiColor
-import io.github.appspiriment.kolt.composekmp.wrappers.UiDimen
-import io.github.appspiriment.kolt.composekmp.wrappers.toUiColorHex
-import io.github.appspiriment.kolt.composekmp.wrappers.toUiDimen
+            <pre><code>import io.github.koltsystems.koltx.composekmp.wrappers.UiColor
+import io.github.koltsystems.koltx.composekmp.wrappers.UiDimen
+import io.github.koltsystems.koltx.composekmp.wrappers.toUiColorHex
+import io.github.koltsystems.koltx.composekmp.wrappers.toUiDimen
 import androidx.compose.ui.unit.dp
 
 data class BannerStyle(
@@ -133,8 +133,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.github.appspiriment.kolt.composekmp.wrappers.asColor
-import io.github.appspiriment.kolt.composekmp.wrappers.asDp
+import io.github.koltsystems.koltx.composekmp.wrappers.asColor
+import io.github.koltsystems.koltx.composekmp.wrappers.asDp
 
 @Composable
 fun StyledAlertBanner(style: BannerStyle, message: String) {

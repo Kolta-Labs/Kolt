@@ -1,6 +1,6 @@
 # libs/compose-kmp — Compose Multiplatform UI
 
-[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.appspiriment.kolt/compose-kmp)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.koltsystems.koltx/compose-kmp)
 [![KMP](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Desktop-7F52FF?style=flat-square&logo=kotlin)](https://kotlinlang.org/docs/multiplatform.html)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange?style=flat-square)](../../LICENSE)
 [![Changelog](https://img.shields.io/badge/Changelog-view-lightgrey?style=flat-square)](CHANGELOG.md)
@@ -13,7 +13,7 @@ Core Compose Multiplatform UI components and design-system tokens (`commonMain`,
 
 ```kotlin
 dependencies {
-    implementation("io.github.appspiriment.kolt:compose-kmp:0.2.1.dev-00")
+    implementation("io.github.koltsystems.koltx:compose-kmp:0.2.1.dev-00")
 }
 ```
 
@@ -37,17 +37,17 @@ CompositionBaseProvider(isDarkTheme = isSystemInDarkTheme(), font = AppFont.Robo
 
 | Package | Contents |
 |---|---|
-| `components/core/buttons` | `AppsButton`, `AppsOutlinedButton`, `AppsTextButton`, `AppsTonalButton`, `AppsLinkButton`, `AppsIosButton`, `AppsIconButton`, `AppsIconTextButton`, `AppsImageButton`, `AppsCircularButton` |
-| `components/core/text` | `AppspirimentText`, `AppsExpandableText`, `AppsHighlightText`, `AppsCopyableText`, `AppsImageText`, `KeyValuePairText`, `PrefixedText` |
-| `components/core/text/textfield` | `AppsValidatedTextField` (stateful, `ValidatedTextFieldState`), `AppsPasswordTextField`, `AppsSearchTextField`, `InputTransformations` |
-| `components/core/dropdowns` | `AppsDropDown`, `AppsTextDropDown`, `AppsIconDropDown`, `ChipDropDown`, `DropDownSpinner`, `TextDropDown`, `IconDropDown` |
-| `components/core/messages` | `MessageDialog`, `AppsBanner`, `AppsSnackbar`, `AppsBottomSheet` |
-| `components/core/image` | `AppsImage`, `AppsAvatar`, `AppsIcon`, `CircleIconBox` |
-| `components/core/progress` | `AppsProgressIndicator`, `FullscreenLoader` |
-| `components/core/selectors` | `AppsSelectableText` |
+| `components/core/buttons` | `KoltButton`, `KoltOutlinedButton`, `KoltTextButton`, `KoltTonalButton`, `KoltLinkButton`, `KoltIosButton`, `KoltIconButton`, `KoltIconTextButton`, `KoltImageButton`, `KoltCircularButton` |
+| `components/core/text` | `KoltText`, `KoltExpandableText`, `KoltHighlightText`, `KoltCopyableText`, `KoltImageText`, `KeyValuePairText`, `PrefixedText` |
+| `components/core/text/textfield` | `KoltValidatedTextField` (stateful, `ValidatedTextFieldState`), `KoltPasswordTextField`, `KoltSearchTextField`, `InputTransformations` |
+| `components/core/dropdowns` | `KoltDropDown`, `KoltTextDropDown`, `KoltIconDropDown`, `ChipDropDown`, `DropDownSpinner`, `TextDropDown`, `IconDropDown` |
+| `components/core/messages` | `MessageDialog`, `KoltBanner`, `KoltSnackbar`, `KoltBottomSheet` |
+| `components/core/image` | `KoltImage`, `KoltAvatar`, `KoltIcon`, `CircleIconBox` |
+| `components/core/progress` | `KoltProgressIndicator`, `FullscreenLoader` |
+| `components/core/selectors` | `KoltSelectableText`, `KoltCheckBox`, `KoltRadioButton`, `KoltRadioButtonGroup`, `KoltSwitch` |
 | `components/core/modifiers`, `components/modifiers` | `CircleBackground`, `ModifierExtensions`, `ShimmerEffect` |
-| `components/core` (misc) | `AppsAccordion`, `AppsDivider`, `AppsEmptyState`, `AppsRatingBar`, `AppsSlider`, `AppsStatusTag`, `AppsStepper`, `AppsTooltip`, `AsyncStateBox`, `ShimmerBox`, `Spacers` |
-| `components/containers` | `PageScaffold`, `AppsTopBar`, `AppsDrawerScaffold`, `PullToRefreshBox`, `TitledCardView`, `bottomnavigation/AppsBottomNavigation` |
+| `components/core` (misc) | `KoltAccordion`, `KoltDivider`, `KoltEmptyState`, `KoltRatingBar`, `KoltSlider`, `KoltStatusTag`, `KoltStepper`, `KoltTooltip`, `AsyncStateBox`, `ShimmerBox`, `Spacers` |
+| `components/containers` | `PageScaffold`, `KoltTopBar`, `KoltDrawerScaffold`, `PullToRefreshBox`, `TitledCardView`, `bottomnavigation/KoltBottomNavigation` |
 | `components/containers/swipeactionbox` | `SwipeableActionsBox` and its `SwipeAction`/`ActionFinder`/`SwipeableActionsState` support |
 | `wrappers` | `UiText`, `UiColor`, `UiDimen`, `UiImage`, `FieldError` — platform-agnostic wrappers for string resources, colors, dimens, and images across Android/iOS/Desktop |
 

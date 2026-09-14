@@ -73,7 +73,7 @@ build-logic/CHANGELOG.md           (convention plugins + catalogs)
 ```markdown
 # Changelog
 
-All notable changes to `<artifact>` (`io.github.appspiriment.kolt:<artifact>`)
+All notable changes to `<artifact>` (`io.github.koltsystems.koltx:<artifact>`)
 are documented here, newest first. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
@@ -151,7 +151,7 @@ has time to fix the credentials/config gap — the fix belongs in
 
 `demo-web/docs/changelog/index.html` is a docs-site page listing every
 artifact and, per artifact, rendering its `CHANGELOG.md`. It fetches the file
-straight from `raw.githubusercontent.com/appspiriment/Kolt/main/...` at
+straight from `raw.githubusercontent.com/koltsystems/KoltX/main/...` at
 runtime — **not** a copy baked into the site — so it always reflects what's
 on `main` with zero extra sync step, at the cost of only working once a
 change is pushed (fine: by the time anyone views the site, the release

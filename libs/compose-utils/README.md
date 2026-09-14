@@ -1,6 +1,6 @@
 # libs/compose-utils — Compose UI Component Library
 
-[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.appspiriment.kolt/compose)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.koltsystems.koltx/compose)
 [![Android](https://img.shields.io/badge/Android-only-green?style=flat-square&logo=android)](https://developer.android.com)
 [![Compose](https://img.shields.io/badge/Jetpack%20Compose-2.3.10-4285F4?style=flat-square&logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange?style=flat-square)](../../LICENSE)
@@ -14,7 +14,7 @@ A production-ready Compose UI component library and theme system for Kolt Androi
 
 ```kotlin
 dependencies {
-    implementation("io.github.appspiriment.kolt:compose:0.2.1.dev-00")
+    implementation("io.github.koltsystems.koltx:compose:0.2.1.dev-00")
     // Kolt convention plugins add this automatically — opt out with `kolt { enableUtils.set(false) }`
 }
 ```
@@ -23,10 +23,10 @@ dependencies {
 
 ## Theme System
 
-The theme is token-based. All design decisions are centralised in `AppspirimentTheme` and accessed via `Kolt.*`:
+The theme is token-based. All design decisions are centralised in `KoltXTheme` and accessed via `Kolt.*`:
 
 ```kotlin
-AppspirimentTheme(
+KoltXTheme(
     colors = myLightColors,     // BaseColors
     darkColors = myDarkColors,
     sizes = mySizes,            // Sizes (dp + sp)
@@ -58,22 +58,22 @@ val padding = Kolt.sizes.paddingMedium
 
 | Composable | Description |
 |-----------|-------------|
-| `AppspirimentText(text: String/UiText/AnnotatedString)` | Themed text with font-padding correction |
-| `AppsExpandableText` | Truncated text with "Show more / Show less" toggle |
-| `AppsCopyableText` | Text with a one-tap copy-to-clipboard action |
-| `AppsHighlightText` | Highlights all occurrences of a search query within text |
+| `KoltText(text: String/UiText/AnnotatedString)` | Themed text with font-padding correction |
+| `KoltExpandableText` | Truncated text with "Show more / Show less" toggle |
+| `KoltCopyableText` | Text with a one-tap copy-to-clipboard action |
+| `KoltHighlightText` | Highlights all occurrences of a search query within text |
 | `MalayalamText` | Text forced to Noto Sans for Malayalam script rendering |
 
 ### Buttons
 
 | Composable | Description |
 |-----------|-------------|
-| `AppsButton` | Filled button with pressed-state animation |
-| `AppsTextButton` | Ghost / text-only button |
-| `AppsIconButton` | Square icon-only button |
-| `AppsIconTextButton` | Icon + label button |
-| `AppsLinkButton` | Underlined inline link |
-| `AppsCircularButton` | Round FAB-style button |
+| `KoltButton` | Filled button with pressed-state animation |
+| `KoltTextButton` | Ghost / text-only button |
+| `KoltIconButton` | Square icon-only button |
+| `KoltIconTextButton` | Icon + label button |
+| `KoltLinkButton` | Underlined inline link |
+| `KoltCircularButton` | Round FAB-style button |
 
 All buttons accept a `ButtonStyle` — pre-built factories: `ButtonStyle.primary()`, `.outlined()`, `.transparent()`, `.danger()`.
 
@@ -81,10 +81,10 @@ All buttons accept a `ButtonStyle` — pre-built factories: `ButtonStyle.primary
 
 | Composable | Description |
 |-----------|-------------|
-| `AppsValidatedTextField` | `TextFieldState`-based field with validation, error display, counter |
-| `AppsPasswordTextField` | Password field with animated visibility toggle |
-| `AppsSearchTextField` | Search field with animated clear button |
-| `AppsTextField` | Simple unmanaged string field |
+| `KoltValidatedTextField` | `TextFieldState`-based field with validation, error display, counter |
+| `KoltPasswordTextField` | Password field with animated visibility toggle |
+| `KoltSearchTextField` | Search field with animated clear button |
+| `KoltTextField` | Simple unmanaged string field |
 
 Pair with `ValidatedTextFieldState` + `ValidationRules`:
 
@@ -95,7 +95,7 @@ val emailState = remember {
     )
 }
 
-AppsValidatedTextField(
+KoltValidatedTextField(
     state = emailState,
     label = "Email".toUiText(),
 )
@@ -112,43 +112,43 @@ if (emailState.validate()) { /* proceed */ }
 | `TextDropDown` | Spinner rendered as a text field |
 | `IconDropDown` | Spinner rendered as an icon button |
 | `ChipDropDown` | Spinner rendered as a chip |
-| `AppsTextDropDown` | Themed text dropdown with animated arrow |
-| `AppsIconDropDown` | Themed icon dropdown |
+| `KoltTextDropDown` | Themed text dropdown with animated arrow |
+| `KoltIconDropDown` | Themed icon dropdown |
 
 ### Images & Avatars
 
 | Composable | Description |
 |-----------|-------------|
-| `AppsImage` | Coil-powered image with placeholder/error states |
-| `AppsIcon` | Icon from `UiImage` (vector, resource, or remote) |
-| `AppsAvatar` | Circular avatar with initials fallback |
+| `KoltImage` | Coil-powered image with placeholder/error states |
+| `KoltIcon` | Icon from `UiImage` (vector, resource, or remote) |
+| `KoltAvatar` | Circular avatar with initials fallback |
 | `CircleIconBox` | Icon inside a themed circle |
 
 ### Feedback & Status
 
 | Composable | Description |
 |-----------|-------------|
-| `AppsBanner` | Inline alert banner (Info / Success / Warning / Error / Neutral) |
-| `AppsSnackbarHost` | Themed snackbar with icon and semantic colour variants |
+| `KoltBanner` | Inline alert banner (Info / Success / Warning / Error / Neutral) |
+| `KoltSnackbarHost` | Themed snackbar with icon and semantic colour variants |
 | `AsyncStateBox` | Renders loading / error / empty / content based on `AsyncState<T>` |
-| `AppsEmptyState` | Full empty-state with illustration, title, message, CTA |
+| `KoltEmptyState` | Full empty-state with illustration, title, message, CTA |
 | `ShimmerBox` | Animated shimmer placeholder skeleton |
-| `AppsProgressIndicator` | Circular/linear progress with theme colours |
-| `AppsStatusTag` | Coloured pill tag for status labels |
-| `AppsBadge` | Notification count badge with overflow cap |
+| `KoltProgressIndicator` | Circular/linear progress with theme colours |
+| `KoltStatusTag` | Coloured pill tag for status labels |
+| `KoltBadge` | Notification count badge with overflow cap |
 
 ### Containers & Scaffolding
 
 | Composable | Description |
 |-----------|-------------|
 | `PageScaffold` | Standard screen scaffold with top bar + snackbar host |
-| `AppsTopBar` | Themed `TopAppBar` with back button and action slots |
-| `AppsBottomNavigation` | Bottom navigation bar wired to a `NavHost` |
-| `AppsDrawerScaffold` | Navigation drawer scaffold |
+| `KoltTopBar` | Themed `TopAppBar` with back button and action slots |
+| `KoltBottomNavigation` | Bottom navigation bar wired to a `NavHost` |
+| `KoltDrawerScaffold` | Navigation drawer scaffold |
 | `TitledCardView` | Card with an optional title header |
 | `SwipeableActionsBox` | Swipe-to-reveal action row (delete, archive, etc.) |
 | `PullToRefreshBox` | Pull-to-refresh wrapper |
-| `AppsBottomSheet` | Themed `ModalBottomSheet` |
+| `KoltBottomSheet` | Themed `ModalBottomSheet` |
 
 ### Utilities & Modifiers
 
@@ -229,7 +229,7 @@ R.drawable.ic_logo.toUiImage()
 Pre-built `InputTransformation` objects for `TextFieldState`-based fields:
 
 ```kotlin
-AppsValidatedTextField(
+KoltValidatedTextField(
     state = state,
     inputTransformation = InputTransformations.digitsOnly
         .then(InputTransformation.maxLength(10)),

@@ -47,10 +47,10 @@ kotlin {
 }
 
 android {
-    namespace = "io.github.appspiriment.kolt.demo"
+    namespace = "io.github.koltsystems.koltx.demo"
     compileSdk = 36
     defaultConfig {
-        applicationId = "io.github.appspiriment.kolt.demo"
+        applicationId = "io.github.koltsystems.koltx.demo"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
@@ -65,6 +65,6 @@ android {
 
 compose.desktop {
     application {
-        mainClass = "io.github.appspiriment.kolt.demo.MainKt"
+        mainClass = "io.github.koltsystems.koltx.demo.MainKt"
     }
 }

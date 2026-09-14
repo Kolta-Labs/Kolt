@@ -1,7 +1,7 @@
 plugins {
-    id("io.github.appspiriment.kolt.kmp.data")
+    id("io.github.koltsystems.koltx.kmp.data")
     alias(kmplibs.plugins.kotlin.serialization)
-    id("io.github.appspiriment.kolt.publish")
+    id("io.github.koltsystems.koltx.publish")
     alias(libs.plugins.dokka)
 }
 
@@ -34,7 +34,7 @@ kmp {
 }
 
 android {
-    namespace = "io.github.appspiriment.kolt.location"
+    namespace = "io.github.koltsystems.koltx.location"
 }
 
 kmpDataLayer {
@@ -64,10 +64,10 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "location")
     pom {
-        name = "Kolt Location"
+        name = "KoltX Location"
         description = "Cross-platform current-location fetching: native GPS + reverse " +
             "geocoding on Android/iOS, IP-based geolocation on Desktop, browser Geolocation API on Web."
-        url = "https://github.com/appspiriment/UtilsLibs"
+        url = "https://github.com/kolt-systems/KoltX"
     }
 }
 

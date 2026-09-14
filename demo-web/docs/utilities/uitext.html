@@ -27,7 +27,7 @@
             <h2>2. Class Definition &amp; Subclasses</h2>
             <p><code>UiText</code> is structured as a sealed class with five specialized subclasses that cover all standard text formatting requirements.</p>
 
-            <pre><code>package io.github.appspiriment.kolt.composekmp.wrappers
+            <pre><code>package io.github.koltsystems.koltx.composekmp.wrappers
 
 sealed class UiText {
     companion object {
@@ -103,8 +103,8 @@ message.toUiTextOr { UiText.StringResource(R.string.fallback_label) }</code></pr
             <p>This implementation demonstrates a profile state flow that resolves localized placeholders inside a common ViewModel and binds it to a Jetpack Compose screen.</p>
 
             <h3>1. ViewModel (commonMain)</h3>
-            <pre><code>import io.github.appspiriment.kolt.composekmp.wrappers.UiText
-import io.github.appspiriment.kolt.utils.state.AsyncState
+            <pre><code>import io.github.koltsystems.koltx.composekmp.wrappers.UiText
+import io.github.koltsystems.koltx.utils.state.AsyncState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -136,7 +136,7 @@ class UserProfileViewModel : ViewModel() {
             <pre><code>import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import io.github.appspiriment.kolt.composekmp.wrappers.asString
+import io.github.koltsystems.koltx.composekmp.wrappers.asString
 
 @Composable
 fun UserProfileScreen(viewModel: UserProfileViewModel) {

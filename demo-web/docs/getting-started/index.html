@@ -33,7 +33,7 @@
             <p>Running the bootstrap script sets up a ready-to-build multi-project structure wired with Kolt’s conventions:</p>
             <ul>
                 <li><strong>Convention Plugins Applied:</strong> The generated modules apply Kolt convention plugins (e.g. <code>kmp.library</code> or <code>android-application</code>) instead of hardcoding compiler settings or third-party versions.</li>
-                <li><strong>Version Catalogs Linked:</strong> The root <code>settings.gradle.kts</code> imports <code>koltlibs</code> and <code>kmplibs</code> catalogs, exposing version aliases to your build files.</li>
+                <li><strong>Version Catalogs Linked:</strong> The root <code>settings.gradle.kts</code> imports <code>koltxlibs</code> and <code>kmplibs</code> catalogs, exposing version aliases to your build files.</li>
                 <li><strong>Directory Structure Scaffolded:</strong> Standard target directories (such as <code>commonMain</code>, <code>androidMain</code>, and <code>iosMain</code> for KMP) are prepared and populated with empty source placeholders.</li>
                 <li><strong>Default Resources Generated:</strong> During the first build, the build plugins dynamically inject default theme resources (like colors and shape styles) into your project.</li>
             </ul>
@@ -42,19 +42,24 @@
             <pre><code>// settings.gradle.kts
 dependencyResolutionManagement {
     versionCatalogs {
-        create("koltlibs") {
-            from("io.github.appspiriment.kolt:kolt-catalog:&lt;version&gt;")
+        create("koltxlibs") {
+            from("io.github.koltsystems.koltx:koltx-catalog:&lt;version&gt;")
         }
         // KMP projects also add:
         create("kmplibs") {
-            from("io.github.appspiriment.kolt:kmp-catalog:&lt;version&gt;")
+            from("io.github.koltsystems.koltx:kmp-catalog:&lt;version&gt;")
         }
     }
 }</code></pre>
             <pre><code>// app/build.gradle.kts
-plugins { id("io.github.appspiriment.kolt.application") }
+plugins { id("io.github.koltsystems.koltx.application") }
 android { namespace = "com.example.myapp" }</code></pre>
             <p>First build auto-runs <code>scaffoldKoltResources</code> (theme XMLs) and <code>scaffoldKoltDocs</code> (docs/) — both idempotent, never overwrite on re-run.</p>
+
+            <div class="docs-callout" style="background: rgba(26,115,232,0.08); border-left: 4px solid var(--accent-primary, #1a73e8); padding: 14px 18px; border-radius: 6px; margin: 20px 0;">
+                <h4 style="margin: 0 0 6px; color: var(--accent-primary, #1a73e8);">Upgrading an existing project?</h4>
+                <p style="margin: 0; font-size: 14px;">If you encounter <code>Plugin [id: 'io.github.appspiriment.kolt.kmp.application'] was not found</code> or other legacy coordinate errors, follow our <a href="../guides/migration.html"><strong>KoltX Migration Guide</strong></a>.</p>
+            </div>
 
             <h2>Where to next</h2>
             <div class="docs-tile-grid">

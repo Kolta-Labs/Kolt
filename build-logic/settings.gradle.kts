@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 rootProject.name = "build-logic"
 include(":conventions")
 // Lean, separate plugin module that carries ONLY the vanniktech maven-publish plugin (no KGP/AGP).
-// Library modules apply io.github.appspiriment.kolt.publish from here so vanniktech shares one
+// Library modules apply io.github.koltsystems.koltx.publish from here so vanniktech shares one
 // classloader across the whole build, while modules that don't need Kotlin (e.g. the BOM
 // java-platform) don't pull KGP into their classloader scope.
 include(":publish")

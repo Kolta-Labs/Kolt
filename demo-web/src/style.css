@@ -1,4 +1,4 @@
-/* Appspiriment Design Tokens */
+/* Kolt Design Tokens */
 :root {
     --bg-color: #0d0f12;
     --bg-color-rgb: 13, 15, 18;
@@ -806,7 +806,7 @@ body {
     color: var(--text-muted);
 }
 
-/* Custom AppsSlider Mock */
+/* Custom KoltSlider Mock */
 .apps-slider-container {
     position: relative;
     width: 100%;
@@ -892,7 +892,7 @@ body {
     background-color: var(--primary-color);
 }
 
-/* Custom AppsProgressBar Mock */
+/* Custom KoltProgressBar Mock */
 .apps-progress-bar {
     width: 100%;
     height: 16px;
@@ -1658,7 +1658,7 @@ body {
     opacity: 0.8;
 }
 
-/* AppsBanner Alerts */
+/* KoltBanner Alerts */
 .apps-banner {
     display: flex;
     align-items: flex-start;
@@ -1755,7 +1755,7 @@ body {
 
 /* --- Interactive Components Styling --- */
 
-/* AppsDivider & Spacers */
+/* KoltDivider & Spacers */
 .divider-showcase {
     display: flex;
     flex-direction: column;
@@ -1830,7 +1830,7 @@ body {
     height: var(--spacer-size-val, 16px);
 }
 
-/* AppsStatusTag */
+/* KoltStatusTag */
 .status-tags-playground {
     display: flex;
     flex-direction: column;
@@ -1922,7 +1922,7 @@ body {
     background-color: rgba(156, 163, 175, 0.2);
 }
 
-/* AppsBadge & AppsTooltip */
+/* KoltBadge & KoltTooltip */
 .badge-tooltip-playground {
     display: flex;
     flex-wrap: wrap;
@@ -2946,20 +2946,20 @@ body.embed-mode .showcase-card {
     }
 }
 
-/* AppspirimentText Custom Styling and Highlighting */
-.appspiriment-text-wrapper {
+/* KoltText Custom Styling and Highlighting */
+.koltx-text-wrapper {
     position: relative;
     border: 1px solid transparent;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.appspiriment-text-wrapper.highlighted-selectable {
+.koltx-text-wrapper.highlighted-selectable {
     background-color: rgba(59, 130, 246, 0.05) !important;
     border-color: rgba(59, 130, 246, 0.3) !important;
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.15);
 }
 
-.appspiriment-text-wrapper.highlighted-selectable::after {
+.koltx-text-wrapper.highlighted-selectable::after {
     content: "selectable = true";
     position: absolute;
     top: -8px;
@@ -2983,36 +2983,36 @@ body.embed-mode .showcase-card {
 }
 
 /* Preset text styles */
-.appspiriment-style-textMedium {
+.koltx-style-textMedium {
     font-size: 14px !important;
     font-weight: 500 !important;
 }
 
-.appspiriment-style-titleLarge {
+.koltx-style-titleLarge {
     font-size: 20px !important;
     font-weight: 700 !important;
     letter-spacing: -0.5px;
 }
 
-.appspiriment-style-bodySmall {
+.koltx-style-bodySmall {
     font-size: 12px !important;
     font-weight: 400 !important;
     color: var(--text-muted) !important;
 }
 
 /* Preset text colors */
-.appspiriment-color-default {
+.koltx-color-default {
     color: var(--text-main) !important;
 }
 
-.appspiriment-color-primary {
+.koltx-color-primary {
     color: var(--primary-color) !important;
 }
 
-.appspiriment-color-success {
+.koltx-color-success {
     color: #10b981 !important;
 }
 
-.appspiriment-color-error {
+.koltx-color-error {
     color: #ef4444 !important;
 }

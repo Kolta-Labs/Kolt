@@ -1,7 +1,7 @@
 // KMP shared module — ViewModels, domain use cases, and shared logic
 // Platform-specific code goes in androidMain / iosMain / desktopMain via expect/actual
 plugins {
-    id("io.github.appspiriment.kolt.kmp.library-koin")
+    id("io.github.koltsystems.koltx.kmp.library-koin")
 }
 
 kotlin {

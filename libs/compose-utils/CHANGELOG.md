@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `compose` (`io.github.appspiriment.kolt:compose`) are documented
+All notable changes to `compose` (`io.github.koltsystems.koltx:compose`) are documented
 here, newest first. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 

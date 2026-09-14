@@ -15,7 +15,7 @@ When you select **File → New Project → Kolt**, fill in three fields, and cli
   app/build.gradle.kts      ← convention plugin applied, namespace set
   shared/build.gradle.kts   ← (KMP only)
   CLAUDE.md / AGENTS.md     ← AI-agent steering stubs (fill in project facts)
-  docs/                     ← CODING_STANDARDS · ARCHITECTURE · TESTING · APPSPIRIMENT
+  docs/                     ← CODING_STANDARDS · ARCHITECTURE · TESTING · KOLTX
   app/src/main/kotlin/<pkg>/
   app/src/main/res/          ← (Android only)
   shared/src/commonMain/kotlin/<pkg>/   ← (KMP only)

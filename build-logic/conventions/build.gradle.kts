@@ -44,7 +44,7 @@ val currentComposeKmpVersion = computeVersion(versionProps, "COMPOSE_KMP_MAJOR",
 val currentUpdateVersion   = computeVersion(versionProps, "UPDATE_UTILS_MAJOR", "UPDATE_UTILS_DEV")
 val currentBomVersion      = versionProps.getProperty("BOM_VERSION", "2025.06.1")
 
-group = "io.github.appspiriment.kolt"
+group = "io.github.koltsystems.koltx"
 version = currentPluginVersion
 
 // ────────────────────────────────────────────────
@@ -194,7 +194,7 @@ val updateReadme = tasks.register("updateReadme") {
 //   BOM_VERSION           → currentBomVersion
 //   LIBVERSION            → currentPluginVersion  (backward-compat alias)
 // ────────────────────────────────────────────────
-val generatedSourceDir = layout.buildDirectory.dir("generated/appspiriment/kotlin")
+val generatedSourceDir = layout.buildDirectory.dir("generated/koltx/kotlin")
 
 fun registerConstantsGenerator(
     taskName: String,
@@ -293,9 +293,9 @@ fun registerConstantsGenerator(
         file.parentFile.mkdirs()
         file.writeText(
             """
-            package io.github.appspiriment.kolt.conventions.extensions
+            package io.github.koltsystems.koltx.conventions.extensions
 
-            import io.github.appspiriment.kolt.conventions.extensions.KoltLibRef
+            import io.github.koltsystems.koltx.conventions.extensions.KoltLibRef
 
             internal const val $tomlNameConst = "$tomlNameValue"
             internal const val $versionConst = "$currentPluginVersion"
@@ -315,7 +315,7 @@ fun registerConstantsGenerator(
 
 // Authoritative source: BUILD_JAVA_VERSION in the repo-root version.properties — this is the
 // JDK build-logic itself compiles against (independent of the consumer-facing `javaVersion`
-// key in gradle/koltlibs.versions.toml, which each consumer project owns and can set freely).
+// key in gradle/koltxlibs.versions.toml, which each consumer project owns and can set freely).
 // Falls back to the version catalog's `javaVersion` if the property is absent.
 // Range is enforced: 21 is the floor (17 is no longer supported), 25 is the current ceiling
 // until a newer JDK has been validated against AGP/KGP/D8.
@@ -330,10 +330,10 @@ val catalogDir = rootDir.parentFile.resolve("gradle")
 
 val updateLibFileVersion = registerConstantsGenerator(
     taskName = "updateLibFileVersion",
-    tomlFile = catalogDir.resolve("koltlibs.versions.toml"),
-    outputRelPath = "io/github/appspiriment/kolt/conventions/extensions/Constants.kt",
+    tomlFile = catalogDir.resolve("koltxlibs.versions.toml"),
+    outputRelPath = "io/github/koltsystems/koltx/conventions/extensions/Constants.kt",
     tomlNameConst = "koltTomlName",
-    tomlNameValue = "koltlibs",
+    tomlNameValue = "koltxlibs",
     versionConst = "libVersion",
     contentsConst = "koltTomlContents",
     refsConst = "koltLibRefs",
@@ -357,7 +357,7 @@ val updateLibFileVersion = registerConstantsGenerator(
 val updateKmpLibFileVersion = registerConstantsGenerator(
     taskName = "updateKmpLibFileVersion",
     tomlFile = catalogDir.resolve("kmplibs.versions.toml"),
-    outputRelPath = "io/github/appspiriment/kolt/conventions/extensions/KmpConstants.kt",
+    outputRelPath = "io/github/koltsystems/koltx/conventions/extensions/KmpConstants.kt",
     tomlNameConst = "kmpTomlName",
     tomlNameValue = "kmplibs",
     versionConst = "kmpLibVersion",
@@ -380,7 +380,7 @@ val composeUtilsResDir = rootDir.parentFile.resolve("libs/compose-utils/src/main
 val generatedResourcesDir = layout.buildDirectory.dir("generated-resources")
 
 val generateThemeTemplates = tasks.register<Sync>("generateThemeTemplates") {
-    group = "appspiriment"
+    group = "koltx"
     description = "Packs compose-utils theme templates into the plugin JAR."
 
     if (composeUtilsResDir.isDirectory) {
@@ -388,9 +388,9 @@ val generateThemeTemplates = tasks.register<Sync>("generateThemeTemplates") {
             include("values/colors.xml")
             include("values-night/colors.xml")
             include("values/dimens.xml")
-            rename("colors.xml", "appspiriment_colors.xml")
-            rename("dimens.xml", "appspiriment_dimens.xml")
-            into("appspiriment/templates")
+            rename("colors.xml", "koltx_colors.xml")
+            rename("dimens.xml", "koltx_dimens.xml")
+            into("koltx/templates")
         }
         doLast { logger.lifecycle("✅ Theme templates synced from compose-utils source.") }
     } else {
@@ -413,19 +413,20 @@ val generateThemeTemplates = tasks.register<Sync>("generateThemeTemplates") {
 val generatedSteeringResourcesDir = layout.buildDirectory.dir("generated-steering-resources")
 
 val generateSteeringTemplates = tasks.register<Sync>("generateSteeringTemplates") {
-    group = "appspiriment"
+    group = "koltx"
     description = "Packs AI-agent steering docs from Standards/ and templates from project-templates/ into the plugin JAR."
 
     from(rootProject.projectDir.parentFile.resolve("Standards")) {
         include("AGENTS.md")
         include("CLAUDE.md")
         include("GEMINI.md")
+        include("KOLTX.md")
         include("KOLT.md")
         include("steering/**")
-        into("appspiriment/steering")
+        into("koltx/steering")
     }
     from(rootProject.projectDir.parentFile.resolve("project-templates/templates")) {
-        into("appspiriment/steering/templates")
+        into("koltx/steering/templates")
     }
 
     into(generatedSteeringResourcesDir)
@@ -440,77 +441,77 @@ gradlePlugin {
     plugins {
         // ----- Android -----
         create("androidApplication") {
-            id = "io.github.appspiriment.kolt.application"
-            displayName = "Appspiriment Application"
+            id = "io.github.koltsystems.koltx.application"
+            displayName = "KoltX Application"
             description = "Standardized setup for Android application modules (Compose + Hilt by default)."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.AndroidApplicationConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.AndroidApplicationConventionPlugin"
         }
         create("androidLibrary") {
-            id = "io.github.appspiriment.kolt.library"
-            displayName = "Appspiriment Library"
+            id = "io.github.koltsystems.koltx.library"
+            displayName = "KoltX Library"
             description = "Minimal Android library module setup."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.AndroidLibraryConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.AndroidLibraryConventionPlugin"
         }
         create("androidHiltLibrary") {
-            id = "io.github.appspiriment.kolt.library-hilt"
-            displayName = "Appspiriment Library (Hilt)"
+            id = "io.github.koltsystems.koltx.library-hilt"
+            displayName = "KoltX Library (Hilt)"
             description = "Android library module with Hilt dependency injection."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.AndroidLibraryHiltConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.AndroidLibraryHiltConventionPlugin"
         }
         create("androidComposeLibrary") {
-            id = "io.github.appspiriment.kolt.library-compose"
-            displayName = "Appspiriment Library (Compose)"
+            id = "io.github.koltsystems.koltx.library-compose"
+            displayName = "KoltX Library (Compose)"
             description = "Android library module with Jetpack Compose UI."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.AndroidLibraryComposeConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.AndroidLibraryComposeConventionPlugin"
         }
         create("androidHiltComposeLibrary") {
-            id = "io.github.appspiriment.kolt.library-hilt-compose"
-            displayName = "Appspiriment Library (Hilt + Compose)"
+            id = "io.github.koltsystems.koltx.library-hilt-compose"
+            displayName = "KoltX Library (Hilt + Compose)"
             description = "Android library module with both Hilt and Jetpack Compose."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.AndroidLibraryHiltComposeConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.AndroidLibraryHiltComposeConventionPlugin"
         }
         create("androidDataLayerLibrary") {
-            id = "io.github.appspiriment.kolt.data"
-            displayName = "Appspiriment Data Layer"
+            id = "io.github.koltsystems.koltx.data"
+            displayName = "KoltX Data Layer"
             description = "Data layer setup with opt-in Room, Retrofit, DataStore, Security, and WorkManager."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.feature.AndroidDataLayerConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.feature.AndroidDataLayerConventionPlugin"
         }
         // ----- KMP -----
         create("kmpLibrary") {
-            id = "io.github.appspiriment.kolt.kmp.library"
-            displayName = "Appspiriment KMP Library"
+            id = "io.github.koltsystems.koltx.kmp.library"
+            displayName = "KoltX KMP Library"
             description = "Base KMP shared module setup (Android target always on, iOS/Desktop/WASM opt-in)."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.KmpLibraryConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.KmpLibraryConventionPlugin"
         }
         create("kmpLibraryCompose") {
-            id = "io.github.appspiriment.kolt.kmp.library-compose"
-            displayName = "Appspiriment KMP Library (Compose)"
+            id = "io.github.koltsystems.koltx.kmp.library-compose"
+            displayName = "KoltX KMP Library (Compose)"
             description = "KMP shared module with Compose Multiplatform UI."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.KmpLibraryComposeConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.KmpLibraryComposeConventionPlugin"
         }
         create("kmpLibraryKoin") {
-            id = "io.github.appspiriment.kolt.kmp.library-koin"
-            displayName = "Appspiriment KMP Library (Koin)"
+            id = "io.github.koltsystems.koltx.kmp.library-koin"
+            displayName = "KoltX KMP Library (Koin)"
             description = "KMP shared module with Koin dependency injection."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.KmpLibraryKoinConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.KmpLibraryKoinConventionPlugin"
         }
         create("kmpLibraryKoinCompose") {
-            id = "io.github.appspiriment.kolt.kmp.library-koin-compose"
-            displayName = "Appspiriment KMP Library (Koin + Compose)"
+            id = "io.github.koltsystems.koltx.kmp.library-koin-compose"
+            displayName = "KoltX KMP Library (Koin + Compose)"
             description = "KMP shared module with Koin DI and Compose Multiplatform UI."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.KmpLibraryKoinComposeConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.KmpLibraryKoinComposeConventionPlugin"
         }
         create("kmpData") {
-            id = "io.github.appspiriment.kolt.kmp.data"
-            displayName = "Appspiriment KMP Data Layer"
+            id = "io.github.koltsystems.koltx.kmp.data"
+            displayName = "KoltX KMP Data Layer"
             description = "KMP data layer with opt-in SQLDelight, Ktor, DataStore, and Serialization."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.feature.KmpDataLayerConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.feature.KmpDataLayerConventionPlugin"
         }
         create("kmpApplication") {
-            id = "io.github.appspiriment.kolt.kmp.application"
-            displayName = "Appspiriment KMP Application"
+            id = "io.github.koltsystems.koltx.kmp.application"
+            displayName = "KoltX KMP Application"
             description = "Android host app module for a KMP project (Compose + coroutines by default)."
-            implementationClass = "io.github.appspiriment.kolt.conventions.plugins.KmpApplicationConventionPlugin"
+            implementationClass = "io.github.koltsystems.koltx.conventions.plugins.KmpApplicationConventionPlugin"
         }
     }
 }
@@ -589,8 +590,8 @@ tasks.named<PluginUnderTestMetadata>("pluginUnderTestMetadata") {
 // Artifacts published from this module:
 //   • pluginMaven                  — the convention-plugin JAR + sources + javadoc
 //   • <plugin>PluginMarkerMaven    — one marker POM per plugin ID (12 total, auto-created)
-//   • appspirimentLibsCatalog      — koltlibs TOML version catalog
-//   • kmpLibsCatalog               — kmplibs TOML version catalog
+//   • koltxLibsCatalog             — koltx-catalog TOML version catalog
+//   • kmpLibsCatalog               — kmp-catalog TOML version catalog
 //
 // Publishing targets:
 //   Local:   ./gradlew -p build-logic :conventions:publishToMavenLocal
@@ -604,14 +605,14 @@ tasks.named<PluginUnderTestMetadata>("pluginUnderTestMetadata") {
 
 publishing {
     publications {
-        create<MavenPublication>("appspirimentLibsCatalog") {
-            artifactId = "koltlibs"
-            artifact(rootDir.parentFile.resolve("gradle/koltlibs.versions.toml")) {
+        create<MavenPublication>("koltxLibsCatalog") {
+            artifactId = "koltx-catalog"
+            artifact(rootDir.parentFile.resolve("gradle/koltxlibs.versions.toml")) {
                 extension = "toml"
             }
         }
         create<MavenPublication>("kmpLibsCatalog") {
-            artifactId = "kmplibs"
+            artifactId = "kmp-catalog"
             artifact(rootDir.parentFile.resolve("gradle/kmplibs.versions.toml")) {
                 extension = "toml"
             }
@@ -623,12 +624,12 @@ publishing {
 
         if (!name.endsWith("PluginMarkerMaven")) {
             pom {
-                name.set("Appspiriment Convention Plugins")
+                name.set("KoltX Convention Plugins")
                 description.set(
                     "Convention Gradle plugins (Android + KMP) and version catalogs " +
-                        "for Appspiriment projects."
+                        "for Kolt Systems projects."
                 )
-                url.set("https://github.com/appspiriment/UtilsLibs")
+                url.set("https://github.com/kolt-systems/KoltX")
                 licenses {
                     license {
                         name.set("Apache-2.0")
@@ -637,15 +638,15 @@ publishing {
                 }
                 developers {
                     developer {
-                        id.set("appspiriment")
-                        name.set("Appspiriment")
-                        url.set("https://github.com/appspiriment")
+                        id.set("kolt-systems")
+                        name.set("Kolt Systems")
+                        url.set("https://github.com/kolt-systems")
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/appspiriment/UtilsLibs.git")
-                    developerConnection.set("scm:git:ssh://github.com/appspiriment/UtilsLibs.git")
-                    url.set("https://github.com/appspiriment/UtilsLibs")
+                    connection.set("scm:git:git://github.com/kolt-systems/KoltX.git")
+                    developerConnection.set("scm:git:ssh://github.com/kolt-systems/KoltX.git")
+                    url.set("https://github.com/kolt-systems/KoltX")
                 }
             }
         }

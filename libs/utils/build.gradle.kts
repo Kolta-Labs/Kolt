@@ -1,11 +1,11 @@
 plugins {
-    id("io.github.appspiriment.kolt.kmp.library")
+    id("io.github.koltsystems.koltx.kmp.library")
     alias(kmplibs.plugins.kotlin.serialization)
-    id("io.github.appspiriment.kolt.publish")
+    id("io.github.koltsystems.koltx.publish")
     alias(libs.plugins.dokka)
 }
 
-// This module IS appspiriment-utils — don't auto-add the util libraries to itself.
+// This module IS utils — don't auto-add the util libraries to itself.
 kmp {
     enableUtils.set(false)
     enableDesktop.set(true)
@@ -14,7 +14,7 @@ kmp {
 }
 
 android {
-    namespace = "io.github.appspiriment.kolt.utils"
+    namespace = "io.github.koltsystems.koltx.utils"
 }
 
 dependencies {
@@ -30,8 +30,8 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "utils")
     pom {
-        name = "Kolt Utils"
+        name = "KoltX Utils"
         description = "Common Kotlin Multiplatform util functions and extension methods."
-        url = "https://github.com/appspiriment/UtilsLibs"
+        url = "https://github.com/kolt-systems/KoltX"
     }
 }

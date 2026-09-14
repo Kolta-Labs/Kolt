@@ -2,20 +2,20 @@
 
 ## 1. Problem Statement
 
-The Appspiriment toolchain was split across **three separate git repos / Gradle builds**,
+The Kolt toolchain was split across **three separate git repos / Gradle builds**,
 causing duplication, a painful local workflow, and diverging versions:
 
 | Old repo | Published artifacts |
 |---|---|
-| `AndroidConventionPlugins` | 6 plugins `io.github.appspiriment.*` + `appspirimentlibs` catalog |
-| `AppspirimentKMPPlugins` | 6 plugins `io.github.appspiriment.kmp.*` + `kmplibs` catalog |
+| `AndroidConventionPlugins` | 6 plugins `io.github.koltsystems.koltx.*` + `koltxlibs` catalog |
+| `KoltKMPPlugins` | 6 plugins `io.github.koltsystems.koltx.kmp.*` + `kmplibs` catalog |
 | `AppUtilLibs` | `utils`, `compose-utils`, `logutils`, `update-utils` (all Android-only) |
 
 Confirmed pain points:
 - The two plugin projects were near-duplicates (same package, identical boilerplate, overlapping sources).
 - Both catalogs duplicated `minSdk/targetSdk/compileSdk/kotlin/coroutines/ksp/...`.
 - `logutils`/`update-utils` applied the Android convention plugin, forcing a `publishDev → publishToMavenLocal` round-trip on every plugin tweak.
-- The KMP catalog already referenced the same `appspirimentUtils`/`appspirimentLogUtils` versions — the libs wanted cross-use but the repo boundary blocked it.
+- The KMP catalog already referenced the same `koltxUtils`/`koltxLogUtils` versions — the libs wanted cross-use but the repo boundary blocked it.
 
 ---
 
@@ -26,7 +26,7 @@ Confirmed pain points:
 3. **Maximum KMP/Android reuse** — `utils` and `logutils` become KMP so shared code in KMP projects can call them.
 4. **One unified version** — single `version.properties` drives all plugins and all library artifacts.
 5. **Fewer plugins/libraries** — one module declares all 12 convention plugins; `logutils` collapses from two artifacts (`-dev`/`-prod`) to one KMP artifact with auto-gating.
-6. **Clean consumer catalogs** — `appspirimentlibs` and `kmplibs` stay separate (Android consumers shouldn't see KMP-only entries and vice versa) but share a common version baseline.
+6. **Clean consumer catalogs** — `koltxlibs` and `kmplibs` stay separate (Android consumers shouldn't see KMP-only entries and vice versa) but share a common version baseline.
 
 ---
 
@@ -41,7 +41,7 @@ Confirmed pain points:
 | `logutils` | **KMP** (`commonMain` + `androidMain`) with **auto-gating** | Single artifact callable from shared KMP code. `LogInitializer` (App Startup) reads `ApplicationInfo.FLAG_DEBUGGABLE` and sets `Log.enabled` automatically — debug=on, release=off. Consumer can override via `Log.init(enabled)` or `Log.enabled = ...` |
 | `compose-utils` | **Android-only** for now; Compose Multiplatform is a future phase | 75+ files, heavy `res/`, M2 + M3 usage — CMP port is significant |
 | `update-utils` | **Android-only** permanently | Wraps Firebase Remote Config + in-app update API; inherently Android |
-| Version catalogs | **Two thin catalogs** generated from common baseline | `appspirimentlibs` (Android), `kmplibs` (KMP) — each clean for its consumers |
+| Version catalogs | **Two thin catalogs** generated from common baseline | `koltxlibs` (Android), `kmplibs` (KMP) — each clean for its consumers |
 | Unified versioning | **Single `version.properties`** (`MAJOR` + `DEV` counter) | All plugins + libs ship together under one version string |
 | logutils gating | **Option B: auto-gate via plugin + user-override** | Zero consumer boilerplate; `LogInitializer` runs at app startup; `Log.init(bool)` overrides |
 
@@ -59,7 +59,7 @@ UtilsLibs/
 │
 ├── gradle/
 │   ├── libs.versions.toml          # Library module build deps (vanniktech only)
-│   ├── appspirimentlibs.versions.toml  # Android consumer catalog (GENERATED content baked into plugin JAR)
+│   ├── koltxlibs.versions.toml  # Android consumer catalog (GENERATED content baked into plugin JAR)
 │   └── kmplibs.versions.toml       # KMP consumer catalog (GENERATED content baked into plugin JAR)
 │
 ├── build-logic/                    # Included build — convention plugins
@@ -69,7 +69,7 @@ UtilsLibs/
 │   │   └── libs.versions.toml      # Internal build deps (AGP, kotlin, ksp, CMP gradle plugin)
 │   └── conventions/
 │       ├── build.gradle.kts        # Declares all 12 plugins; generic Constants generator × 2
-│       └── src/main/java/com/appspiriment/conventions/
+│       └── src/main/java/com/koltx/conventions/
 │           ├── extensions/         # Shared: versioning, Extensions, KmpExtensions, Dependencies,
 │           │                       #   KmpLibraryCoordinates, CustomExtensions, KmpCustomExtensions,
 │           │                       #   KotlinAndroid, KotlinKmp, ProjectConfiguration,
@@ -92,33 +92,33 @@ UtilsLibs/
 
 ## 5. Convention Plugin Catalog
 
-### Android plugins (`io.github.appspiriment.*`)
+### Android plugins (`io.github.koltsystems.koltx.*`)
 
 | Plugin ID | Class | Description |
 |---|---|---|
-| `io.github.appspiriment.application` | `AndroidApplicationConventionPlugin` | Standard Android app module (Compose + Hilt by default) |
-| `io.github.appspiriment.library` | `AndroidLibraryConventionPlugin` | Minimal Android library |
-| `io.github.appspiriment.library-hilt` | `AndroidLibraryHiltConventionPlugin` | Library + Hilt |
-| `io.github.appspiriment.library-compose` | `AndroidLibraryComposeConventionPlugin` | Library + Compose |
-| `io.github.appspiriment.library-hilt-compose` | `AndroidLibraryHiltComposeConventionPlugin` | Library + Hilt + Compose |
-| `io.github.appspiriment.data` | `AndroidDataLayerConventionPlugin` | Data layer: opt-in Room, Retrofit, DataStore, Security, WorkManager |
+| `io.github.koltsystems.koltx.application` | `AndroidApplicationConventionPlugin` | Standard Android app module (Compose + Hilt by default) |
+| `io.github.koltsystems.koltx.library` | `AndroidLibraryConventionPlugin` | Minimal Android library |
+| `io.github.koltsystems.koltx.library-hilt` | `AndroidLibraryHiltConventionPlugin` | Library + Hilt |
+| `io.github.koltsystems.koltx.library-compose` | `AndroidLibraryComposeConventionPlugin` | Library + Compose |
+| `io.github.koltsystems.koltx.library-hilt-compose` | `AndroidLibraryHiltComposeConventionPlugin` | Library + Hilt + Compose |
+| `io.github.koltsystems.koltx.data` | `AndroidDataLayerConventionPlugin` | Data layer: opt-in Room, Retrofit, DataStore, Security, WorkManager |
 
-### KMP plugins (`io.github.appspiriment.kmp.*`)
+### KMP plugins (`io.github.koltsystems.koltx.kmp.*`)
 
 | Plugin ID | Class | Description |
 |---|---|---|
-| `io.github.appspiriment.kmp.library` | `KmpLibraryConventionPlugin` | Base KMP shared module (Android always on; iOS/Desktop/WASM opt-in via `kmp { }`) |
-| `io.github.appspiriment.kmp.library-compose` | `KmpLibraryComposeConventionPlugin` | KMP library + Compose Multiplatform |
-| `io.github.appspiriment.kmp.library-koin` | `KmpLibraryKoinConventionPlugin` | KMP library + Koin DI |
-| `io.github.appspiriment.kmp.library-koin-compose` | `KmpLibraryKoinComposeConventionPlugin` | KMP library + Koin + Compose MP |
-| `io.github.appspiriment.kmp.data` | `KmpDataLayerConventionPlugin` | KMP data layer: opt-in SQLDelight, Ktor, Ktorfit, DataStore, Serialization, Room 3 |
-| `io.github.appspiriment.kmp.application` | `KmpApplicationConventionPlugin` | Android host app module for a KMP project |
+| `io.github.koltsystems.koltx.kmp.library` | `KmpLibraryConventionPlugin` | Base KMP shared module (Android always on; iOS/Desktop/WASM opt-in via `kmp { }`) |
+| `io.github.koltsystems.koltx.kmp.library-compose` | `KmpLibraryComposeConventionPlugin` | KMP library + Compose Multiplatform |
+| `io.github.koltsystems.koltx.kmp.library-koin` | `KmpLibraryKoinConventionPlugin` | KMP library + Koin DI |
+| `io.github.koltsystems.koltx.kmp.library-koin-compose` | `KmpLibraryKoinComposeConventionPlugin` | KMP library + Koin + Compose MP |
+| `io.github.koltsystems.koltx.kmp.data` | `KmpDataLayerConventionPlugin` | KMP data layer: opt-in SQLDelight, Ktor, Ktorfit, DataStore, Serialization, Room 3 |
+| `io.github.koltsystems.koltx.kmp.application` | `KmpApplicationConventionPlugin` | Android host app module for a KMP project |
 
 ---
 
 ## 6. Library Artifacts
 
-All artifacts share group `io.github.appspiriment` and the unified version from `version.properties`.
+All artifacts share group `io.github.koltsystems.koltx` and the unified version from `version.properties`.
 
 | Artifact | Type | Targets | Notes |
 |---|---|---|---|
@@ -192,7 +192,7 @@ Published version string: `1.0.0.dev-01` (dev) / `1.0.0` (release, when `-PisRel
 ### Phase 1 — Scaffold composite build ✅ DONE
 - [x] Create repo skeleton at `UtilsLibs/` (empty, separate from the 3 source repos)
 - [x] Copy Gradle wrapper from `AndroidConventionPlugins`
-- [x] `settings.gradle.kts`: `pluginManagement { includeBuild("build-logic") }`, register `appspirimentlibs` and `kmplibs` catalogs
+- [x] `settings.gradle.kts`: `pluginManagement { includeBuild("build-logic") }`, register `koltxlibs` and `kmplibs` catalogs
 - [x] `build.gradle.kts`: read unified version, `allprojects { group = ...; version = ... }`
 - [x] `version.properties`: `MAJOR=1.0.0` / `DEV=1`
 - [x] `gradle.properties`: AndroidX, POM metadata, Kotlin code style
@@ -211,9 +211,9 @@ Published version string: `1.0.0.dev-01` (dev) / `1.0.0` (release, when `-PisRel
 - [x] **Build validated**: `./gradlew -p build-logic :conventions:assemble` → BUILD SUCCESSFUL
 
 ### Phase 3 — Catalog consolidation ✅ DONE (pragmatic form)
-- [x] `gradle/appspirimentlibs.versions.toml`: aligned to KMP toolchain baseline (Kotlin 2.1.21, AGP 8.7.3, compileSdk/targetSdk 35, javaVersion 17); all lib versions set to `LIBVERSION` placeholder
+- [x] `gradle/koltxlibs.versions.toml`: aligned to KMP toolchain baseline (Kotlin 2.1.21, AGP 8.7.3, compileSdk/targetSdk 35, javaVersion 17); all lib versions set to `LIBVERSION` placeholder
 - [x] `gradle/kmplibs.versions.toml`: lib versions set to `LIBVERSION` placeholder
-- [x] Added missing entries required by library modules: `compose-bom`, `ui-tooling`, `ui-test-manifest`, `firebase-bom`, `firebase-config-ktx`, `appspiriment-compose`, `lottie-compose`, `ui-text-google-fonts`, `material` (M2), `kotlin-compose`, `kotlinx-serialization` plugins
+- [x] Added missing entries required by library modules: `compose-bom`, `ui-tooling`, `ui-test-manifest`, `firebase-bom`, `firebase-config-ktx`, `koltx-compose`, `lottie-compose`, `ui-text-google-fonts`, `material` (M2), `kotlin-compose`, `kotlinx-serialization` plugins
 - [x] `gradle/libs.versions.toml` (lib module build deps): `vanniktech-publish` plugin
 - [ ] **Future**: extract a `shared.versions.toml` overlay to formally de-dup common version numbers shared between the two consumer catalogs
 
@@ -223,13 +223,13 @@ Published version string: `1.0.0.dev-01` (dev) / `1.0.0` (release, when `-PisRel
   - `androidMain`: `Log.android.kt` — `actual fun platformLog(...)` using `android.util.Log`
   - `androidMain`: `LogInitializer.kt` — App Startup `Initializer<Unit>` reads `FLAG_DEBUGGABLE`, sets `Log.enabled`
   - `androidMain/AndroidManifest.xml` — registers `LogInitializer` via `InitializationProvider`
-  - `build.gradle.kts` — applies `io.github.appspiriment.kmp.library`, `enableUtils.set(false)`
+  - `build.gradle.kts` — applies `io.github.koltsystems.koltx.kmp.library`, `enableUtils.set(false)`
   - **Build validated**: `:libs:logutils:build` → BUILD SUCCESSFUL
 - [x] **`utils`** — KMP module:
   - `commonMain`: `FlowUtils`, `ListUtils`, `PhoneNumberUtils`, `StringExtns` (pure coroutines/Kotlin)
   - `androidMain`: `Utils`, `ContextExtensions`, `FormatUtils` (android.*), `time/` package (java.time + kotlinx.serialization)
   - `androidUnitTest`: `MillisToMMddHmaTimeTest`
-  - `build.gradle.kts` — applies `io.github.appspiriment.kmp.library` + serialization plugin, `enableUtils.set(false)`
+  - `build.gradle.kts` — applies `io.github.koltsystems.koltx.kmp.library` + serialization plugin, `enableUtils.set(false)`
   - **Build validated**: `:libs:utils:build` → BUILD SUCCESSFUL
 - [x] **`compose-utils`** — Android library:
   - Sources ported; `build.gradle.kts` applies `google.android.library` + `kotlin.android` + `kotlin.compose`
@@ -238,7 +238,7 @@ Published version string: `1.0.0.dev-01` (dev) / `1.0.0` (release, when `-PisRel
   - Lint disabled (`tasks.configureEach`) — AGP 8.7.3 + Kotlin 2.x Analysis API crashes several compose-runtime lint detectors; fix propagated to all compose modules via the `setupCompose()` convention
   - **Build validated**: `:libs:compose-utils:build` → BUILD SUCCESSFUL
 - [x] **`update-utils`** — Android library:
-  - `build.gradle.kts` applies `io.github.appspiriment.library-compose` + firebase deps
+  - `build.gradle.kts` applies `io.github.koltsystems.koltx.library-compose` + firebase deps
   - Fixed: `org.jetbrains.kotlin.plugin.serialization` removed from `composePluginList` (it was incorrectly included)
   - Fixed: JVM target mismatch (hardcoded `JVM_21` → `JvmTarget.fromTarget(projectConfigs.javaVersion.toString())`)
   - Fixed: `AppUpdateHelperUtil.kt` API migration (`uiColors → colors`, removed `padding(it)` from `ColumnScope` lambda)
@@ -246,10 +246,10 @@ Published version string: `1.0.0.dev-01` (dev) / `1.0.0` (release, when `-PisRel
 
 ### Phase 5 — Wire publishing + full build ✅ DONE
 - [x] All 4 modules included in `settings.gradle.kts`
-- [x] Dependency substitution in root `build.gradle.kts` — `io.github.appspiriment:*` → local projects during development
+- [x] Dependency substitution in root `build.gradle.kts` — `io.github.koltsystems.koltx:*` → local projects during development
 - [x] `./gradlew build` at repo root → **BUILD SUCCESSFUL** (295 tasks)
 - [x] `./gradlew :build-logic:conventions:test` → **BUILD SUCCESSFUL** (TestKit tests pass)
-- [x] `./gradlew publishToMavenLocal` → **BUILD SUCCESSFUL**; all 4 artifacts at `io.github.appspiriment:*:1.0.0.dev-01`; `Constants.kt` + `KmpConstants.kt` contain `libVersion = "1.0.0.dev-01"` (LIBVERSION substituted correctly)
+- [x] `./gradlew publishToMavenLocal` → **BUILD SUCCESSFUL**; all 4 artifacts at `io.github.koltsystems.koltx:*:1.0.0.dev-01`; `Constants.kt` + `KmpConstants.kt` contain `libVersion = "1.0.0.dev-01"` (LIBVERSION substituted correctly)
 - [x] Plugin IDs resolve from included build — no `publishToMavenLocal` round-trip needed
 - [x] `.gitignore` added (excludes `build/`, `.gradle/`, `.kotlin/`, `local.properties`, `*.jks`)
 - [x] Initial git commit on `main` branch (191 files)
@@ -264,7 +264,7 @@ All goals from §2 are met:
 3. **Maximum KMP/Android reuse** ✅ — `utils` and `logutils` are KMP; shared code in KMP projects calls them from `commonMain`
 4. **One unified version** ✅ — `version.properties` drives all 12 plugins + 4 libraries
 5. **Fewer plugins/libraries** ✅ — `logutils` is now a single KMP artifact (vs old `-dev`/`-prod` split); one `build-logic/conventions` module declares all 12 plugins
-6. **Clean consumer catalogs** ✅ — `appspirimentlibs` (Android) and `kmplibs` (KMP) stay separate; `LIBVERSION` placeholder substituted at code-gen time
+6. **Clean consumer catalogs** ✅ — `koltxlibs` (Android) and `kmplibs` (KMP) stay separate; `LIBVERSION` placeholder substituted at code-gen time
 
 ### Known limitations / future work
 - The two consumer catalogs still share common versions (sdk levels, kotlin, etc.) by copy rather than a shared overlay TOML. This was recorded as Phase 3 future work.

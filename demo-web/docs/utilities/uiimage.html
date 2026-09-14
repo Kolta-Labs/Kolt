@@ -27,7 +27,7 @@
             <h2>2. Class Definition &amp; Subclasses</h2>
             <p><code>UiImage</code> is defined as a sealed class holding the graphic details, an accessibility content description, and an optional color overlay tint.</p>
 
-            <pre><code>package io.github.appspiriment.kolt.composekmp.wrappers
+            <pre><code>package io.github.koltsystems.koltx.composekmp.wrappers
 
 sealed class UiImage(
     open val description: String?,
@@ -125,9 +125,9 @@ uiImageRemote(
             <p>The following example defines a remote contact avatar card with a local vector placeholder fall-back.</p>
 
             <h3>1. ViewModel (commonMain)</h3>
-            <pre><code>import io.github.appspiriment.kolt.composekmp.wrappers.UiImage
-import io.github.appspiriment.kolt.composekmp.wrappers.uiImageFromUrl
-import io.github.appspiriment.kolt.composekmp.wrappers.uiVectorResource
+            <pre><code>import io.github.koltsystems.koltx.composekmp.wrappers.UiImage
+import io.github.koltsystems.koltx.composekmp.wrappers.uiImageFromUrl
+import io.github.koltsystems.koltx.composekmp.wrappers.uiVectorResource
 
 data class ContactUiState(
     val displayName: String,
@@ -153,7 +153,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.github.appspiriment.kolt.composekmp.wrappers.getPainter
+import io.github.koltsystems.koltx.composekmp.wrappers.getPainter
 
 @Composable
 fun ContactCard(viewModel: ContactViewModel) {

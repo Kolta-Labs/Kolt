@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `location-picker` (`io.github.appspiriment.kolt:location-picker`) are documented
+All notable changes to `location-picker` (`io.github.koltsystems.koltx:location-picker`) are documented
 here, newest first. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 

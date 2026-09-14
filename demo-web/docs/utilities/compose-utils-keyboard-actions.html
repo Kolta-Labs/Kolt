@@ -30,7 +30,7 @@ fun CustomPinPadScreen(viewModel: PinViewModel = viewModel()) {
     Column {
         // Wrap the standard or custom text fields inside this block:
         DisableSoftKeyboard {
-            AppsTextField(
+            KoltTextField(
                 value = viewModel.enteredPinCode,
                 onValueChange = {},
                 label = "Secure PIN"
@@ -52,7 +52,7 @@ fun CustomPinPadScreen(viewModel: PinViewModel = viewModel()) {
             <p><strong><code>Context.dialNumber(phone: String)</code></strong> constructs and launches an intent with the action <code>Intent.ACTION_DIAL</code>. It loads the dialer app and pre-fills the number, requiring the user to tap the call button (does not require call permissions).</p>
             <pre><code>val context = LocalContext.current
 
-AppsButton(
+KoltButton(
     text = "Call Support".toUiText(),
     onClick = {
         context.dialNumber("+18005550199")
@@ -61,11 +61,11 @@ AppsButton(
 
             <h3>Send a Formatted Email</h3>
             <p><strong><code>Context.sendEmail(to: String, subject: String, body: String)</code></strong> launches an email client intent (pre-filling target address, subject lines, and body blocks):</p>
-            <pre><code>AppsButton(
+            <pre><code>KoltButton(
     text = "Send App Feedback".toUiText(),
     onClick = {
         context.sendEmail(
-            to = "support@appspiriment.io",
+            to = "support@koltx.io",
             subject = "Feedback - Kolt monorepo",
             body = "Hi team,\n\nI have the following feedback..."
         )

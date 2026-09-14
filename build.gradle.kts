@@ -24,10 +24,10 @@ buildscript {
 
 plugins {
     alias(libs.plugins.dokka)
-    id("io.github.appspiriment.kolt.publish") apply false
+    id("io.github.koltsystems.koltx.publish") apply false
 }
 
-// Root aggregator for the UtilsLibs composite build.
+// Root aggregator for the KoltX composite build.
 // Convention plugins live in the included build `build-logic` and are applied
 // directly by the modules under `libs/`. This root script stays thin.
 
@@ -55,7 +55,7 @@ val locationPickerVersion by lazy { computeVersion("LOCATION_PICKER_MAJOR", "LOC
 val bomVersion          by lazy { versionProps.getProperty("BOM_VERSION", "2025.06.1")       }
 
 allprojects {
-    group = "io.github.appspiriment.kolt"
+    group = "io.github.koltsystems.koltx"
 }
 
 // Expose per-lib versions as root extra properties so submodule build scripts
@@ -191,7 +191,7 @@ tasks.register("updateReadme") {
 
 // ── Dependency substitution ───────────────────────────────────────────────────
 // When convention plugins add utils/logutils/compose-utils as Maven coordinates
-// (io.github.appspiriment.kolt:*), substitute them with the local project during
+// (io.github.koltsystems.koltx:*), substitute them with the local project during
 // development so consumers build against the current source, not a published artifact.
 //
 // The BOM platform dependency must use `platform(...)` on both sides of the substitution
@@ -200,16 +200,16 @@ subprojects {
     configurations.configureEach {
         resolutionStrategy.dependencySubstitution {
             // Platform (BOM) substitution — must use platform() on both sides
-            substitute(platform(module("io.github.appspiriment.kolt:kolt-bom")))
+            substitute(platform(module("io.github.koltsystems.koltx:koltx-bom")))
                 .using(platform(project(":libs:bom")))
             // Library substitutions
-            substitute(module("io.github.appspiriment.kolt:utils"))
+            substitute(module("io.github.koltsystems.koltx:utils"))
                 .using(project(":libs:utils"))
-            substitute(module("io.github.appspiriment.kolt:logutils"))
+            substitute(module("io.github.koltsystems.koltx:logutils"))
                 .using(project(":libs:logutils"))
-            substitute(module("io.github.appspiriment.kolt:compose-kmp"))
+            substitute(module("io.github.koltsystems.koltx:compose-kmp"))
                 .using(project(":libs:compose-kmp"))
-            substitute(module("io.github.appspiriment.kolt:compose"))
+            substitute(module("io.github.koltsystems.koltx:compose"))
                 .using(project(":libs:compose-utils"))
         }
     }

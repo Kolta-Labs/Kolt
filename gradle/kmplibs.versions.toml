@@ -24,7 +24,19 @@ kotlin = "2.3.10"
 coroutines = "1.10.1"
 
 # Compose Multiplatform
-composeMultiplatform = "1.8.0"
+# Was 1.8.0 — stale enough that compose-kmp linked against a material3 build
+# incompatible with consumers on newer Compose (NoSuchMethodError on
+# ExposedDropdownMenuBox in KoltLibs/libs/location-picker's desktop ManualEntryForm,
+# surfaced once Panchangam's settings.gradle.kts started resolving compose-kmp to
+# this composite build's live source instead of a stale ~/.m2 jar). Matches
+# Panchangam's own pin (same Kotlin 2.3.10 either way).
+composeMultiplatform = "1.10.3"
+# material3 does NOT publish under the same version number as the rest of Compose
+# Multiplatform (runtime/foundation/ui) — KmpLibraryCoordinates.kt and
+# KmpApplicationConventionPlugin.kt used to assume it did, requesting a
+# nonexistent "material3:1.10.3". This is the real compatible release for
+# composeMultiplatform 1.10.3.
+composeMaterial3 = "1.10.0-alpha05"
 
 # Navigation (official CMP navigation)
 navigationCompose = "2.9.2"
@@ -78,10 +90,24 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
-# Kolt KMP Convention Plugins
-kmp-library = { id = "io.github.appspiriment.kolt.kmp.library", version.ref = "kmpKolt" }
-kmp-library-compose = { id = "io.github.appspiriment.kolt.kmp.library-compose", version.ref = "kmpKolt" }
-kmp-library-koin = { id = "io.github.appspiriment.kolt.kmp.library-koin", version.ref = "kmpKolt" }
-kmp-library-koin-compose = { id = "io.github.appspiriment.kolt.kmp.library-koin-compose", version.ref = "kmpKolt" }
-kmp-data = { id = "io.github.appspiriment.kolt.kmp.data", version.ref = "kmpKolt" }
-kmp-application = { id = "io.github.appspiriment.kolt.kmp.application", version.ref = "kmpKolt" }
+# KoltX KMP Convention Plugins (supports kmp-*, koltx-kmp-*, and kolt-kmp-* aliases)
+kmp-library = { id = "io.github.koltsystems.koltx.kmp.library", version.ref = "kmpKolt" }
+kmp-library-compose = { id = "io.github.koltsystems.koltx.kmp.library-compose", version.ref = "kmpKolt" }
+kmp-library-koin = { id = "io.github.koltsystems.koltx.kmp.library-koin", version.ref = "kmpKolt" }
+kmp-library-koin-compose = { id = "io.github.koltsystems.koltx.kmp.library-koin-compose", version.ref = "kmpKolt" }
+kmp-data = { id = "io.github.koltsystems.koltx.kmp.data", version.ref = "kmpKolt" }
+kmp-application = { id = "io.github.koltsystems.koltx.kmp.application", version.ref = "kmpKolt" }
+
+koltx-kmp-library = { id = "io.github.koltsystems.koltx.kmp.library", version.ref = "kmpKolt" }
+koltx-kmp-library-compose = { id = "io.github.koltsystems.koltx.kmp.library-compose", version.ref = "kmpKolt" }
+koltx-kmp-library-koin = { id = "io.github.koltsystems.koltx.kmp.library-koin", version.ref = "kmpKolt" }
+koltx-kmp-library-koin-compose = { id = "io.github.koltsystems.koltx.kmp.library-koin-compose", version.ref = "kmpKolt" }
+koltx-kmp-data = { id = "io.github.koltsystems.koltx.kmp.data", version.ref = "kmpKolt" }
+koltx-kmp-application = { id = "io.github.koltsystems.koltx.kmp.application", version.ref = "kmpKolt" }
+
+kolt-kmp-library = { id = "io.github.koltsystems.koltx.kmp.library", version.ref = "kmpKolt" }
+kolt-kmp-library-compose = { id = "io.github.koltsystems.koltx.kmp.library-compose", version.ref = "kmpKolt" }
+kolt-kmp-library-koin = { id = "io.github.koltsystems.koltx.kmp.library-koin", version.ref = "kmpKolt" }
+kolt-kmp-library-koin-compose = { id = "io.github.koltsystems.koltx.kmp.library-koin-compose", version.ref = "kmpKolt" }
+kolt-kmp-data = { id = "io.github.koltsystems.koltx.kmp.data", version.ref = "kmpKolt" }
+kolt-kmp-application = { id = "io.github.koltsystems.koltx.kmp.application", version.ref = "kmpKolt" }
