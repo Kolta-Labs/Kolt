@@ -1,6 +1,6 @@
-# Migration Guide: `io.github.appspiriment.kolt` → `io.github.koltsystems.koltx`
+# Migration Guide: `io.github.appspiriment.kolt` → `io.github.koltalabs.kolt`
 
-This guide explains how to migrate existing consumer and multiplatform projects from legacy `appspiriment` coordinates to **KoltX** (`io.github.koltsystems.koltx`).
+This guide explains how to migrate existing consumer and multiplatform projects from legacy `appspiriment` coordinates to **Kolt** (`io.github.koltalabs.kolt`).
 
 ---
 
@@ -23,7 +23,7 @@ plugins {
 
 // AFTER (fixed)
 plugins {
-    id("io.github.koltsystems.koltx.kmp.application")
+    id("io.github.koltalabs.kolt.kmp.application")
     // or via version catalog: alias(kmplibs.plugins.kmp.application)
 }
 ```
@@ -32,21 +32,21 @@ plugins {
 
 ## 2. Full Convention Plugin ID Mapping
 
-| Old Legacy Plugin ID | New KoltX Plugin ID | Catalog Accessor |
+| Old Legacy Plugin ID | New Kolt Plugin ID | Catalog Accessor |
 |---|---|---|
-| `io.github.appspiriment.kolt.kmp.application` | `io.github.koltsystems.koltx.kmp.application` | `alias(kmplibs.plugins.kmp.application)` |
-| `io.github.appspiriment.kolt.kmp.library` | `io.github.koltsystems.koltx.kmp.library` | `alias(kmplibs.plugins.kmp.library)` |
-| `io.github.appspiriment.kolt.kmp.library-compose` | `io.github.koltsystems.koltx.kmp.library-compose` | `alias(kmplibs.plugins.kmp.library.compose)` |
-| `io.github.appspiriment.kolt.kmp.library-koin` | `io.github.koltsystems.koltx.kmp.library-koin` | `alias(kmplibs.plugins.kmp.library.koin)` |
-| `io.github.appspiriment.kolt.kmp.library-koin-compose` | `io.github.koltsystems.koltx.kmp.library-koin-compose` | `alias(kmplibs.plugins.kmp.library.koin.compose)` |
-| `io.github.appspiriment.kolt.kmp.data` | `io.github.koltsystems.koltx.kmp.data` | `alias(kmplibs.plugins.kmp.data)` |
-| `io.github.appspiriment.kolt.application` | `io.github.koltsystems.koltx.application` | `alias(koltxlibs.plugins.koltx.application)` |
-| `io.github.appspiriment.kolt.library` | `io.github.koltsystems.koltx.library` | `alias(koltxlibs.plugins.koltx.library)` |
-| `io.github.appspiriment.kolt.library-compose` | `io.github.koltsystems.koltx.library-compose` | `alias(koltxlibs.plugins.koltx.library.compose)` |
-| `io.github.appspiriment.kolt.library-hilt` | `io.github.koltsystems.koltx.library-hilt` | `alias(koltxlibs.plugins.koltx.library.hilt)` |
-| `io.github.appspiriment.kolt.library-hilt-compose` | `io.github.koltsystems.koltx.library-hilt-compose` | `alias(koltxlibs.plugins.koltx.library.hilt.compose)` |
-| `io.github.appspiriment.kolt.data` | `io.github.koltsystems.koltx.data` | `alias(koltxlibs.plugins.koltx.data)` |
-| `io.github.appspiriment.kolt.publish` | `io.github.koltsystems.koltx.publish` | — |
+| `io.github.appspiriment.kolt.kmp.application` | `io.github.koltalabs.kolt.kmp.application` | `alias(kmplibs.plugins.kmp.application)` |
+| `io.github.appspiriment.kolt.kmp.library` | `io.github.koltalabs.kolt.kmp.library` | `alias(kmplibs.plugins.kmp.library)` |
+| `io.github.appspiriment.kolt.kmp.library-compose` | `io.github.koltalabs.kolt.kmp.library-compose` | `alias(kmplibs.plugins.kmp.library.compose)` |
+| `io.github.appspiriment.kolt.kmp.library-koin` | `io.github.koltalabs.kolt.kmp.library-koin` | `alias(kmplibs.plugins.kmp.library.koin)` |
+| `io.github.appspiriment.kolt.kmp.library-koin-compose` | `io.github.koltalabs.kolt.kmp.library-koin-compose` | `alias(kmplibs.plugins.kmp.library.koin.compose)` |
+| `io.github.appspiriment.kolt.kmp.data` | `io.github.koltalabs.kolt.kmp.data` | `alias(kmplibs.plugins.kmp.data)` |
+| `io.github.appspiriment.kolt.application` | `io.github.koltalabs.kolt.application` | `alias(koltlibs.plugins.kolt.application)` |
+| `io.github.appspiriment.kolt.library` | `io.github.koltalabs.kolt.library` | `alias(koltlibs.plugins.kolt.library)` |
+| `io.github.appspiriment.kolt.library-compose` | `io.github.koltalabs.kolt.library-compose` | `alias(koltlibs.plugins.kolt.library.compose)` |
+| `io.github.appspiriment.kolt.library-hilt` | `io.github.koltalabs.kolt.library-hilt` | `alias(koltlibs.plugins.kolt.library.hilt)` |
+| `io.github.appspiriment.kolt.library-hilt-compose` | `io.github.koltalabs.kolt.library-hilt-compose` | `alias(koltlibs.plugins.kolt.library.hilt.compose)` |
+| `io.github.appspiriment.kolt.data` | `io.github.koltalabs.kolt.data` | `alias(koltlibs.plugins.kolt.data)` |
+| `io.github.appspiriment.kolt.publish` | `io.github.koltalabs.kolt.publish` | — |
 
 ---
 
@@ -57,11 +57,11 @@ In `settings.gradle.kts`:
 ```kotlin
 dependencyResolutionManagement {
     versionCatalogs {
-        create("koltxlibs") {
-            from("io.github.koltsystems.koltx:koltx-catalog:<version>")
+        create("koltlibs") {
+            from("io.github.koltalabs.kolt:kolt-catalog:<version>")
         }
         create("kmplibs") {
-            from("io.github.koltsystems.koltx:kmp-catalog:<version>")
+            from("io.github.koltalabs.kolt:kmp-catalog:<version>")
         }
     }
 }
@@ -70,7 +70,7 @@ dependencyResolutionManagement {
 > **Note:** For compatibility with older project files referencing `koltlibs.*`, you can also define:
 > ```kotlin
 > create("koltlibs") {
->     from("io.github.koltsystems.koltx:koltx-catalog:<version>")
+>     from("io.github.koltalabs.kolt:kolt-catalog:<version>")
 > }
 > ```
 
@@ -89,10 +89,10 @@ dependencies {
 
 // AFTER
 dependencies {
-    implementation(platform("io.github.koltsystems.koltx:koltx-bom:<version>"))
-    implementation("io.github.koltsystems.koltx:utils")
-    implementation("io.github.koltsystems.koltx:logutils")
-    implementation("io.github.koltsystems.koltx:compose-kmp")
+    implementation(platform("io.github.koltalabs.kolt:kolt-bom:<version>"))
+    implementation("io.github.koltalabs.kolt:utils")
+    implementation("io.github.koltalabs.kolt:logutils")
+    implementation("io.github.koltalabs.kolt:compose-kmp")
 }
 ```
 
@@ -102,13 +102,13 @@ dependencies {
 
 Update your Kotlin source imports across all source sets:
 
-- `io.github.appspiriment.kolt.utils.*` → `io.github.koltsystems.koltx.utils.*`
-- `io.github.appspiriment.kolt.logutils.*` → `io.github.koltsystems.koltx.logutils.*`
-- `io.github.appspiriment.kolt.composekmp.*` → `io.github.koltsystems.koltx.composekmp.*`
-- `io.github.appspiriment.kolt.composeutils.*` → `io.github.koltsystems.koltx.composeutils.*`
-- `io.github.appspiriment.kolt.location.*` → `io.github.koltsystems.koltx.location.*`
-- `io.github.appspiriment.kolt.locationpicker.*` → `io.github.koltsystems.koltx.locationpicker.*`
-- `io.github.appspiriment.kolt.updateutils.*` → `io.github.koltsystems.koltx.updateutils.*`
+- `io.github.appspiriment.kolt.utils.*` → `io.github.koltalabs.kolt.utils.*`
+- `io.github.appspiriment.kolt.logutils.*` → `io.github.koltalabs.kolt.logutils.*`
+- `io.github.appspiriment.kolt.composekmp.*` → `io.github.koltalabs.kolt.composekmp.*`
+- `io.github.appspiriment.kolt.composeutils.*` → `io.github.koltalabs.kolt.composeutils.*`
+- `io.github.appspiriment.kolt.location.*` → `io.github.koltalabs.kolt.location.*`
+- `io.github.appspiriment.kolt.locationpicker.*` → `io.github.koltalabs.kolt.locationpicker.*`
+- `io.github.appspiriment.kolt.updateutils.*` → `io.github.koltalabs.kolt.updateutils.*`
 
 ---
 
@@ -116,7 +116,7 @@ Update your Kotlin source imports across all source sets:
 
 All UI components in `compose-kmp` and `compose-utils` have been updated to the unified `Kolt*` brand prefix:
 
-| Legacy Symbol | KoltX Symbol |
+| Legacy Symbol | Kolt Symbol |
 |---|---|
 | `AppsButton` | `KoltButton` |
 | `AppsPageScaffold` | `KoltPageScaffold` |
@@ -134,7 +134,7 @@ All UI components in `compose-kmp` and `compose-utils` have been updated to the 
 | `AppsBanner` | `KoltBanner` |
 | `AppsImageText` | `KoltImageText` |
 | `AppspirimentText` | `KoltText` |
-| `AppspirimentTheme` | `KoltXTheme` |
+| `AppspirimentTheme` | `KoltTheme` |
 | `kolt { ... }` DSL | `koltx { ... }` DSL (legacy alias retained) |
 
 ---
@@ -142,5 +142,29 @@ All UI components in `compose-kmp` and `compose-utils` have been updated to the 
 ## 7. Scaffolding Tasks
 
 If your project was using Gradle tasks to scaffold theme resources or documentation:
-- `./gradlew scaffoldKoltResources` (generates `koltx_colors.xml` and `koltx_dimens.xml`)
-- `./gradlew scaffoldKoltDocs` (generates `docs/KOLTX.md`, `docs/ARCHITECTURE.md`, etc.)
+- `./gradlew scaffoldKoltResources` (generates `kolt_colors.xml` and `kolt_dimens.xml`)
+- `./gradlew scaffoldKoltDocs` (generates `docs/KOLT.md`, `docs/ARCHITECTURE.md`, etc.)
+
+---
+
+## 8. compose-kmp 0.2.1.dev-02: new type-scale slots (no migration needed)
+
+Additive only. New slots, appended at the end of each constructor:
+
+| sp | `Sizes` / `UiSizes` | `BaseTextStyles` | Android dimen |
+|---|---|---|---|
+| 17 | `fontSizeMediumLargeMid` | `textMediumLargeMid` | `font_size_medium_large_mid` |
+| 22 | `fontSizeXLargeMid` | `textXLargeMid` | `font_size_xlarge_mid` |
+
+No existing slot was renamed, reordered or re-valued, and the Material3 aliases
+are unchanged. Optional cleanup: replace hand-written
+`TextStyle(fontSize = 17.sp)` / `TextStyle(fontSize = 22.sp)` with
+`Kolt.typography.textMediumLargeMid` / `Kolt.typography.textXLargeMid`.
+
+Also in `0.2.1.dev-02`:
+
+- **`Kolt.textRoles`** — the 15 Material3 roles built from the Kolt scale. `CompositionBaseProvider` now also provides them as `MaterialTheme.typography`, so Material components inside it switch from the M3 default typography to the Kolt font and sizes. If you want your own M3 typography, wrap your own `MaterialTheme(typography = …)` inside `CompositionBaseProvider`.
+- **Deprecated aliases** — `Kolt.typography.bodyXXXSmall`, `bodyXSmall`, `bodySmall`, `bodyMedium`, `bodyMediumLarge`, `bodyLarge`, `labelSmall`, `labelMedium`, `labelLarge`, `titleSmall`, `titleMedium`, `titleLarge`, `headlineSmall`, `headlineMedium`, `displaySmall`. They still work. The IDE quick-fix swaps in the identical `text*` step (no visual change); move to `Kolt.textRoles.*` when you're ready to accept M3 sizes.
+- **iOS / wasmJs** — `Kolt.sizes`, `Kolt.uiSizes` and `Kolt.typography` now have the desktop default values instead of all-`Unspecified`. If you override `LocalSizes`/`LocalTypography`, nothing changes for you.
+- **`UiSizes.fontSizeXBig`** (36 sp) added, appended last.
+

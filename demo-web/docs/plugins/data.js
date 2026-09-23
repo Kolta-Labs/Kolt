@@ -1,8 +1,8 @@
-// Plugin catalog data — source: Standards/KOLTX.md §2-§5
+// Plugin catalog data — source: Standards/KOLT.md §2-§5
 export const PLUGINS = [
     {
         id: 'android-application',
-        pluginId: 'io.github.koltsystems.koltx.application',
+        pluginId: 'io.github.koltalabs.kolt.application',
         catalogAlias: 'kolt-application',
         family: 'Android',
         title: 'Android Application',
@@ -21,13 +21,13 @@ export const PLUGINS = [
 
     scaffoldThemeResources.set(true)               // default true — writes theme XMLs on first build
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.application") }
+        snippet: `plugins { id("io.github.koltalabs.kolt.application") }
 
 android { namespace = "com.example.myapp" }`,
     },
     {
         id: 'android-library',
-        pluginId: 'io.github.koltsystems.koltx.library',
+        pluginId: 'io.github.koltalabs.kolt.library',
         catalogAlias: 'kolt-library',
         family: 'Android',
         title: 'Android Library',
@@ -38,11 +38,11 @@ android { namespace = "com.example.myapp" }`,
     enableUtils.set(true)
     enableMinify.set(false)
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.library") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.library") }`,
     },
     {
         id: 'android-library-compose',
-        pluginId: 'io.github.koltsystems.koltx.library-compose',
+        pluginId: 'io.github.koltalabs.kolt.library-compose',
         catalogAlias: 'kolt-library-compose',
         family: 'Android',
         title: 'Android Library + Compose',
@@ -53,11 +53,11 @@ android { namespace = "com.example.myapp" }`,
     enableUtils.set(true)
     scaffoldThemeResources.set(true)   // default true for compose-enabled modules
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.library-compose") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.library-compose") }`,
     },
     {
         id: 'android-library-hilt',
-        pluginId: 'io.github.koltsystems.koltx.library-hilt',
+        pluginId: 'io.github.koltalabs.kolt.library-hilt',
         catalogAlias: 'kolt-library-hilt',
         family: 'Android',
         title: 'Android Library + Hilt',
@@ -67,11 +67,11 @@ android { namespace = "com.example.myapp" }`,
         dsl: `kolt {
     enableUtils.set(true)
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.library-hilt") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.library-hilt") }`,
     },
     {
         id: 'android-library-hilt-compose',
-        pluginId: 'io.github.koltsystems.koltx.library-hilt-compose',
+        pluginId: 'io.github.koltalabs.kolt.library-hilt-compose',
         catalogAlias: 'kolt-library-hilt-compose',
         family: 'Android',
         title: 'Android Library + Hilt + Compose',
@@ -82,11 +82,11 @@ android { namespace = "com.example.myapp" }`,
     enableUtils.set(true)
     scaffoldThemeResources.set(true)
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.library-hilt-compose") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.library-hilt-compose") }`,
     },
     {
         id: 'android-data-layer',
-        pluginId: 'io.github.koltsystems.koltx.data',
+        pluginId: 'io.github.koltalabs.kolt.data',
         catalogAlias: 'kolt-data',
         family: 'Android',
         title: 'Android Data Layer',
@@ -107,11 +107,11 @@ android { namespace = "com.example.myapp" }`,
     dataStore { enabled.set(false) }
     workManager { enabled.set(false) }
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.data") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.data") }`,
     },
     {
         id: 'kmp-library',
-        pluginId: 'io.github.koltsystems.koltx.kmp.library',
+        pluginId: 'io.github.koltalabs.kolt.kmp.library',
         catalogAlias: 'kmp-library',
         family: 'KMP',
         title: 'KMP Library',
@@ -124,11 +124,11 @@ android { namespace = "com.example.myapp" }`,
     enableWasm.set(false)     // adds wasmJs (browser)
     enableUtils.set(true)
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.kmp.library") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.kmp.library") }`,
     },
     {
         id: 'kmp-library-compose',
-        pluginId: 'io.github.koltsystems.koltx.kmp.library-compose',
+        pluginId: 'io.github.koltalabs.kolt.kmp.library-compose',
         catalogAlias: 'kmp-library-compose',
         family: 'KMP',
         title: 'KMP Library + Compose',
@@ -139,11 +139,11 @@ android { namespace = "com.example.myapp" }`,
     enableIos.set(true)
     enableDesktop.set(true)
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.kmp.library-compose") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.kmp.library-compose") }`,
     },
     {
         id: 'kmp-library-koin',
-        pluginId: 'io.github.koltsystems.koltx.kmp.library-koin',
+        pluginId: 'io.github.koltalabs.kolt.kmp.library-koin',
         catalogAlias: 'kmp-library-koin',
         family: 'KMP',
         title: 'KMP Library + Koin',
@@ -154,11 +154,11 @@ android { namespace = "com.example.myapp" }`,
     enableIos.set(true)
     enableDesktop.set(true)
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.kmp.library-koin") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.kmp.library-koin") }`,
     },
     {
         id: 'kmp-library-koin-compose',
-        pluginId: 'io.github.koltsystems.koltx.kmp.library-koin-compose',
+        pluginId: 'io.github.koltalabs.kolt.kmp.library-koin-compose',
         catalogAlias: 'kmp-library-koin-compose',
         family: 'KMP',
         title: 'KMP Library + Koin + Compose',
@@ -170,11 +170,11 @@ android { namespace = "com.example.myapp" }`,
     enableDesktop.set(true)
     enableWasm.set(false)
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.kmp.library-koin-compose") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.kmp.library-koin-compose") }`,
     },
     {
         id: 'kmp-data',
-        pluginId: 'io.github.koltsystems.koltx.kmp.data',
+        pluginId: 'io.github.koltalabs.kolt.kmp.data',
         catalogAlias: 'kmp-data',
         family: 'KMP',
         title: 'KMP Data Layer',
@@ -192,11 +192,11 @@ android { namespace = "com.example.myapp" }`,
     dataStore { enabled.set(false) }
     serialization { enabled.set(false) }
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.kmp.data") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.kmp.data") }`,
     },
     {
         id: 'kmp-application',
-        pluginId: 'io.github.koltsystems.koltx.kmp.application',
+        pluginId: 'io.github.koltalabs.kolt.kmp.application',
         catalogAlias: 'kmp-application',
         family: 'KMP',
         title: 'KMP Application',
@@ -209,7 +209,7 @@ android { namespace = "com.example.myapp" }`,
     appendTimestampToDebugVersion.set(true)
     debugVersionTimestampPattern.set("yyyyMMdd-HHmm")
 }`,
-        snippet: `plugins { id("io.github.koltsystems.koltx.kmp.application") }`,
+        snippet: `plugins { id("io.github.koltalabs.kolt.kmp.application") }`,
     },
 ];
 

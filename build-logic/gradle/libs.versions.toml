@@ -20,8 +20,8 @@ kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-p
 ksp-gradle-plugin = { group = "com.google.devtools.ksp", name = "symbol-processing-gradle-plugin", version.ref = "ksp" }
 compose-compiler-gradle-plugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 compose-multiplatform-gradle-plugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "composeMultiplatform" }
-# The vanniktech maven-publish plugin is applied by the io.github.koltsystems.koltx.publish convention
-# plugin so it shares build-logic's single classloader with AGP/KGP (see KoltXPublishConventionPlugin).
+# The vanniktech maven-publish plugin is applied by the io.github.koltalabs.kolt.publish convention
+# plugin so it shares build-logic's single classloader with AGP/KGP (see KoltPublishConventionPlugin).
 vanniktech-maven-publish = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktechPublish" }
 junit-test = { group = "junit", name = "junit", version.ref = "junit" }
 

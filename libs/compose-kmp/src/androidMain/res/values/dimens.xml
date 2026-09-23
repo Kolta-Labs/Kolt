@@ -63,6 +63,8 @@
     <dimen name="font_size_xbig">36sp</dimen>
     <dimen name="font_size_huge">40sp</dimen>
     <dimen name="font_size_giant">48sp</dimen>
+    <dimen name="font_size_medium_large_mid">17sp</dimen>
+    <dimen name="font_size_xlarge_mid">22sp</dimen>
 
 
 </resources>

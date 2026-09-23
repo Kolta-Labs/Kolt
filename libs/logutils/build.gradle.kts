@@ -1,6 +1,6 @@
 plugins {
     id("io.github.koltsystems.koltx.kmp.library")
-    id("io.github.koltsystems.koltx.publish")
+    id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }
 
@@ -12,7 +12,7 @@ kmp {
 }
 
 android {
-    namespace = "io.github.koltsystems.koltx.logutils"
+    namespace = "io.github.koltalabs.kolt.logutils"
 }
 
 dependencies {
@@ -23,8 +23,8 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "logutils")
     pom {
-        name = "KoltX LogUtils"
+        name = "Kolt LogUtils"
         description = "Lightweight Kotlin Multiplatform logging with automatic debug/release gating on Android."
-        url = "https://github.com/kolt-systems/KoltX"
+        url = "https://github.com/kolta-labs/Kolt"
     }
 }

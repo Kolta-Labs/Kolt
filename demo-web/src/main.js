@@ -1460,47 +1460,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 16. Text Helpers Setup ---
     // KoltText elements
-    const koltxText = document.getElementById('web-koltx-text');
-    const koltxTextContainer = document.getElementById('web-koltx-text-container');
-    const koltxTextInput = document.getElementById('koltx-text-input');
-    const koltxTextSelectable = document.getElementById('koltx-text-selectable');
-    const koltxTextStyleSelect = document.getElementById('koltx-text-style-select');
-    const koltxTextColorSelect = document.getElementById('koltx-text-color-select');
+    const koltText = document.getElementById('web-kolt-text');
+    const koltTextContainer = document.getElementById('web-kolt-text-container');
+    const koltTextInput = document.getElementById('kolt-text-input');
+    const koltTextSelectable = document.getElementById('kolt-text-selectable');
+    const koltTextStyleSelect = document.getElementById('kolt-text-style-select');
+    const koltTextColorSelect = document.getElementById('kolt-text-color-select');
 
-    if (koltxTextInput && koltxText) {
-        koltxTextInput.addEventListener('input', (e) => {
-            koltxText.textContent = e.target.value;
+    if (koltTextInput && koltText) {
+        koltTextInput.addEventListener('input', (e) => {
+            koltText.textContent = e.target.value;
         });
     }
 
-    if (koltxTextSelectable && koltxText && koltxTextContainer) {
-        koltxTextSelectable.addEventListener('change', (e) => {
+    if (koltTextSelectable && koltText && koltTextContainer) {
+        koltTextSelectable.addEventListener('change', (e) => {
             const isSelectable = e.target.checked;
-            koltxText.style.userSelect = isSelectable ? 'text' : 'none';
-            koltxText.style.webkitUserSelect = isSelectable ? 'text' : 'none';
-            koltxText.style.cursor = isSelectable ? 'text' : 'default';
+            koltText.style.userSelect = isSelectable ? 'text' : 'none';
+            koltText.style.webkitUserSelect = isSelectable ? 'text' : 'none';
+            koltText.style.cursor = isSelectable ? 'text' : 'default';
             if (isSelectable) {
-                koltxTextContainer.classList.add('highlighted-selectable');
+                koltTextContainer.classList.add('highlighted-selectable');
                 showToast("KoltText selectable enabled (highlights & text-selection enabled)");
             } else {
-                koltxTextContainer.classList.remove('highlighted-selectable');
+                koltTextContainer.classList.remove('highlighted-selectable');
             }
         });
     }
 
-    if (koltxTextStyleSelect && koltxText) {
-        koltxTextStyleSelect.addEventListener('change', (e) => {
+    if (koltTextStyleSelect && koltText) {
+        koltTextStyleSelect.addEventListener('change', (e) => {
             const val = e.target.value;
-            koltxText.classList.remove('koltx-style-textMedium', 'koltx-style-titleLarge', 'koltx-style-bodySmall');
-            koltxText.classList.add(`koltx-style-${val}`);
+            koltText.classList.remove('kolt-style-textMedium', 'kolt-style-titleLarge', 'kolt-style-bodySmall');
+            koltText.classList.add(`kolt-style-${val}`);
         });
     }
 
-    if (koltxTextColorSelect && koltxText) {
-        koltxTextColorSelect.addEventListener('change', (e) => {
+    if (koltTextColorSelect && koltText) {
+        koltTextColorSelect.addEventListener('change', (e) => {
             const val = e.target.value;
-            koltxText.classList.remove('koltx-color-default', 'koltx-color-primary', 'koltx-color-success', 'koltx-color-error');
-            koltxText.classList.add(`koltx-color-${val}`);
+            koltText.classList.remove('kolt-color-default', 'kolt-color-primary', 'kolt-color-success', 'kolt-color-error');
+            koltText.classList.add(`kolt-color-${val}`);
         });
     }
 

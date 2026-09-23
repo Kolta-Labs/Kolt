@@ -1,7 +1,7 @@
 plugins {
     id("io.github.koltsystems.koltx.kmp.data")
     alias(kmplibs.plugins.kotlin.serialization)
-    id("io.github.koltsystems.koltx.publish")
+    id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }
 
@@ -34,7 +34,7 @@ kmp {
 }
 
 android {
-    namespace = "io.github.koltsystems.koltx.location"
+    namespace = "io.github.koltalabs.kolt.location"
 }
 
 kmpDataLayer {
@@ -64,10 +64,10 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "location")
     pom {
-        name = "KoltX Location"
+        name = "Kolt Location"
         description = "Cross-platform current-location fetching: native GPS + reverse " +
             "geocoding on Android/iOS, IP-based geolocation on Desktop, browser Geolocation API on Web."
-        url = "https://github.com/kolt-systems/KoltX"
+        url = "https://github.com/kolta-labs/Kolt"
     }
 }
 

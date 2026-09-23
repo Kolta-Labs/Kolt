@@ -23,7 +23,7 @@
             <h2>What it creates</h2>
             <p>When you select <strong>File → New Project → Kolt</strong>, fill in three fields (Project Name, Package name, Project type), and click Create, the wizard generates a ready-to-build project structure:</p>
             <pre><code>&lt;ProjectName&gt;/
-  settings.gradle.kts      ← koltxlibs + kmplibs catalogs wired, modules included
+  settings.gradle.kts      ← koltlibs + kmplibs catalogs wired, modules included
   build.gradle.kts          ← plugins declared apply false
   gradle.properties         ← AndroidX flags, POM metadata, kotlin.code.style
   gradlew + gradle/wrapper/ ← immediately buildable, no setup required
@@ -42,7 +42,7 @@
     CODING_STANDARDS.md     ← binding coding rules (plugin-owned, auto-updates)
     ARCHITECTURE.md         ← layering, DI, offline-first patterns
     TESTING.md              ← test patterns, fakes, coverage targets
-    KOLTX.md                 ← plugin &amp; library API reference</code></pre>
+    KOLT.md                 ← plugin &amp; library API reference</code></pre>
             <p>The first <code>./gradlew :app:assembleDebug</code> run auto-scaffolds the Compose theme XML resources into <code>src/main/res/</code>.</p>
 
             <h2>Build the plugin locally</h2>
@@ -100,7 +100,7 @@ cd intellij-plugin
 
             <h2>How templates stay current</h2>
             <p>The wizard bundles its project templates from <code>project-templates/</code> at plugin build time. This is the <strong>same source</strong> used by the <code>scripts/new-project.sh</code> CLI script — there is no duplication. Editing the templates in that directory and rebuilding the plugin ensures both tools stay in sync.</p>
-            <p>The <code>docs/</code> files inside every generated project (<code>CODING_STANDARDS.md</code>, <code>KOLTX.md</code>, etc.) are <strong>plugin-owned</strong> — they are automatically overwritten whenever the consumer project updates its Kolt plugin version, so AI agents in downstream projects always read current rules.</p>
+            <p>The <code>docs/</code> files inside every generated project (<code>CODING_STANDARDS.md</code>, <code>KOLT.md</code>, etc.) are <strong>plugin-owned</strong> — they are automatically overwritten whenever the consumer project updates its Kolt plugin version, so AI agents in downstream projects always read current rules.</p>
 
             <h2>Target IDE versions</h2>
             <p>The plugin is configured to target <strong>Android Studio Meerkat (2024.3.1)</strong> and later.</p>

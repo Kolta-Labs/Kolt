@@ -77,7 +77,7 @@
                 <h1>Changelogs</h1>
                 <p class="docs-lede">Every Kolt artifact is versioned and published independently. Pick a library below for its full release history — the same content lives at <code>libs/&lt;name&gt;/CHANGELOG.md</code> in the repo.</p>
                 <div class="docs-tile-grid">${tiles}</div>
-                <p><a href="https://github.com/kolt-systems/KoltX/releases" target="_blank" rel="noopener">GitHub Releases &rarr;</a></p>
+                <p><a href="https://github.com/kolta-labs/Kolt/releases" target="_blank" rel="noopener">GitHub Releases &rarr;</a></p>
             `;
         }
 
@@ -96,7 +96,7 @@
                 article.innerHTML = `
                     <span class="docs-eyebrow">Release Notes</span>
                     <h1>${entry.title}</h1>
-                    <p class="docs-source-link">${entry.coordinate} — <a href="https://github.com/kolt-systems/KoltX/blob/main/${entry.path}" target="_blank" rel="noopener">${entry.path}</a></p>
+                    <p class="docs-source-link">${entry.coordinate} — <a href="https://github.com/kolta-labs/Kolt/blob/main/${entry.path}" target="_blank" rel="noopener">${entry.path}</a></p>
                     ${renderChangelogMarkdown(md)}
                     <p><a href="index.html">&larr; All changelogs</a></p>
                 `;
@@ -104,7 +104,7 @@
                 article.innerHTML = `
                     <h1>${entry.title}</h1>
                     <p>Couldn't load the changelog from GitHub (${escapeHtml(String(e))}). View it directly:
-                    <a href="https://github.com/kolt-systems/KoltX/blob/main/${entry.path}" target="_blank" rel="noopener">${entry.path}</a></p>
+                    <a href="https://github.com/kolta-labs/Kolt/blob/main/${entry.path}" target="_blank" rel="noopener">${entry.path}</a></p>
                     <p><a href="index.html">&larr; All changelogs</a></p>
                 `;
             }

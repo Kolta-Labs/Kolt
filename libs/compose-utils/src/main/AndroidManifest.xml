@@ -3,8 +3,8 @@
 
     <application>
         <provider
-            android:name="io.github.koltsystems.koltx.composeutils.utils.KoltFileProvider"
-            android:authorities="${applicationId}.koltx.provider"
+            android:name="io.github.koltalabs.kolt.composeutils.utils.KoltFileProvider"
+            android:authorities="${applicationId}.kolt.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

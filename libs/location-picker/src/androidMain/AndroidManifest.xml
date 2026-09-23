@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="io.github.koltsystems.koltx.locationpicker.LocationPickerActivity"
+            android:name="io.github.koltalabs.kolt.locationpicker.LocationPickerActivity"
             android:theme="@style/Theme.LocationPicker"
             android:exported="false" />
     </application>

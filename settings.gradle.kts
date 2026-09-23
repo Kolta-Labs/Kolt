@@ -57,11 +57,8 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         // `libs` is auto-created from gradle/libs.versions.toml (lib-module build deps).
-        create("koltxlibs") {
-            from(files("gradle/koltxlibs.versions.toml"))
-        }
         create("koltlibs") {
-            from(files("gradle/koltxlibs.versions.toml"))
+            from(files("gradle/koltlibs.versions.toml"))
         }
         create("kmplibs") {
             from(files("gradle/kmplibs.versions.toml"))
@@ -69,7 +66,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KoltX"
+rootProject.name = "Kolt"
 
 // ── Runtime library modules ──────────────────────────────────────────────────
 // Each applies the in-repo convention plugins from build-logic.

@@ -48,7 +48,7 @@ KoltImageText(image = uiImage, text = uiText)`,
         title: 'Highlight Search Text',
         description: 'Text view that highlights instances matching a search query — type in the embedded demo below to try it.',
         composables: [
-            { name: 'KoltHighlightText', desc: 'Highlights matching terms inside a target text block', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/text/KoltHighlightText.kt' },
+            { name: 'KoltHighlightText', desc: 'Highlights matching terms inside a target text block', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/text/KoltHighlightText.kt' },
         ],
         usage: `KoltHighlightText(
     text = "Kotlin Multiplatform simplifies cross-platform sharing.",
@@ -106,7 +106,7 @@ IconDropDown(icon, items, selected, onSelected)`,
         title: 'KoltSlider (Value Controls)',
         description: 'Premium custom slider supporting interactive value drags, custom min/max/step.',
         composables: [
-            { name: 'KoltSlider', desc: 'Drag-active thumb handle to adjust numerical settings', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltSlider.kt' },
+            { name: 'KoltSlider', desc: 'Drag-active thumb handle to adjust numerical settings', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltSlider.kt' },
         ],
         usage: `KoltSlider(value = sliderValue, onValueChange = { sliderValue = it }, valueRange = 0f..100f)`,
     },
@@ -115,7 +115,7 @@ IconDropDown(icon, items, selected, onSelected)`,
         title: 'KoltRatingBar (Star Rating)',
         description: 'Interactive star ratings supporting fractional (half-star) values and read-only display.',
         composables: [
-            { name: 'KoltRatingBar', desc: 'Click/tap stars to assign a rating value, or render read-only', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltRatingBar.kt' },
+            { name: 'KoltRatingBar', desc: 'Click/tap stars to assign a rating value, or render read-only', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltRatingBar.kt' },
         ],
         usage: `KoltRatingBar(rating = 3.5f, onRatingChanged = { ... }, allowHalfRating = true, starCount = 5)
 KoltRatingBar(rating = 3.5f, readOnly = true)`,
@@ -127,7 +127,7 @@ KoltRatingBar(rating = 3.5f, readOnly = true)`,
         title: 'KoltStatusTag (Semantic Tags)',
         description: 'Pill-shaped badges driven by primary, secondary, and semantic success/warning/error intents.',
         composables: [
-            { name: 'KoltStatusTag', desc: 'Semantic status pill (success/warning/error/info/primary/neutral)', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltStatusTag.kt' },
+            { name: 'KoltStatusTag', desc: 'Semantic status pill (success/warning/error/info/primary/neutral)', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltStatusTag.kt' },
         ],
         usage: `KoltStatusTag(text = "Active", intent = StatusIntent.Success)`,
     },
@@ -136,8 +136,8 @@ KoltRatingBar(rating = 3.5f, readOnly = true)`,
         title: 'KoltBadge & KoltTooltip',
         description: 'Notification count badges and interactive long-press tooltips.',
         composables: [
-            { name: 'KoltBadge', desc: 'Notification count pill badge, alignable to any corner', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/badge/KoltBadge.kt' },
-            { name: 'KoltTooltip', desc: 'Interactive inline information popup on long-press/hover', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltTooltip.kt' },
+            { name: 'KoltBadge', desc: 'Notification count pill badge, alignable to any corner', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/badge/KoltBadge.kt' },
+            { name: 'KoltTooltip', desc: 'Interactive inline information popup on long-press/hover', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltTooltip.kt' },
         ],
         usage: `KoltBadge(count = 5, alignment = BadgeAlignment.TopEnd) { /* anchor content */ }
 KoltTooltip(message = uiText, position = TooltipPosition.Top) { /* trigger content */ }`,
@@ -147,7 +147,7 @@ KoltTooltip(message = uiText, position = TooltipPosition.Top) { /* trigger conte
         title: 'Progress & Loaders',
         description: 'Themed linear progress, circular progress, and indeterminate loading states.',
         composables: [
-            { name: 'KoltProgressIndicator', desc: 'Linear (determinate) and circular/linear indeterminate progress', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/progress/KoltProgressIndicator.kt' },
+            { name: 'KoltProgressIndicator', desc: 'Linear (determinate) and circular/linear indeterminate progress', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/progress/KoltProgressIndicator.kt' },
             { name: 'FullscreenLoader', desc: 'Full-screen blocking loader overlay', path: 'libs/compose-utils/.../core/progress/FullscreenLoader.kt' },
         ],
         usage: `KoltProgressIndicator.Linear(progress = 0.5f)
@@ -160,7 +160,7 @@ FullscreenLoader(isVisible = state.isLoading)`,
         description: 'Smooth loading placeholders with a moving gradient, and clean empty-state templates.',
         composables: [
             { name: 'ShimmerBox / Modifier.shimmerEffect()', desc: 'Loading shimmer placeholder', path: 'libs/compose-kmp/.../components/core/ShimmerBox.kt, .../modifiers/ShimmerEffect.kt' },
-            { name: 'KoltEmptyState', desc: 'Centered icon + title + description + action-button template', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltEmptyState.kt' },
+            { name: 'KoltEmptyState', desc: 'Centered icon + title + description + action-button template', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltEmptyState.kt' },
         ],
         usage: `Box(Modifier.shimmerEffect())   // apply to any placeholder shape
 KoltEmptyState(icon = uiImage, title = uiText, description = uiText, actionLabel = uiText, onAction = { ... })`,
@@ -170,8 +170,8 @@ KoltEmptyState(icon = uiImage, title = uiText, description = uiText, actionLabel
         title: 'Banners & System Feedback',
         description: 'Themed alert banners, system snackbars, and toast alerts — driven from a host controller and one-shot Effects.',
         composables: [
-            { name: 'KoltBanner', desc: 'Status alert banner with an action trigger', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/messages/KoltBanner.kt' },
-            { name: 'KoltSnackbar', desc: 'Dynamic snackbar alert with action label', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/messages/KoltSnackbar.kt' },
+            { name: 'KoltBanner', desc: 'Status alert banner with an action trigger', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/messages/KoltBanner.kt' },
+            { name: 'KoltSnackbar', desc: 'Dynamic snackbar alert with action label', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/messages/KoltSnackbar.kt' },
             { name: 'Toast', desc: 'Lightweight transient toast message', path: 'libs/compose-utils/.../messages/Toast.kt' },
         ],
         usage: `KoltBanner(title = uiText, message = uiText, intent = BannerIntent.Info, onAction = { ... })
@@ -188,8 +188,8 @@ vm.collectEffects { effect -> when (effect) {
         title: 'KoltDivider & Spacers',
         description: 'Visual and layout helpers for cleanly separating components — horizontal/vertical dividers plus fixed spacers.',
         composables: [
-            { name: 'KoltDivider', desc: 'Horizontal or vertical themed divider line', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltDivider.kt' },
-            { name: 'Spacers', desc: 'Fixed-size vertical/horizontal spacing helpers', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/Spacers.kt' },
+            { name: 'KoltDivider', desc: 'Horizontal or vertical themed divider line', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltDivider.kt' },
+            { name: 'Spacers', desc: 'Fixed-size vertical/horizontal spacing helpers', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/Spacers.kt' },
         ],
         usage: `KoltDivider(orientation = DividerOrientation.Horizontal)
 VerticalSpacer(16.dp)
@@ -200,8 +200,8 @@ HorizontalSpacer(16.dp)`,
         title: 'TextTitledCardView & Smooth Corners',
         description: 'Curvature-continuity (G2) mathematically blended squircle corners — compare against standard CSS/Compose rounded corners in the embedded demo.',
         composables: [
-            { name: 'SmoothCornerShape', desc: 'G2-continuous squircle Shape, configurable radius + smoothness', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/theme/SmoothCornerShape.kt' },
-            { name: 'TitledCardView', desc: 'Card with a titled header using SmoothCornerShape', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/containers/TitledCardView.kt' },
+            { name: 'SmoothCornerShape', desc: 'G2-continuous squircle Shape, configurable radius + smoothness', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/theme/SmoothCornerShape.kt' },
+            { name: 'TitledCardView', desc: 'Card with a titled header using SmoothCornerShape', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/containers/TitledCardView.kt' },
         ],
         usage: `Box(Modifier.clip(SmoothCornerShape(radius = 24.dp, smoothness = 0.55f)))
 TitledCardView(title = uiText) { /* content */ }`,
@@ -211,7 +211,7 @@ TitledCardView(title = uiText) { /* content */ }`,
         title: 'Generic TitledCardView',
         description: 'TitledCardView using a custom title slot directly, allowing arbitrary layouts in the header block.',
         composables: [
-            { name: 'TitledCardView (titleSlot)', desc: 'Same card container, with a fully custom composable header slot', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/containers/TitledCardView.kt' },
+            { name: 'TitledCardView (titleSlot)', desc: 'Same card container, with a fully custom composable header slot', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/containers/TitledCardView.kt' },
         ],
         usage: `TitledCardView(titleSlot = { Row { Text("🏠"); Text("Custom Title") } }) { /* content */ }`,
     },
@@ -220,7 +220,7 @@ TitledCardView(title = uiText) { /* content */ }`,
         title: 'KoltAccordion (Collapsible Panels)',
         description: 'Sleek expandable panels with G2 smooth corners and animated chevron rotation.',
         composables: [
-            { name: 'KoltAccordion', desc: 'Expandable/collapsible panel list, single- or multi-expand', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltAccordion.kt' },
+            { name: 'KoltAccordion', desc: 'Expandable/collapsible panel list, single- or multi-expand', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltAccordion.kt' },
         ],
         usage: `KoltAccordion(
     items = listOf(AccordionItem(title = uiText, content = { Text("...") })),
@@ -250,7 +250,7 @@ KoltDrawerScaffold(drawerContent = { ... }) { /* content */ }`,
         title: 'SwipeableActionsBox (List Item Gestures)',
         description: 'Swipe left/right on list items to reveal context-specific actions (e.g. Archive, Delete) — drag the demo cards below.',
         composables: [
-            { name: 'SwipeableActionsBox', desc: 'Swipe-to-reveal action container for list rows', path: 'libs/compose-utils/src/main/java/io/github/koltx/kolt/composeutils/components/containers/swipeactionbox/SwipeableActionsBox.kt' },
+            { name: 'SwipeableActionsBox', desc: 'Swipe-to-reveal action container for list rows', path: 'libs/compose-utils/src/main/java/io/github/koltalabs/kolt/composeutils/components/containers/swipeactionbox/SwipeableActionsBox.kt' },
             { name: 'SwipeAction', desc: 'Single swipe action definition (icon, background, onSwipe)', path: 'libs/compose-utils/.../swipeactionbox/SwipeAction.kt' },
         ],
         usage: `SwipeableActionsBox(
@@ -263,7 +263,7 @@ KoltDrawerScaffold(drawerContent = { ... }) { /* content */ }`,
         title: 'AsyncStateBox State Machine',
         description: 'Renders a dedicated slot depending on the Idle / Loading / Success / Error state of an async operation.',
         composables: [
-            { name: 'AsyncStateBox', desc: 'Slot-based renderer driven by an AsyncState value', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/AsyncStateBox.kt' },
+            { name: 'AsyncStateBox', desc: 'Slot-based renderer driven by an AsyncState value', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/AsyncStateBox.kt' },
             { name: 'AsyncState', desc: 'Sealed class: Idle / Loading / Success / Error', path: 'libs/utils/.../state/AsyncState.kt' },
         ],
         usage: `AsyncStateBox(
@@ -277,7 +277,7 @@ KoltDrawerScaffold(drawerContent = { ... }) { /* content */ }`,
         title: 'SmartPullToRefreshBox',
         description: 'Draggable viewport that triggers a suspending reload action — pull down on the demo list below.',
         composables: [
-            { name: 'PullToRefreshBox', desc: 'Pull-to-refresh container wrapping a scrollable list', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/containers/PullToRefreshBox.kt' },
+            { name: 'PullToRefreshBox', desc: 'Pull-to-refresh container wrapping a scrollable list', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/containers/PullToRefreshBox.kt' },
         ],
         usage: `PullToRefreshBox(isRefreshing = state.isRefreshing, onRefresh = { vm.dispatch(Intent.Refresh) }) {
     LazyColumn { items(feed) { FeedItem(it) } }
@@ -288,7 +288,7 @@ KoltDrawerScaffold(drawerContent = { ... }) { /* content */ }`,
         title: 'KoltStepper (Wizard Flows)',
         description: 'Flow-based progress layout with node pulsing and animated transition lines between steps.',
         composables: [
-            { name: 'KoltStepper', desc: 'Horizontal or vertical multi-step progress indicator', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/KoltStepper.kt' },
+            { name: 'KoltStepper', desc: 'Horizontal or vertical multi-step progress indicator', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/KoltStepper.kt' },
         ],
         usage: `KoltStepper(
     steps = listOf(StepItem("Verification"), StepItem("Payment"), StepItem("Confirm")),
@@ -301,8 +301,8 @@ KoltDrawerScaffold(drawerContent = { ... }) { /* content */ }`,
         title: 'Native Overlay Controllers',
         description: 'Dialog and bottom-sheet overlay controllers, available on all KMP targets, using SmoothCornerShape for G2-continuous corners.',
         composables: [
-            { name: 'MessageDialog', desc: 'Themed alert dialog with positive/negative buttons', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/messages/MessageDialog.kt' },
-            { name: 'KoltBottomSheet', desc: 'Modal bottom sheet with a drag handle', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltx/kolt/composekmp/components/core/messages/KoltBottomSheet.kt' },
+            { name: 'MessageDialog', desc: 'Themed alert dialog with positive/negative buttons', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/messages/MessageDialog.kt' },
+            { name: 'KoltBottomSheet', desc: 'Modal bottom sheet with a drag handle', path: 'libs/compose-kmp/src/commonMain/kotlin/io/github/koltalabs/kolt/composekmp/components/core/messages/KoltBottomSheet.kt' },
         ],
         usage: `MessageDialog(
     title = uiText, message = uiText,
@@ -318,7 +318,7 @@ KoltBottomSheet(visible = sheetVisible, onDismiss = { sheetVisible = false }) { 
         title: 'In-App Updates (update-utils)',
         description: 'Android-only Flexible/Immediate update prompts driven by Firebase Remote Config + the Play Store In-App Update API.',
         composables: [
-            { name: 'AppUpdateHelperUtil', desc: 'ViewModel delegate gating forced/optional update dialogs', path: 'libs/update-utils/src/main/java/io/github/koltx/kolt/updateutils/AppUpdateHelperUtil.kt' },
+            { name: 'AppUpdateHelperUtil', desc: 'ViewModel delegate gating forced/optional update dialogs', path: 'libs/update-utils/src/main/java/io/github/koltalabs/kolt/updateutils/AppUpdateHelperUtil.kt' },
         ],
         usage: `class MainViewModel @Inject constructor(...) :
     MviViewModel<MainState, MainIntent, MainEffect>(MainState()),

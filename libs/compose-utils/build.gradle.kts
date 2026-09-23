@@ -4,18 +4,18 @@ plugins {
     // the Kotlin plugin directly here (with a version) would load a second copy of KGP and
     // crash the multi-module build (KotlinNativeBundleBuildService classloader conflict).
     id("io.github.koltsystems.koltx.library-compose")
-    id("io.github.koltsystems.koltx.publish")
+    id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }
 
 // This module IS compose-utils — don't let the plugin add the Kolt runtime libs
 // (utils/logutils/compose-utils) to itself. It pulls :libs:utils directly instead.
-koltx {
+kolt {
     enableUtils.set(false)
 }
 
 android {
-    namespace = "io.github.koltsystems.koltx.composeutils"
+    namespace = "io.github.koltalabs.kolt.composeutils"
 }
 
 dependencies {
@@ -48,8 +48,8 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "compose")
     pom {
-        name = "KoltX Compose"
+        name = "Kolt Compose"
         description = "Simple Compose components and utility functions for Android development."
-        url = "https://github.com/kolt-systems/KoltX"
+        url = "https://github.com/kolta-labs/Kolt"
     }
 }

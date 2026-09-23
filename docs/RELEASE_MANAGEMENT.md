@@ -51,6 +51,12 @@ counter and rewrite the README version badges. A new **MAJOR** version is a
 manual edit to `version.properties` (reset `_DEV` to `0`) — not something
 `release.sh` does.
 
+**Adding fields to a public data class** (e.g. new type-scale slots on
+`Sizes`/`UiSizes`/`BaseTextStyles`): append them at the end of the constructor,
+never mid-list, so positional args and `componentN()` stay stable. It still
+changes the JVM constructor signature, so bump the artifact's `_DEV` and say so
+in its changelog.
+
 ## 2. Changelogs — one `CHANGELOG.md` per artifact
 
 Each publishable artifact has its own `CHANGELOG.md` next to its
@@ -73,7 +79,7 @@ build-logic/CHANGELOG.md           (convention plugins + catalogs)
 ```markdown
 # Changelog
 
-All notable changes to `<artifact>` (`io.github.koltsystems.koltx:<artifact>`)
+All notable changes to `<artifact>` (`io.github.koltalabs.kolt:<artifact>`)
 are documented here, newest first. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
@@ -151,7 +157,7 @@ has time to fix the credentials/config gap — the fix belongs in
 
 `demo-web/docs/changelog/index.html` is a docs-site page listing every
 artifact and, per artifact, rendering its `CHANGELOG.md`. It fetches the file
-straight from `raw.githubusercontent.com/koltsystems/KoltX/main/...` at
+straight from `raw.githubusercontent.com/kolta-labs/Kolt/main/...` at
 runtime — **not** a copy baked into the site — so it always reflects what's
 on `main` with zero extra sync step, at the cost of only working once a
 change is pushed (fine: by the time anyone views the site, the release

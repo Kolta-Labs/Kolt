@@ -1,7 +1,7 @@
 plugins {
     id("io.github.koltsystems.koltx.kmp.library-compose")
     alias(kmplibs.plugins.kotlin.serialization)
-    id("io.github.koltsystems.koltx.publish")
+    id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }
 
@@ -13,11 +13,11 @@ kmp {
 }
 
 android {
-    namespace = "io.github.koltsystems.koltx.locationpicker"
+    namespace = "io.github.koltalabs.kolt.locationpicker"
 }
 
 compose.resources {
-    packageOfResClass = "io.github.koltsystems.koltx.locationpicker.generated.resources"
+    packageOfResClass = "io.github.koltalabs.kolt.locationpicker.generated.resources"
 }
 
 dependencies {
@@ -52,11 +52,11 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "location-picker")
     pom {
-        name = "KoltX Location Picker"
+        name = "Kolt Location Picker"
         description = "All-in-one, configurable, themeable location-picker UI (search / map / " +
             "current-location / manual entry) for Android, iOS, Desktop and Web — built on top " +
             "of Kolt Location."
-        url = "https://github.com/kolt-systems/KoltX"
+        url = "https://github.com/kolta-labs/Kolt"
     }
 }
 

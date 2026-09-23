@@ -15,7 +15,7 @@ mandatory means *use the parts that passed the check below*, not *trust
 everything because it's sitting in the repo* — the `Don't reuse`/`Dead code`
 sections are exclusions from that mandate, not suggestions.
 
-`Kolt/libs` lives at `/Users/arunshankar/Projects/KMP/Kolt/libs`. It's marketed
+`Kolt/libs` lives at `$KOLT_LIBS_PATH` (the local KoltLibs checkout; set it in `~/.gradle/gradle.properties` or ask the user). It's marketed
 as a KMP util collection, but not every module in it actually is KMP. Checked
 each module's source-set layout and dependencies before recommending
 anything — don't assume "it's in the KMP repo" means "it works on iOS."
@@ -25,13 +25,13 @@ anything — don't assume "it's in the KMP repo" means "it works on iOS."
 Before wiring the first Kolt dependency into a new project, check whether
 consumption is already decided: look for an `includeBuild(...)` pointing at
 `Kolt/libs` in `settings.gradle.kts`, a copied module directory, or an
-`io.github.koltsystems.koltx` coordinate in the version catalog. If none of those exist
+`io.github.koltalabs.kolt` coordinate in the version catalog. If none of those exist
 yet, **ask the user which mode to use — always, exactly once per project,
 never silently default:**
 
-1. **Composite build / direct link from disk** — `includeBuild("/Users/arunshankar/Projects/KMP/Kolt/libs")` in `settings.gradle.kts`. Not a copy: a live reference to the same files on this machine, edits in Kolt show up immediately with no publish step. Only works on this machine, at this path.
+1. **Composite build / direct link from disk** — `includeBuild("<path-to-KoltLibs>")` in `settings.gradle.kts`. Not a copy: a live reference to the same files on this machine, edits in Kolt show up immediately with no publish step. Only works on this machine, at this path.
 2. **Copy the module(s) in** — vendor the source into this project's tree. Portable across machines/CI, but you own drift from the source from that point on; no free updates.
-3. **Gradle dependency on a published artifact** — `implementation("io.github.koltsystems.koltx:<module>:<version>")` (note: `compose-utils` is published under artifact ID `compose`, i.e. `io.github.koltsystems.koltx:compose:<version>`). Requires Kolt actually published (Maven local or remote) under that coordinate. Most portable/CI-friendly option, if publishing is set up.
+3. **Gradle dependency on a published artifact** — `implementation("io.github.koltalabs.kolt:<module>:<version>")` (note: `compose-utils` is published under artifact ID `compose`, i.e. `io.github.koltalabs.kolt:compose:<version>`). Requires Kolt actually published (Maven local or remote) under that coordinate. Most portable/CI-friendly option, if publishing is set up.
 
 Once answered, treat it as decided for the life of the project — don't
 re-ask on later tasks; re-check the project state above instead.
@@ -43,7 +43,7 @@ equivalent and don't treat this as a "pick whichever you feel like" menu.
 
 | Module | Path | Why it's safe |
 |---|---|---|
-| `compose-kmp` theme | `compose-kmp/src/{commonMain,androidMain,iosMain,desktopMain}/.../theme/` | Genuine `expect`/`actual` KMP. `Kolt` object + `LocalColors`/`LocalTypography`/`LocalSizes` + `CompositionBaseProvider` is exactly the pattern in [theming.md](theming.md). |
+| `compose-kmp` theme | `compose-kmp/src/{commonMain,androidMain,iosMain,desktopMain}/.../theme/` | Genuine `expect`/`actual` KMP. `Kolt` object + `LocalColors`/`LocalTypography`/`LocalSizes` + `CompositionBaseProvider` is exactly the pattern in [theming.md](theming.md). Text roles: `Kolt.textRoles.*` (the 15 M3 roles, also provided as `MaterialTheme.typography`). Typography: `Kolt.typography.text*` covers 6–48 sp incl. `textMediumLargeMid` (17 sp) and `textXLargeMid` (22 sp) — use a slot, not `TextStyle(fontSize = …)`; full scale in [theming.md](theming.md#kolt-type-scale). |
 | `compose-kmp` component library | `compose-kmp/src/commonMain/.../components/` — buttons, text/text fields, containers (card, accordion, tooltip, divider), messages (snackbar/banner/dialog), image, badges, progress, rating bar, slider, stepper, shimmer | `commonMain`-first; only `image/` drops to `androidMain`/`iosMain`/`desktopMain` `actual` (platform image loading — Coil on Android). This is the reusable-component target from [architecture.md](architecture.md#reuse-over-duplication) already built — check here before writing a new `KoltButton`/`KoltCard`/etc. |
 | `utils` → `AsyncState` | `utils/src/commonMain/.../state/AsyncState.kt` | Plain `commonMain` sealed class (`Idle`/`Loading`/`Success`/`Error`) with `map`/`onSuccess`/`getOrElse`. Clean, no platform deps. Use it in `State` fields per [presentation-mvi.md](presentation-mvi.md). |
 | `logutils` | `logutils/` | Real `commonMain`/`androidMain`/`desktopMain`/`nativeMain` KMP logging, auto debug/release gating on Android via App Startup. Fine to use as-is. |

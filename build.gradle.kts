@@ -24,10 +24,10 @@ buildscript {
 
 plugins {
     alias(libs.plugins.dokka)
-    id("io.github.koltsystems.koltx.publish") apply false
+    id("io.github.koltalabs.kolt.publish") apply false
 }
 
-// Root aggregator for the KoltX composite build.
+// Root aggregator for the Kolt composite build.
 // Convention plugins live in the included build `build-logic` and are applied
 // directly by the modules under `libs/`. This root script stays thin.
 
@@ -55,7 +55,7 @@ val locationPickerVersion by lazy { computeVersion("LOCATION_PICKER_MAJOR", "LOC
 val bomVersion          by lazy { versionProps.getProperty("BOM_VERSION", "2025.06.1")       }
 
 allprojects {
-    group = "io.github.koltsystems.koltx"
+    group = "io.github.koltalabs.kolt"
 }
 
 // Expose per-lib versions as root extra properties so submodule build scripts
@@ -151,6 +151,12 @@ tasks.register("bumpComposeUtilsVersion") {
     dependsOn(gradle.includedBuild("build-logic").task(":conventions:bumpComposeUtilsVersion"))
 }
 
+tasks.register("bumpComposeKmpVersion") {
+    group = "versioning"
+    description = "Bumps the COMPOSE_KMP_DEV counter — libs:compose-kmp."
+    dependsOn(gradle.includedBuild("build-logic").task(":conventions:bumpComposeKmpVersion"))
+}
+
 tasks.register("bumpUpdateUtilsVersion") {
     group = "versioning"
     description = "Bumps the UPDATE_UTILS_DEV counter — libs:update-utils."
@@ -191,7 +197,7 @@ tasks.register("updateReadme") {
 
 // ── Dependency substitution ───────────────────────────────────────────────────
 // When convention plugins add utils/logutils/compose-utils as Maven coordinates
-// (io.github.koltsystems.koltx:*), substitute them with the local project during
+// (io.github.koltalabs.kolt:*), substitute them with the local project during
 // development so consumers build against the current source, not a published artifact.
 //
 // The BOM platform dependency must use `platform(...)` on both sides of the substitution
@@ -200,16 +206,16 @@ subprojects {
     configurations.configureEach {
         resolutionStrategy.dependencySubstitution {
             // Platform (BOM) substitution — must use platform() on both sides
-            substitute(platform(module("io.github.koltsystems.koltx:koltx-bom")))
+            substitute(platform(module("io.github.koltalabs.kolt:kolt-bom")))
                 .using(platform(project(":libs:bom")))
             // Library substitutions
-            substitute(module("io.github.koltsystems.koltx:utils"))
+            substitute(module("io.github.koltalabs.kolt:utils"))
                 .using(project(":libs:utils"))
-            substitute(module("io.github.koltsystems.koltx:logutils"))
+            substitute(module("io.github.koltalabs.kolt:logutils"))
                 .using(project(":libs:logutils"))
-            substitute(module("io.github.koltsystems.koltx:compose-kmp"))
+            substitute(module("io.github.koltalabs.kolt:compose-kmp"))
                 .using(project(":libs:compose-kmp"))
-            substitute(module("io.github.koltsystems.koltx:compose"))
+            substitute(module("io.github.koltalabs.kolt:compose"))
                 .using(project(":libs:compose-utils"))
         }
     }

@@ -358,8 +358,8 @@
                                             <span class="component-desc">Basic text wrapper supporting selectable text containment & offset</span>
                                         </div>
                                         <div class="component-demo-wrapper">
-                                            <div class="koltx-text-wrapper" id="web-koltx-text-container" style="width: 100%; padding: 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid transparent; transition: all 0.2s; position: relative;">
-                                                <div id="web-koltx-text" style="font-size: 14px; color: var(--text-main); font-family: var(--font-stack); user-select: none; line-height: 1.5; transition: all 0.2s;">This is a custom KoltText component. You can toggle its selectability or change its styles from the configuration panel!</div>
+                                            <div class="kolt-text-wrapper" id="web-kolt-text-container" style="width: 100%; padding: 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid transparent; transition: all 0.2s; position: relative;">
+                                                <div id="web-kolt-text" style="font-size: 14px; color: var(--text-main); font-family: var(--font-stack); user-select: none; line-height: 1.5; transition: all 0.2s;">This is a custom KoltText component. You can toggle its selectability or change its styles from the configuration panel!</div>
                                             </div>
                                         </div>
                                     </div>
@@ -370,8 +370,8 @@
                                             <span class="component-desc">Click text block to copy to clipboard</span>
                                         </div>
                                         <div class="component-demo-wrapper">
-                                            <div class="copyable-text-container" id="web-copyable-text" data-text="support@koltx.com" style="width: fit-content;">
-                                                <span class="text-content">support@koltx.com</span>
+                                            <div class="copyable-text-container" id="web-copyable-text" data-text="support@koltalabs.com" style="width: fit-content;">
+                                                <span class="text-content">support@koltalabs.com</span>
                                                 <span class="copy-icon" id="web-copyable-icon" style="font-size: 14px;">📋</span>
                                             </div>
                                         </div>
@@ -434,28 +434,28 @@
                                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; width: 100%;">
                                         <div class="config-option" style="flex-direction: column; align-items: stretch; gap: 8px; grid-column: span 2;">
                                             <span class="label-text" style="align-self: flex-start;">Text Content</span>
-                                            <input type="text" id="koltx-text-input" value="This is a custom KoltText component. You can toggle its selectability or change its styles from the configuration panel!" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none;">
+                                            <input type="text" id="kolt-text-input" value="This is a custom KoltText component. You can toggle its selectability or change its styles from the configuration panel!" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none;">
                                         </div>
                                         <div class="config-option">
                                             <span class="label-text">Selectable Text</span>
                                             <div class="toggle-container">
                                                 <label class="switch-label">
-                                                    <input type="checkbox" id="koltx-text-selectable">
+                                                    <input type="checkbox" id="kolt-text-selectable">
                                                     <span class="switch-slider"></span>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="config-option" style="flex-direction: column; align-items: stretch; gap: 8px;">
                                             <span class="label-text" style="align-self: flex-start;">Text Style Preset</span>
-                                            <select id="koltx-text-style-select" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none; cursor: pointer;">
+                                            <select id="kolt-text-style-select" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none; cursor: pointer;">
                                                 <option value="textMedium" selected>Body Medium (Kolt.typography.textMedium)</option>
-                                                <option value="titleLarge">Title Large (Kolt.typography.titleLarge)</option>
-                                                <option value="bodySmall">Body Small (Kolt.typography.bodySmall)</option>
+                                                <option value="titleLarge">Title Large (Kolt.textRoles.titleLarge)</option>
+                                                <option value="bodySmall">Body Small (Kolt.textRoles.bodySmall)</option>
                                             </select>
                                         </div>
                                         <div class="config-option" style="flex-direction: column; align-items: stretch; gap: 8px;">
                                             <span class="label-text" style="align-self: flex-start;">Text Color Preset</span>
-                                            <select id="koltx-text-color-select" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none; cursor: pointer;">
+                                            <select id="kolt-text-color-select" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none; cursor: pointer;">
                                                 <option value="default" selected>On Main Surface (default)</option>
                                                 <option value="primary">Primary (Indigo)</option>
                                                 <option value="success">Success (Green)</option>
@@ -469,7 +469,7 @@
                                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; width: 100%;">
                                         <div class="config-option" style="flex-direction: column; align-items: stretch; gap: 8px; grid-column: span 2;">
                                             <span class="label-text" style="align-self: flex-start;">Copyable Text Value</span>
-                                            <input type="text" id="copyable-text-input" value="support@koltx.com" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none;">
+                                            <input type="text" id="copyable-text-input" value="support@koltalabs.com" style="width: 100%; padding: 8px 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-stack); font-size: 13px; outline: none;">
                                         </div>
                                         <div class="config-option">
                                             <span class="label-text">Show Copy Icon</span>

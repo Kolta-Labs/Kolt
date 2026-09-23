@@ -20,7 +20,7 @@ const DOCS_NAV = [
             { label: 'Build an MVI Screen', href: 'guides/mvi-screen.html' },
             { label: 'Offline-First Data Layer', href: 'guides/offline-data-layer.html' },
             { label: 'Starter Project Templates', href: 'guides/starter-projects.html' },
-            { label: 'Migration Guide (KoltX)', href: 'guides/migration.html' },
+            { label: 'Migration Guide (Kolt)', href: 'guides/migration.html' },
             { label: 'IntelliJ / Android Studio Plugin', href: 'guides/intellij-plugin.html' },
             { label: 'AI Agent Steering & Readiness', href: 'guides/ai-steering.html' },
             { label: 'Theme & Typography System', href: 'guides/theme-system.html' },

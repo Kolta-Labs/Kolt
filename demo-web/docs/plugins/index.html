@@ -15,7 +15,7 @@
         <article class="docs-article">
             <span class="docs-eyebrow">Plugins</span>
             <h1>Convention Plugin Catalog</h1>
-            <p class="docs-lede">12 Gradle convention plugins, shipped from <code>build-logic/conventions</code> and applied from source inside this repo. All plugins share one version (<code>version.properties → MAJOR.dev-XX</code>). Applied through the <code>koltxlibs</code> catalog (Android) or <code>kmplibs</code> catalog (KMP).</p>
+            <p class="docs-lede">12 Gradle convention plugins, shipped from <code>build-logic/conventions</code> and applied from source inside this repo. All plugins share one version (<code>version.properties → MAJOR.dev-XX</code>). Applied through the <code>koltlibs</code> catalog (Android) or <code>kmplibs</code> catalog (KMP).</p>
 
             <h2>Plugin Selection Reference</h2>
             <p>Choosing the right plugin ensures that your module only imports the dependencies and Gradle configurations it actually needs, keeping build times fast. Use this quick reference to find the standard plugin for your module type:</p>
@@ -31,14 +31,14 @@
                 <tr><td>KMP app host</td><td><code>kmp.application</code></td></tr>
             </table>
 
-            <h2>Android plugins <span style="font-size:12px; color:var(--text-muted); font-weight:400;">— catalog: koltxlibs</span></h2>
+            <h2>Android plugins <span style="font-size:12px; color:var(--text-muted); font-weight:400;">— catalog: koltlibs</span></h2>
             <table class="docs-table" id="android-plugins-table"></table>
 
             <h2>KMP plugins <span style="font-size:12px; color:var(--text-muted); font-weight:400;">— catalog: kmplibs</span></h2>
             <table class="docs-table" id="kmp-plugins-table"></table>
 
             <h2>Quick-start</h2>
-            <pre><code>plugins { id("io.github.koltsystems.koltx.application") }
+            <pre><code>plugins { id("io.github.koltalabs.kolt.application") }
 
 android { namespace = "com.example.myapp" }</code></pre>
             <p>First build auto-runs <code>scaffoldKoltResources</code> (theme XMLs) and <code>scaffoldKoltDocs</code> (docs/) — both idempotent, never overwrite on re-run.</p>

@@ -5,7 +5,7 @@ plugins {
     id("org.jetbrains.intellij.platform") version "2.3.0"
 }
 
-group = "io.github.koltsystems.koltx"
+group = "io.github.koltalabs.kolt"
 version = "1.0.0"
 
 kotlin {
@@ -33,7 +33,7 @@ val syncTemplates = tasks.register<Sync>("syncTemplates") {
     // Steering standards (single source of truth: Standards/)
     from(rootDir.parentFile.resolve("Standards")) {
         into("templates/docs")
-        include("KOLTX.md")
+        include("KOLT.md")
     }
     from(rootDir.parentFile.resolve("Standards/steering/kmp")) {
         into("templates/docs")

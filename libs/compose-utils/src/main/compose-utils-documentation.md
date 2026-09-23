@@ -19,15 +19,15 @@ This document provides detailed documentation for the reusable Jetpack Compose c
 
 ## Theme & Core
 
-### `KoltXTheme`
+### `KoltTheme`
 
 The root theme for applying the `Kolt` design system. All composables should be wrapped in this theme.
 
--   **File Path**: `theme/KoltXTheme.kt`
+-   **File Path**: `theme/KoltTheme.kt`
 -   **Description**: Applies the custom color scheme, typography, and sizing defined in `Kolt.colors`, `Kolt.typography`, and `Kolt.sizes`.
 -   **Usage**:
     ```kotlin
-    KoltXTheme {
+    KoltTheme {
         Surface {
             // Your screen content
         }

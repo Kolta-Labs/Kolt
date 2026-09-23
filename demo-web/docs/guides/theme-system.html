@@ -102,7 +102,7 @@ Box(
 }</code></pre>
 
             <h2>3. Typography Scaling (100% Reference)</h2>
-            <p>Kolt provides a highly granular core typography scale. Text sizes default to the <strong>Outfit</strong> font family and define 19 distinct steps. In addition, the system maps 15 Material 3 compatibility aliases to make integration with standard components seamless.</p>
+            <p>Kolt provides a highly granular core typography scale. Text sizes default to the <strong>Outfit</strong> font family and define 21 distinct steps. On top of the scale, <code>Kolt.textRoles</code> provides the 15 Material 3 text roles, also installed as <code>MaterialTheme.typography</code> so Material components match.</p>
 
             <h3>The Core Text Styles</h3>
             <p>All core text styles can be retrieved via <code>Kolt.typography.&lt;style_name&gt;</code>. Below are the default font sizes applied on Android:</p>
@@ -126,62 +126,176 @@ Box(
                     <tr>
                         <td><code>textTiny</code></td>
                         <td>7sp</td>
-                        <td><code>textLarge</code></td>
-                        <td>18sp</td>
+                        <td><code>textMediumLargeMid</code></td>
+                        <td>17sp</td>
                     </tr>
                     <tr>
                         <td><code>textXXXSmall</code></td>
                         <td>8sp</td>
-                        <td><code>textXLarge</code></td>
-                        <td>20sp</td>
+                        <td><code>textLarge</code></td>
+                        <td>18sp</td>
                     </tr>
                     <tr>
                         <td><code>textXXSmall</code></td>
                         <td>9sp</td>
-                        <td><code>textXXLarge</code></td>
-                        <td>24sp</td>
+                        <td><code>textXLarge</code></td>
+                        <td>20sp</td>
                     </tr>
                     <tr>
                         <td><code>textXSmall</code></td>
                         <td>10sp</td>
-                        <td><code>textXXXLarge</code></td>
-                        <td>28sp</td>
+                        <td><code>textXLargeMid</code></td>
+                        <td>22sp</td>
                     </tr>
                     <tr>
                         <td><code>textXSmallMedium</code></td>
                         <td>11sp</td>
-                        <td><code>textBig</code></td>
-                        <td>32sp</td>
+                        <td><code>textXXLarge</code></td>
+                        <td>24sp</td>
                     </tr>
                     <tr>
                         <td><code>textSmall</code></td>
                         <td>12sp</td>
-                        <td><code>textXBig</code></td>
-                        <td>36sp</td>
+                        <td><code>textXXXLarge</code></td>
+                        <td>28sp</td>
                     </tr>
                     <tr>
                         <td><code>textSmallMedium</code></td>
                         <td>13sp</td>
-                        <td><code>textHuge</code></td>
-                        <td>40sp</td>
+                        <td><code>textBig</code></td>
+                        <td>32sp</td>
                     </tr>
                     <tr>
                         <td><code>textMedium</code></td>
                         <td>14sp</td>
-                        <td><code>textGiant</code></td>
-                        <td>48sp</td>
+                        <td><code>textXBig</code></td>
+                        <td>36sp</td>
                     </tr>
                     <tr>
                         <td><code>textMediumMid</code></td>
                         <td>15sp</td>
+                        <td><code>textHuge</code></td>
+                        <td>40sp</td>
+                    </tr>
+                    <tr>
                         <td>-</td>
                         <td>-</td>
+                        <td><code>textGiant</code></td>
+                        <td>48sp</td>
                     </tr>
                 </tbody>
             </table>
 
-            <h3>Material 3 Compatibility Aliases</h3>
-            <p>To avoid bulk search-and-replace, Kolt maps Material 3 typography names to their visual equivalents in the core scale (typically shifted by ~2 steps to account for differences in baseline metrics):</p>
+            <p><code>textMediumLargeMid</code> (17sp) and <code>textXLargeMid</code> (22sp) were added in compose-kmp <code>0.2.1.dev-02</code>. They are appended at the end of the <code>Sizes</code>/<code>UiSizes</code>/<code>BaseTextStyles</code> constructors, so no existing slot moved. Use a slot for any size on the scale; reserve a raw <code>TextStyle(fontSize = …)</code> for runtime-computed sizes, with a comment saying why.</p>
+
+            <h3>Text Roles (<code>Kolt.textRoles</code>)</h3>
+            <p>Prefer a role over a raw step: roles carry weight, line height and letter spacing as well as size. Display is capped at the top of the Kolt scale (M3 baseline is 57/45/36sp).</p>
+
+            <table class="docs-table">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Built from</th>
+                        <th>Size / Line height</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>displayLarge</code></td>
+                        <td><code>textGiant</code></td>
+                        <td>48sp / 56sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>displayMedium</code></td>
+                        <td><code>textHuge</code></td>
+                        <td>40sp / 48sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>displaySmall</code></td>
+                        <td><code>textXBig</code></td>
+                        <td>36sp / 44sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>headlineLarge</code></td>
+                        <td><code>textBig</code></td>
+                        <td>32sp / 40sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>headlineMedium</code></td>
+                        <td><code>textXXXLarge</code></td>
+                        <td>28sp / 36sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>headlineSmall</code></td>
+                        <td><code>textXXLarge</code></td>
+                        <td>24sp / 32sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>titleLarge</code></td>
+                        <td><code>textXLargeMid</code></td>
+                        <td>22sp / 28sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>titleMedium</code></td>
+                        <td><code>textMediumLarge</code></td>
+                        <td>16sp / 24sp</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><code>titleSmall</code></td>
+                        <td><code>textMedium</code></td>
+                        <td>14sp / 20sp</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><code>bodyLarge</code></td>
+                        <td><code>textMediumLarge</code></td>
+                        <td>16sp / 24sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>bodyMedium</code></td>
+                        <td><code>textMedium</code></td>
+                        <td>14sp / 20sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>bodySmall</code></td>
+                        <td><code>textSmall</code></td>
+                        <td>12sp / 16sp</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <td><code>labelLarge</code></td>
+                        <td><code>textMedium</code></td>
+                        <td>14sp / 20sp</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><code>labelMedium</code></td>
+                        <td><code>textSmall</code></td>
+                        <td>12sp / 16sp</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><code>labelSmall</code></td>
+                        <td><code>textXSmallMedium</code></td>
+                        <td>11sp / 16sp</td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Deprecated Material 3-style Aliases</h3>
+            <p>The older <code>Kolt.typography.bodyX</code>/<code>titleX</code>/… aliases are deprecated because their sizes don't match Material 3. They still resolve as below; the IDE quick-fix replaces each with the identical core style.</p>
 
             <table class="docs-table">
                 <thead>
@@ -312,7 +426,7 @@ Text(
             <pre><code>// Override on a single text element
 Text(
     text = "മലയാളം",
-    style = Kolt.typography.bodyMedium.noto
+    style = Kolt.textRoles.bodyMedium.noto
 )</code></pre>
 
             <h3>The AppFont Configuration Options</h3>

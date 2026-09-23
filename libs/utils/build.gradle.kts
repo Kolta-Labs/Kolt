@@ -1,7 +1,7 @@
 plugins {
     id("io.github.koltsystems.koltx.kmp.library")
     alias(kmplibs.plugins.kotlin.serialization)
-    id("io.github.koltsystems.koltx.publish")
+    id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }
 
@@ -14,7 +14,7 @@ kmp {
 }
 
 android {
-    namespace = "io.github.koltsystems.koltx.utils"
+    namespace = "io.github.koltalabs.kolt.utils"
 }
 
 dependencies {
@@ -30,8 +30,8 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "utils")
     pom {
-        name = "KoltX Utils"
+        name = "Kolt Utils"
         description = "Common Kotlin Multiplatform util functions and extension methods."
-        url = "https://github.com/kolt-systems/KoltX"
+        url = "https://github.com/kolta-labs/Kolt"
     }
 }

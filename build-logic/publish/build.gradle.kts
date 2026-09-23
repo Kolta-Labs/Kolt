@@ -2,10 +2,10 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "io.github.koltsystems.koltx"
+group = "io.github.koltalabs.kolt"
 
 // This module deliberately depends ONLY on the vanniktech maven-publish plugin — NOT on KGP/AGP.
-// Keeping its classpath lean means a module that applies io.github.koltsystems.koltx.publish (e.g. the
+// Keeping its classpath lean means a module that applies io.github.koltalabs.kolt.publish (e.g. the
 // BOM java-platform) does not pull Kotlin into its classloader scope, avoiding the
 // KotlinNativeBundleBuildService classloader conflict in a whole-suite build.
 dependencies {
@@ -14,11 +14,11 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        create("koltxPublish") {
-            id = "io.github.koltsystems.koltx.publish"
-            displayName = "KoltX Publish"
+        create("koltPublish") {
+            id = "io.github.koltalabs.kolt.publish"
+            displayName = "Kolt Publish"
             description = "Applies the vanniktech maven-publish plugin from a shared, KGP-free classloader."
-            implementationClass = "io.github.koltsystems.koltx.publish.KoltXPublishConventionPlugin"
+            implementationClass = "io.github.koltalabs.kolt.publish.KoltPublishConventionPlugin"
         }
     }
 }

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `logutils` (`io.github.koltsystems.koltx:logutils`) are documented
+All notable changes to `logutils` (`io.github.koltalabs.kolt:logutils`) are documented
 here, newest first. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 

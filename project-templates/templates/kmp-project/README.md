@@ -16,7 +16,7 @@ Ready-to-use Gradle scaffolding for a new Kotlin Multiplatform project using Kol
 
 ```
 <AppName>/
-├── app/                              ← Android host (io.github.koltsystems.koltx.kmp.application)
+├── app/                              ← Android host (io.github.koltalabs.kolt.kmp.application)
 │   └── build.gradle.kts
 ├── shared/                           ← KMP ViewModels + domain (kmp.library-koin)
 │   └── build.gradle.kts
@@ -45,7 +45,7 @@ Create an Xcode project and add a `iosApp/` directory; set the KMP framework as 
 
 ```kotlin
 // data/build.gradle.kts
-plugins { id("io.github.koltsystems.koltx.kmp.data") }
+plugins { id("io.github.koltalabs.kolt.kmp.data") }
 kmpDataLayer {
     sqlDelight { enabled.set(true) }    // recommended for KMP
     ktor { enabled.set(true) }
@@ -67,5 +67,5 @@ kotlin {
 - **No `java.*` in `commonMain`** — use `kotlinx-datetime` for time, `kotlinx-io` for I/O, `kotlinx-serialization` for JSON.
 - **Test in `commonTest`** — reducers, use cases, and mappers are all platform-agnostic; test them there.
 
-See `docs/KOLTX.md` §2–§5 for the full plugin and DSL reference.
+See `docs/KOLT.md` §2–§5 for the full plugin and DSL reference.
 See `docs/ARCHITECTURE.md` §5 for the full Android-only vs KMP deltas table.

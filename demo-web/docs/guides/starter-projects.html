@@ -52,12 +52,12 @@
             <h3>android-project</h3>
             <p>A single-module Android project with a convention plugin applied. Use this when you are building an Android-only app.</p>
             <pre><code>MyApp/
-  settings.gradle.kts           ← koltxlibs catalog imported, :app included
+  settings.gradle.kts           ← koltlibs catalog imported, :app included
   build.gradle.kts              ← plugins block (apply false)
   gradle.properties             ← AndroidX + POM metadata defaults
   gradlew + gradle/wrapper/
   app/
-    build.gradle.kts            ← alias(koltxlibs.plugins.koltx.application)
+    build.gradle.kts            ← alias(koltlibs.plugins.kolt.application)
     src/main/
       kotlin/com/example/myapp/ ← empty package placeholder
       res/                      ← (theme XMLs scaffolded on first build)
@@ -67,17 +67,17 @@
     CODING_STANDARDS.md
     ARCHITECTURE.md
     TESTING.md
-    KOLTX.md</code></pre>
+    KOLT.md</code></pre>
 
             <h3>kmp-project</h3>
             <p>A multi-module KMP project with an Android host app and a shared KMP module. Use this when targeting Android + iOS (and optionally Desktop or WASM).</p>
             <pre><code>MyApp/
-  settings.gradle.kts           ← koltxlibs + kmplibs catalogs, :app + :shared included
+  settings.gradle.kts           ← koltlibs + kmplibs catalogs, :app + :shared included
   build.gradle.kts
   gradle.properties
   gradlew + gradle/wrapper/
   app/
-    build.gradle.kts            ← alias(kmplibs.plugins.kmp.application) or id("io.github.koltsystems.koltx.kmp.application")
+    build.gradle.kts            ← alias(kmplibs.plugins.kmp.application) or id("io.github.koltalabs.kolt.kmp.application")
     src/main/kotlin/com/example/myapp/
     src/main/res/               ← (theme XMLs scaffolded on first build)
   shared/
@@ -92,7 +92,7 @@
     CODING_STANDARDS.md
     ARCHITECTURE.md
     TESTING.md
-    KOLTX.md</code></pre>
+    KOLT.md</code></pre>
 
             <h2>What the docs/ files are</h2>
             <p>Every generated project includes a <code>docs/</code> folder with four AI-agent steering files. These are <strong>plugin-owned</strong>: whenever the consumer project upgrades the Kolt plugin, running any build re-fetches the latest versions automatically.</p>
@@ -121,7 +121,7 @@
                         <td>When writing tests</td>
                     </tr>
                     <tr>
-                        <td><code>KOLTX.md</code></td>
+                        <td><code>KOLT.md</code></td>
                         <td>Plugin catalog, DSL options, library APIs, catalog aliases, scaffolding</td>
                         <td>When using or configuring the Kolt suite</td>
                     </tr>

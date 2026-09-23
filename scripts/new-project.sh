@@ -185,7 +185,7 @@ if [[ -f "${REPO_ROOT}/Standards/scripts/link-standards.sh" ]]; then
 else
     DOCS_SRC="${REPO_ROOT}/Standards"
     mkdir -p "${OUTPUT_DIR}/docs"
-    for f in CODING_STANDARDS.md ARCHITECTURE.md TESTING.md KOLTX.md KOLTX.md; do
+    for f in CODING_STANDARDS.md ARCHITECTURE.md TESTING.md KOLT.md; do
         if [[ -f "${DOCS_SRC}/${f}" ]]; then
             cp "${DOCS_SRC}/${f}" "${OUTPUT_DIR}/docs/${f}"
             success "  docs/${f}"
@@ -227,8 +227,8 @@ echo ""
 echo "  Next steps:"
 echo ""
 echo "  1. Update the catalog version in settings.gradle.kts:"
-echo "     from(\"io.github.koltsystems.koltx:koltx-catalog:<version>\")"
-echo "     → check https://github.com/kolt-systems/KoltX/releases"
+echo "     from(\"io.github.koltalabs.kolt:kolt-catalog:<version>\")"
+echo "     → check https://github.com/kolta-labs/Kolt/releases"
 echo ""
 echo "  2. Open in Android Studio:"
 echo "     studio ${OUTPUT_DIR}"
@@ -243,5 +243,5 @@ echo "  5. To enable iOS targets, in shared/build.gradle.kts:"
 echo "     kmp { enableIos.set(true) }"
 echo ""
 fi
-echo "  Docs: ${OUTPUT_DIR}/docs/KOLTX.md"
+echo "  Docs: ${OUTPUT_DIR}/docs/KOLT.md"
 echo ""

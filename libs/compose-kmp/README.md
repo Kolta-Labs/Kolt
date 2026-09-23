@@ -1,6 +1,6 @@
 # libs/compose-kmp — Compose Multiplatform UI
 
-[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.koltsystems.koltx/compose-kmp)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.2.1.dev--00-blue?style=flat-square)](https://central.sonatype.com/artifact/io.github.koltalabs.kolt/compose-kmp)
 [![KMP](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Desktop-7F52FF?style=flat-square&logo=kotlin)](https://kotlinlang.org/docs/multiplatform.html)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange?style=flat-square)](../../LICENSE)
 [![Changelog](https://img.shields.io/badge/Changelog-view-lightgrey?style=flat-square)](CHANGELOG.md)
@@ -13,7 +13,7 @@ Core Compose Multiplatform UI components and design-system tokens (`commonMain`,
 
 ```kotlin
 dependencies {
-    implementation("io.github.koltsystems.koltx:compose-kmp:0.2.1.dev-00")
+    implementation("io.github.koltalabs.kolt:compose-kmp:0.2.1.dev-00")
 }
 ```
 

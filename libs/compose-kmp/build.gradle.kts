@@ -1,6 +1,6 @@
 plugins {
     id("io.github.koltsystems.koltx.kmp.library-compose")
-    id("io.github.koltsystems.koltx.publish")
+    id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }
 
@@ -13,7 +13,7 @@ kmp {
 }
 
 android {
-    namespace = "io.github.koltsystems.koltx.composekmp"
+    namespace = "io.github.koltalabs.kolt.composekmp"
 }
 
 dependencies {
@@ -31,8 +31,8 @@ dependencies {
 mavenPublishing {
     coordinates(artifactId = "compose-kmp")
     pom {
-        name = "KoltX Compose KMP"
+        name = "Kolt Compose KMP"
         description = "Core Compose Multiplatform UI components and design system tokens."
-        url = "https://github.com/kolt-systems/KoltX"
+        url = "https://github.com/kolta-labs/Kolt"
     }
 }

@@ -30,8 +30,8 @@ dependencies {
 
     // compose-utils for the Android launcher UI (if your :shared doesn't expose Compose).
     // Version is pinned by the Kolt BOM the convention plugin injects — no version needed.
-    implementation("io.github.koltsystems.koltx:compose")
+    implementation("io.github.koltalabs.kolt:compose")
 
     // Update dialog (optional)
-    // implementation("io.github.koltsystems.koltx:update-utils")
+    // implementation("io.github.koltalabs.kolt:update-utils")
 }

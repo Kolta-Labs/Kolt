@@ -47,3 +47,6 @@ replay_pid*.log
 .gemini/
 
 scripts/projects.txt
+
+# ─── Machine-specific steering symlinks (scripts/link-standards.sh) ──────────
+.standards

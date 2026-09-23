@@ -10,5 +10,5 @@ plugins {
     alias(kmplibs.plugins.kmp.data)                 apply false
 
     // Android-only convention plugins (for pure-Android modules if any)
-    alias(koltxlibs.plugins.kolt.library) apply false
+    alias(koltlibs.plugins.kolt.library) apply false
 }

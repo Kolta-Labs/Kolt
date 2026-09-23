@@ -2947,19 +2947,19 @@ body.embed-mode .showcase-card {
 }
 
 /* KoltText Custom Styling and Highlighting */
-.koltx-text-wrapper {
+.kolt-text-wrapper {
     position: relative;
     border: 1px solid transparent;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.koltx-text-wrapper.highlighted-selectable {
+.kolt-text-wrapper.highlighted-selectable {
     background-color: rgba(59, 130, 246, 0.05) !important;
     border-color: rgba(59, 130, 246, 0.3) !important;
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.15);
 }
 
-.koltx-text-wrapper.highlighted-selectable::after {
+.kolt-text-wrapper.highlighted-selectable::after {
     content: "selectable = true";
     position: absolute;
     top: -8px;
@@ -2983,36 +2983,36 @@ body.embed-mode .showcase-card {
 }
 
 /* Preset text styles */
-.koltx-style-textMedium {
+.kolt-style-textMedium {
     font-size: 14px !important;
     font-weight: 500 !important;
 }
 
-.koltx-style-titleLarge {
+.kolt-style-titleLarge {
     font-size: 20px !important;
     font-weight: 700 !important;
     letter-spacing: -0.5px;
 }
 
-.koltx-style-bodySmall {
+.kolt-style-bodySmall {
     font-size: 12px !important;
     font-weight: 400 !important;
     color: var(--text-muted) !important;
 }
 
 /* Preset text colors */
-.koltx-color-default {
+.kolt-color-default {
     color: var(--text-main) !important;
 }
 
-.koltx-color-primary {
+.kolt-color-primary {
     color: var(--primary-color) !important;
 }
 
-.koltx-color-success {
+.kolt-color-success {
     color: #10b981 !important;
 }
 
-.koltx-color-error {
+.kolt-color-error {
     color: #ef4444 !important;
 }

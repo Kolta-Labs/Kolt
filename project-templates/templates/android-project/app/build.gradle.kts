@@ -13,7 +13,7 @@ android {
 }
 
 // Optional: override Kolt convention defaults
-// koltx {
+// kolt {
 //     enableUtils.set(true)                          // default: true — adds utils + logutils
 //     enableMinify.set(false)                        // default: false — enable R8 on release
 //     addDevSuffixToDebug.set(true)                  // default: true — append suffix to debug applicationId
@@ -28,14 +28,14 @@ dependencies {
     //
     // The convention plugin auto-adds the Kolt runtime libs (utils, logutils,
     // compose-utils) plus the Compose UI stack, lottie, and hilt-navigation-compose — you
-    // do NOT declare those here. All io.github.koltsystems.koltx:* versions are pinned by the
+    // do NOT declare those here. All io.github.koltalabs.kolt:* versions are pinned by the
     // BOM the plugin injects, so reference them without a version if you ever add one
-    // explicitly, e.g. implementation("io.github.koltsystems.koltx:update-utils").
+    // explicitly, e.g. implementation("io.github.koltalabs.kolt:update-utils").
 
     // Feature modules depend on domain, never on each other:
     // implementation(project(":domain"))
 
     // Third-party libs NOT provided by the plugin: declare the coordinate directly. The
-    // koltxlibs catalog is versions-only, so pull the version from it, e.g.:
-    // implementation("io.coil-kt:coil-compose:${'$'}{koltxlibs.versions.coil.get()}")
+    // koltlibs catalog is versions-only, so pull the version from it, e.g.:
+    // implementation("io.coil-kt:coil-compose:${'$'}{koltlibs.versions.coil.get()}")
 }
