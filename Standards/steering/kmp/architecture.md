@@ -83,9 +83,16 @@ shared state goes through `domain`, not a cross-screen import.
 
 One `operator fun invoke(...)` per UseCase, named `{VerbPresentTense}{Noun}UseCase`
 (`GetOrdersUseCase`, `RefreshOrdersUseCase`, not `OrdersManager` or
-`OrdersInteractor`). Constructor takes `Repository` interfaces only — as
-many as the use case actually needs, not capped at one — **never another
-`UseCase`**:
+`OrdersInteractor`). Constructor takes `Repository` interfaces — as many as
+the use case actually needs, not capped at one — **never another
+`UseCase`**. A UseCase may *also* take a plain, stateless, non-`Repository`-suffixed
+platform-agnostic dependency it genuinely needs (a `Clock`/`TimeSource`, an
+ID generator, a `CoroutineDispatcher`) — that's not the same-layer violation
+the "never another `UseCase`" rule targets, and forcing one of these behind
+a fake `Repository` just to satisfy the letter of the rule is worse than the
+rule. It's still not an excuse to reach for a `data`-layer type directly:
+the dependency itself must be a plain `domain`-safe abstraction (`Clock`,
+not `HttpClient`):
 
 ```kotlin
 // domain — depends on the OrdersRepository interface, nothing else
@@ -125,8 +132,9 @@ platform storage API directly — and each `DataSource` wraps exactly one
 originator:
 
 ```kotlin
-// data — the only class that touches Ktor; the only place a ClientRequestException
-// or IOException is legal to catch — everything above this rethrows as DomainException
+// data — the only class that touches Ktor; the only place a ResponseException
+// (its ClientRequestException/ServerResponseException subtypes) or IOException
+// is legal to catch — everything above this rethrows as DomainException
 class OrdersRemoteDataSource(private val client: HttpClient) {
     suspend fun fetchOrders(page: Int): List<OrderDto> =
         try {
@@ -134,6 +142,10 @@ class OrdersRemoteDataSource(private val client: HttpClient) {
         } catch (e: ClientRequestException) {
             if (e.response.status == HttpStatusCode.Unauthorized) throw DomainException.Unauthorized(e)
             else throw DomainException.Unknown(e)
+        } catch (e: ResponseException) {
+            // catches ServerResponseException (5xx) and any other non-2xx status
+            // ClientRequestException didn't already claim — never let this fall through uncaught
+            throw DomainException.Unknown(e)
         } catch (e: IOException) {
             throw DomainException.NoConnectivity(e)
         }

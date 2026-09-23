@@ -121,7 +121,7 @@ screen only resolved lambdas (`onOrderClick: (String) -> Unit`).
 // OrdersRoute.kt — owns the ViewModel + back-stack mutation for this entry
 @Composable
 fun OrdersRoute(backStack: NavBackStack) {
-    val viewModel: OrdersViewModel = viewModel { OrdersViewModel(get()) } // Koin `get()` for deps
+    val viewModel: OrdersViewModel = koinViewModel() // resolved from the Koin module, see architecture.md
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     OrdersScreen(

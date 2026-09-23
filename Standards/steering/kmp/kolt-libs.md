@@ -41,6 +41,17 @@ re-ask on later tasks; re-check the project state above instead.
 If `Kolt/libs` is in the workspace, use these — don't hand-write a new
 equivalent and don't treat this as a "pick whichever you feel like" menu.
 
+**Check the resolved version before reaching for a recently-added slot.**
+Some tokens below are called out as added in a specific dev build (e.g.
+`body.mediumLargeMid`/`body.xLargeMid` in 0.2.1-dev2, `size*`/`image*` in
+0.2.1-dev3). If this project consumes Kolt via a pinned Gradle coordinate
+rather than `includeBuild`/a copied module, confirm the pinned version
+(version catalog / `build.gradle.kts`) actually includes a slot before using
+it — an older pin won't have it, and the "always use Kolt tokens" mandate
+isn't license to assume every slot documented here is present. If it's
+missing, either bump the pin or fall back to the closest available slot,
+don't hand-roll a literal.
+
 **Tokens are part of the mandate.** Whenever Kolt is available (in the workspace, an `includeBuild`, a copied module, or an `io.github.koltalabs.kolt` dependency),
 every color, padding/spacing, corner radius, icon/button size and text style
 comes from `Kolt.colors` / `Kolt.sizes` / `Kolt.typography`

@@ -112,6 +112,38 @@ abstract class MviViewModel<S : Any, I : Any, E : Any>(initialState: S) : ViewMo
 }
 ```
 
+**The `DomainException` → `AsyncState.Error` catch happens here, in the
+concrete ViewModel — not in the base class above.** Per
+[architecture.md](architecture.md#data-layer-repository--datasource--originator),
+`UseCase`/`RepositoryImpl` let `DomainException` propagate uncaught; the
+ViewModel is the one place it gets caught, so every `Intent` handler that
+calls a UseCase wraps the call in `try`/`catch`:
+
+```kotlin
+// commonMain — presentation/list/OrdersListViewModel.kt
+class OrdersListViewModel(
+    private val getOrdersUseCase: GetOrdersUseCase,
+) : MviViewModel<OrdersListState, OrdersListIntent, OrdersListEffect>(OrdersListState()) {
+
+    override fun onIntent(intent: OrdersListIntent) {
+        when (intent) {
+            is OrdersListIntent.Refresh -> refresh()
+            is OrdersListIntent.SelectOrder -> sendEffect(OrdersListEffect.NavigateToDetail(intent.id))
+        }
+    }
+
+    private fun refresh() = viewModelScope.launch {
+        setState { copy(orders = AsyncState.Loading) }
+        try {
+            val orders = getOrdersUseCase(page = 0)
+            setState { copy(orders = AsyncState.Success(orders.toImmutableList())) }
+        } catch (e: DomainException) {
+            setState { copy(orders = AsyncState.Error(e)) }
+        }
+    }
+}
+```
+
 Skipped: Kolt's `ViewModelDelegate` (`compose-utils/.../base/ViewModelDelegate.kt`)
 looks like the right shape (launchSafe/launchIO/launchDefault helpers) but
 it's dead code — nothing in the repo actually uses it, and the class it was
@@ -159,7 +191,7 @@ mutates the back stack.
 // presentation/list/OrdersListRoute.kt — instantiated from entryProvider in the journey's NavDisplay
 @Composable
 fun OrdersListRoute(backStack: NavBackStack) {
-    val viewModel: OrdersListViewModel = viewModel { OrdersListViewModel(get()) }
+    val viewModel: OrdersListViewModel = koinViewModel() // resolved from the Koin module, see architecture.md
     val state by viewModel.state.collectAsStateWithLifecycle()
     val lifecycle = LocalLifecycleOwner.current.lifecycle
 

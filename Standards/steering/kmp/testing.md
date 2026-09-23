@@ -6,7 +6,7 @@
 |---|---|---|
 | `domain` (UseCases, models) | `commonTest` | Pure Kotlin, zero platform deps — runs on every target for free. |
 | `presentation` (ViewModel, delegates) | `commonTest` | The `MviViewModel` base from [presentation-mvi.md](presentation-mvi.md) is `commonMain`; test it there so iOS/desktop get the same coverage as Android, not a copy-pasted Android-only test. |
-| `data` (repository impls) | `commonTest` for the mapping/logic, platform test source set only for the actual network/DB call | Fake the network/DB client at the interface boundary; don't spin up Robolectric/instrumentation to test a mapper function. |
+| `data` (repository impls, data sources) | `commonTest` | Fake the `DataSource` (an interface/small class) when testing a `RepositoryImpl`'s merge/cache logic. For a `DataSource`'s own exception-mapping logic (see [architecture.md](architecture.md#data-layer-repository--datasource--originator)) — the one piece of `data`-layer logic most worth a test — swap the real `HttpClient` for one built with Ktor's `MockEngine` (`io.ktor:ktor-client-mock`, `commonTest`-safe on every target); don't spin up Robolectric/instrumentation to test a mapper or a `catch` block. |
 | Compose UI (screens) | optional, platform UI test source set | See [Compose UI tests](#compose-ui-tests-optional) below — most of the value here is already covered by ViewModel tests plus `@Preview`. |
 
 Use `kotlin.test` (`@Test`, `@BeforeTest`, `@AfterTest`, `assertEquals`) in
@@ -15,6 +15,38 @@ JUnit on JVM/Android, XCTest-backed on Native). Reaching for a bare
 `org.junit.Test` or a JUnit4 `@Rule` in `commonTest` won't compile on iOS —
 that's an Android/JVM-only tool leaking into shared code, the same mistake
 [kolt-libs.md](kolt-libs.md) flags elsewhere in this stack.
+
+## Data: MockEngine for a DataSource's exception mapping
+
+The exception-`catch`/`DomainException`-mapping logic inside a `RemoteDataSource`
+(see [architecture.md](architecture.md#data-layer-repository--datasource--originator))
+is the highest-value thing to test in `data`, and it's the one case a
+hand-written fake can't reach — there's no `Repository`/`DataSource`
+interface between the test and the `HttpClient` at that point, the client
+*is* the thing under test. Ktor's `MockEngine` (`io.ktor:ktor-client-mock`)
+is `commonTest`-safe on every target and swaps in a scripted response without
+a real network call:
+
+```kotlin
+// commonTest
+class OrdersRemoteDataSourceTest {
+    private fun clientWith(status: HttpStatusCode, body: String = "") = HttpClient(
+        MockEngine { respond(body, status) }
+    ) { install(ContentNegotiation) { json() } }
+
+    @Test
+    fun `401 maps to DomainException Unauthorized`() = runTest {
+        val dataSource = OrdersRemoteDataSource(clientWith(HttpStatusCode.Unauthorized))
+        assertFailsWith<DomainException.Unauthorized> { dataSource.fetchOrders(page = 0) }
+    }
+
+    @Test
+    fun `500 maps to DomainException Unknown, not an uncaught ServerResponseException`() = runTest {
+        val dataSource = OrdersRemoteDataSource(clientWith(HttpStatusCode.InternalServerError))
+        assertFailsWith<DomainException.Unknown> { dataSource.fetchOrders(page = 0) }
+    }
+}
+```
 
 ## Domain: fakes over mocks
 
