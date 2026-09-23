@@ -71,7 +71,7 @@ fun <T> AsyncStateBox(
             KoltText(
                 text = message?.let { UiText.DynamicString(it) }
                     ?: UiText.DynamicString("Something went wrong"),
-                style = Kolt.typography.textMedium,
+                style = Kolt.typography.body.medium,
                 color = Kolt.colors.error,
             )
         }

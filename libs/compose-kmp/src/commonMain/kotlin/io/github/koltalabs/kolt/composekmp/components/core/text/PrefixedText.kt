@@ -18,8 +18,8 @@ fun PrefixedText(
     prefix: UiText? = null,
     color: Color = Kolt.colors.onMainSurface,
     prefixColor: Color = Kolt.colors.onMainSurface,
-    textStyle: TextStyle = Kolt.typography.textMedium,
-    prefixStyle: TextStyle = Kolt.typography.textMedium,
+    textStyle: TextStyle = Kolt.typography.body.medium,
+    prefixStyle: TextStyle = Kolt.typography.body.medium,
     prefixPadding: Dp = Kolt.sizes.paddingSmall,
     prefixModifier: Modifier = Modifier,
     textModifier: Modifier = Modifier

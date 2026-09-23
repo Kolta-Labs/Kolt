@@ -236,7 +236,7 @@ fun DrawerState.DrawerLayoutMenuItem(
             }
             KoltText(
                 text = item.menuTitle,
-                style = item.textStyle ?: typography.textMedium,
+                style = item.textStyle ?: typography.body.medium,
                 color = textColor ,
                 modifier = Modifier.padding()
             )

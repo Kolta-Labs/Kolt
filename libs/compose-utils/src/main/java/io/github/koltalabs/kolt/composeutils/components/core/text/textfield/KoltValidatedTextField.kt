@@ -54,7 +54,7 @@ fun KoltValidatedTextField(
     helperText: UiText? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    textStyle: TextStyle = typography.textMediumMid.semiBold,
+    textStyle: TextStyle = typography.body.mediumMid.semiBold,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onKeyboardAction: ((defaultAction: () -> Unit) -> Unit)? = null,
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.SingleLine,
@@ -65,7 +65,7 @@ fun KoltValidatedTextField(
     labelStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultLabel(),
     placeHolderStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultItem(
         unselectedColor = Kolt.colors.subText.copy(alpha = 0.8f),
-        unselectedTextStyle = typography.textMedium.normal
+        unselectedTextStyle = typography.body.medium.normal
     ),
     helperStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultHelper(),
     errorConfig: FieldError = FieldError.Default,
@@ -171,7 +171,7 @@ fun KoltValidatedTextField(
                     footerText?.let {
                         KoltText(
                             text = it,
-                            style = if (isError) typography.textSmall else helperStyle.unselectedTextStyle,
+                            style = if (isError) typography.body.small else helperStyle.unselectedTextStyle,
                             color = if (isError) (errorConfig.color ?: colors.errorColor) else helperStyle.unselectedColor,
                             modifier = helperStyle.modifier
                         )
@@ -182,7 +182,7 @@ fun KoltValidatedTextField(
             if (state.showCounter && state.maxLength < Int.MAX_VALUE) {
                 KoltText(
                     text = UiText.DynamicString("${state.value.length} / ${state.maxLength}"),
-                    style = typography.textSmall,
+                    style = typography.body.small,
                     color = if (state.value.length >= state.maxLength) colors.errorColor else Kolt.colors.subText
                 )
             }

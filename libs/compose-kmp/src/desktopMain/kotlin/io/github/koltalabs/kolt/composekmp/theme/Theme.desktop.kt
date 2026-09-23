@@ -28,7 +28,7 @@ actual fun CompositionBaseProvider(
             is AppFont.Custom -> font.family
         }
     }
-    val typography = createBaseTypography(baseSize = sizes, fontFamily = fontFamily)
+    val typography = remember(sizes, fontFamily) { createBaseTypography(baseSize = sizes, fontFamily = fontFamily) }
 
     val isNotoFont = font is AppFont.Noto
     val flags = BaseFlags(

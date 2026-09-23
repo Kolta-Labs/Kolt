@@ -73,7 +73,7 @@ fun KoltSearchTextField(
     onValueChange: ((String) -> Unit)? = null,
     iconTint: Color = Kolt.colors.subText,
     colors: TextFieldColors = KoltTextFieldDefaults.defaultColor(),
-    textStyle: TextStyle = Kolt.typography.textMediumMid,
+    textStyle: TextStyle = Kolt.typography.body.mediumMid,
     errorConfig: FieldError = FieldError.Default,
 ) {
     // The clear button is a @Composable that reads state.value — it lives in the function

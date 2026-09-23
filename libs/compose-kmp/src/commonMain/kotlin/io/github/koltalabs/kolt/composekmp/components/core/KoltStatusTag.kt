@@ -75,9 +75,9 @@ private fun tagDimensions(size: StatusTagSize): TagDimensions {
     val typography = Kolt.typography
     return remember(size, sizes, typography) {
         when (size) {
-            StatusTagSize.Small  -> TagDimensions(sizes.paddingXSmallPlus, sizes.paddingXXSmall, sizes.iconXXSmall, typography.textXSmall)
-            StatusTagSize.Medium -> TagDimensions(sizes.paddingSmall,      sizes.paddingXSmall,  sizes.iconXSmall,  typography.textSmall)
-            StatusTagSize.Large  -> TagDimensions(sizes.paddingSmallMedium, sizes.paddingXSmallPlus, sizes.iconSmall, typography.textMedium)
+            StatusTagSize.Small  -> TagDimensions(sizes.paddingXSmallPlus, sizes.paddingXXSmall, sizes.iconXXSmall, typography.body.xSmall)
+            StatusTagSize.Medium -> TagDimensions(sizes.paddingSmall,      sizes.paddingXSmall,  sizes.iconXSmall,  typography.body.small)
+            StatusTagSize.Large  -> TagDimensions(sizes.paddingSmallMedium, sizes.paddingXSmallPlus, sizes.iconSmall, typography.body.medium)
         }
     }
 }

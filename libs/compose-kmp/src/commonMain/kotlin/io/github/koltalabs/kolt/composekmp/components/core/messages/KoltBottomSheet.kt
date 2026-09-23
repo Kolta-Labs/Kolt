@@ -123,7 +123,7 @@ private fun BottomSheetContent(
             title?.let {
                 KoltText(
                     text = it,
-                    style = Kolt.typography.textLarge.semiBold
+                    style = Kolt.typography.body.large.semiBold
                 )
             }
             if (showCloseButton) {

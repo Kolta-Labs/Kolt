@@ -130,7 +130,7 @@ fun KoltStepper(
                     ) {
                         KoltText(
                             text = step.title,
-                            style = Kolt.typography.textMedium.semiBold,
+                            style = Kolt.typography.body.medium.semiBold,
                             color = when (step.state) {
                                 StepState.INACTIVE -> inactiveColor
                                 else -> Kolt.colors.onMainSurface
@@ -141,7 +141,7 @@ fun KoltStepper(
                             Spacer(modifier = Modifier.height(4.dp))
                             KoltText(
                                 text = step.description,
-                                style = Kolt.typography.textXSmall,
+                                style = Kolt.typography.body.xSmall,
                                 color = Kolt.colors.onMainSurface.copy(alpha = 0.6f)
                             )
                         }
@@ -230,7 +230,7 @@ fun KoltStepper(
 
                         KoltText(
                             text = step.title,
-                            style = Kolt.typography.textSmall.semiBold,
+                            style = Kolt.typography.body.small.semiBold,
                             color = when (step.state) {
                                 StepState.INACTIVE -> inactiveColor
                                 else -> Kolt.colors.onMainSurface
@@ -242,7 +242,7 @@ fun KoltStepper(
                             Spacer(modifier = Modifier.height(2.dp))
                             KoltText(
                                 text = step.description,
-                                style = Kolt.typography.textXXSmall,
+                                style = Kolt.typography.body.xxSmall,
                                 color = Kolt.colors.onMainSurface.copy(alpha = 0.5f),
                                 textAlign = TextAlign.Center
                             )
@@ -316,14 +316,14 @@ private fun StepNode(
             StepState.ACTIVE -> {
                 KoltText(
                     text = UiText.DynamicString((index + 1).toString()),
-                    style = Kolt.typography.textXSmall.semiBold,
+                    style = Kolt.typography.body.xSmall.semiBold,
                     color = activeColor
                 )
             }
             StepState.INACTIVE -> {
                 KoltText(
                     text = UiText.DynamicString((index + 1).toString()),
-                    style = Kolt.typography.textXSmall,
+                    style = Kolt.typography.body.xSmall,
                     color = inactiveColor.copy(alpha = 0.7f)
                 )
             }

@@ -35,7 +35,7 @@ data class ButtonStyle(
     companion object {
         @Composable
         fun primary(
-            textStyle : TextStyle = Kolt.typography.textMedium,
+            textStyle : TextStyle = Kolt.typography.body.medium,
             buttonColor: Color = Kolt.colors.primary,
             buttonPressedColor: Color = Kolt.colors.primary,
             textColor: Color = Kolt.colors.onPrimary,
@@ -56,7 +56,7 @@ data class ButtonStyle(
 
         @Composable
         fun outlined(
-            textStyle : TextStyle = Kolt.typography.textMedium,
+            textStyle : TextStyle = Kolt.typography.body.medium,
             buttonColor: Color = Color.Transparent,
             buttonPressedColor: Color = Kolt.colors.primary,
             textColor: Color = Kolt.colors.primary,
@@ -79,7 +79,7 @@ data class ButtonStyle(
 
         @Composable
         fun transparent(
-            textStyle : TextStyle = Kolt.typography.textMedium,
+            textStyle : TextStyle = Kolt.typography.body.medium,
             buttonColor: Color = Color.Transparent,
             buttonPressedColor: Color = Kolt.colors.primary,
             textColor: Color = Kolt.colors.primary,
@@ -101,7 +101,7 @@ data class ButtonStyle(
         /** Destructive / danger action button — transparent background, error-coloured text. */
         @Composable
         fun danger(
-            textStyle: TextStyle = Kolt.typography.textMedium,
+            textStyle: TextStyle = Kolt.typography.body.medium,
             textColor: Color = Kolt.colors.error,
             buttonShape: Shape = CircleShape,
         ): ButtonStyle = transparent(
@@ -113,7 +113,7 @@ data class ButtonStyle(
         /** Negative text-button style (e.g. "No thanks") — transparent background, muted text. */
         @Composable
         fun primaryNegative(
-            textStyle: TextStyle = Kolt.typography.textMedium,
+            textStyle: TextStyle = Kolt.typography.body.medium,
             textColor: Color = Kolt.colors.onMainSurface.copy(alpha = 0.6f),
             buttonShape: Shape = CircleShape,
         ): ButtonStyle = transparent(
@@ -125,7 +125,7 @@ data class ButtonStyle(
         /** Positive text-button style (e.g. "Update") — transparent background, accented text. */
         @Composable
         fun primaryPositive(
-            textStyle: TextStyle = Kolt.typography.textMedium,
+            textStyle: TextStyle = Kolt.typography.body.medium,
             textColor: Color = Kolt.colors.primary,
             buttonShape: Shape = CircleShape,
         ): ButtonStyle = transparent(
@@ -137,7 +137,7 @@ data class ButtonStyle(
         /** Filled Tonal style — uses secondary container colors for subtle emphasis. */
         @Composable
         fun tonal(
-            textStyle: TextStyle = Kolt.typography.textMedium,
+            textStyle: TextStyle = Kolt.typography.body.medium,
             buttonColor: Color = Kolt.colors.secondaryCardContainer,
             buttonPressedColor: Color = Kolt.colors.secondaryCardContainer.copy(alpha = 0.85f),
             textColor: Color = Kolt.colors.onSecondaryCardContainer,

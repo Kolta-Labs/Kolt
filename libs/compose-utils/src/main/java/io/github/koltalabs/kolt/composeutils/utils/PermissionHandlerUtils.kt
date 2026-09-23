@@ -546,7 +546,7 @@ fun DefaultPermissionsRequestUI(
         ) {
             KoltText(
                 text = title,
-                style = Kolt.typography.textMediumLarge.semiBold
+                style = Kolt.typography.body.mediumLarge.semiBold
             )
             VerticalSpacer(height = Kolt.sizes.paddingSmall)
             val allDeniedOrNeedingRationale = (permanentlyDenied + needingRationale).distinctBy { it.permission }

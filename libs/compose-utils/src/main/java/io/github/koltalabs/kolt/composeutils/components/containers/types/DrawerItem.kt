@@ -28,7 +28,7 @@ data class DrawerItem(
             showTopDivider: Boolean = false,
             showBottomDivider: Boolean = false,
             closeDrawer: Boolean = true,
-            textStyle: TextStyle = Kolt.typography.textMedium,
+            textStyle: TextStyle = Kolt.typography.body.medium,
             verticalPadding: Dp = Kolt.sizes.paddingSmallMedium,
             drawerIdentifier: () -> DrawerIdentifier,
         ) = DrawerItem(

@@ -112,7 +112,7 @@ fun AppBarTitleImage(
             is AppBarTitle.ScreenTitle -> {
                 KoltText(
                     text = appBarTitle.title,
-                    style = Kolt.typography.textMediumLarge.semiBold,
+                    style = Kolt.typography.body.mediumLarge.semiBold,
                     color = tintColor
                 )
             }
@@ -129,7 +129,7 @@ fun AppBarTitleImage(
                 Column(verticalArrangement = Arrangement.spacedBy(sizes.paddingXXSmall)) {
                     KoltText(
                         text = appBarTitle.title,
-                        style = appBarTitle.titleStyle?:Kolt.typography.textMediumLarge.semiBold.noPadding,
+                        style = appBarTitle.titleStyle?:Kolt.typography.body.mediumLarge.semiBold.noPadding,
                         color = tintColor,
                         modifier = Modifier.offset(y=1.dp)
                     )
@@ -137,7 +137,7 @@ fun AppBarTitleImage(
                         KoltText(
                             text = it,
                             style = appBarTitle.subTitleStyle
-                                ?: Kolt.typography.textSmall.noPadding,
+                                ?: Kolt.typography.body.small.noPadding,
                             color = tintColor,
                             modifier = Modifier.offset(y = 1.dp)
                         )

@@ -56,7 +56,7 @@ fun KoltGradientButton(
         listOf(Kolt.colors.primary, Kolt.colors.primary.copy(alpha = 0.82f))
     ),
     contentColor: Color = Color.White,
-    textStyle: TextStyle = Kolt.typography.textMedium.copy(fontWeight = FontWeight.SemiBold, fontSize = 13.sp),
+    textStyle: TextStyle = Kolt.typography.body.medium.copy(fontWeight = FontWeight.SemiBold, fontSize = 13.sp),
     elevation: Dp = 2.dp,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -113,7 +113,7 @@ fun KoltGradientButton(
         listOf(Kolt.colors.primary, Kolt.colors.primary.copy(alpha = 0.82f))
     ),
     contentColor: Color = Color.White,
-    textStyle: TextStyle = Kolt.typography.textMedium.copy(fontWeight = FontWeight.SemiBold, fontSize = 13.sp),
+    textStyle: TextStyle = Kolt.typography.body.medium.copy(fontWeight = FontWeight.SemiBold, fontSize = 13.sp),
     elevation: Dp = 2.dp,
 ) {
     KoltGradientButton(

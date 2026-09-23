@@ -1,7 +1,5 @@
 package io.github.koltalabs.kolt.composekmp.theme
 
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.unit.dp
@@ -51,7 +49,4 @@ object Kolt {
         @Composable @ReadOnlyComposable get() = LocalTypography.current
     val flags: BaseFlags
         @Composable @ReadOnlyComposable get() = LocalFlags.current
-    /** Material3 text roles (display/headline/title/body/label) built from the Kolt scale. */
-    val textRoles: Typography
-        @Composable @ReadOnlyComposable get() = MaterialTheme.typography
 }

@@ -131,7 +131,7 @@ object TitleCardViewDefaults {
     fun noticeStyle(
         background: Color = Kolt.colors.primary,
         color: Color = Kolt.colors.onPrimary,
-        style: TextStyle = Kolt.typography.textMedium.semiBold,
+        style: TextStyle = Kolt.typography.body.medium.semiBold,
         align: TextAlign = TextAlign.Center,
         titleModifier: Modifier = Modifier.fillMaxWidth(),
         titlePadding: PaddingValues = PaddingValues(
@@ -153,7 +153,7 @@ object TitleCardViewDefaults {
     fun titleAtStart(
         background: Color = Color.Transparent,
         color: Color = Kolt.colors.onPrimaryCardContainer,
-        style: TextStyle = Kolt.typography.textSmall.semiBold,
+        style: TextStyle = Kolt.typography.body.small.semiBold,
         titleModifier: Modifier = Modifier,
         titlePadding: PaddingValues = PaddingValues(
             start = sizes.paddingMedium,
@@ -173,7 +173,7 @@ object TitleCardViewDefaults {
     fun centerTitle(
         background: Color = Color.Transparent,
         color: Color = Kolt.colors.onPrimaryCardContainer,
-        style: TextStyle = Kolt.typography.textMedium.semiBold,
+        style: TextStyle = Kolt.typography.body.medium.semiBold,
         titleModifier: Modifier = Modifier.fillMaxWidth(),
         titlePadding: PaddingValues = PaddingValues(
             start = sizes.paddingMedium,

@@ -170,8 +170,8 @@ fun KoltBanner(
         horizontal = Kolt.sizes.paddingSmallMedium,
         vertical = Kolt.sizes.paddingSmall,
     ),
-    titleStyle: TextStyle = Kolt.typography.textSmall.semiBold,
-    messageStyle: TextStyle = Kolt.typography.textSmall,
+    titleStyle: TextStyle = Kolt.typography.body.small.semiBold,
+    messageStyle: TextStyle = Kolt.typography.body.small,
 ) {
     Row(
         modifier = modifier

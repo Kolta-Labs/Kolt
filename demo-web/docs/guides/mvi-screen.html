@@ -169,9 +169,9 @@ fun ProductDetailsScreen(
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                Text(product.name, style = Kolt.textRoles.headlineLarge)
+                Text(product.name, style = Kolt.typography.title.big.semiBold)
                 Spacer(Modifier.height(8.dp))
-                Text(product.description, style = Kolt.textRoles.bodyMedium)
+                Text(product.description, style = Kolt.typography.body.medium)
                 Spacer(Modifier.weight(1f))
 
                 // Action button styled with the primary brand colors

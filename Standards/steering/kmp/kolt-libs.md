@@ -41,9 +41,15 @@ re-ask on later tasks; re-check the project state above instead.
 If `Kolt/libs` is in the workspace, use these — don't hand-write a new
 equivalent and don't treat this as a "pick whichever you feel like" menu.
 
+**Tokens are part of the mandate.** Whenever Kolt is available (in the workspace, an `includeBuild`, a copied module, or an `io.github.koltalabs.kolt` dependency),
+every color, padding/spacing, corner radius, icon/button size and text style
+comes from `Kolt.colors` / `Kolt.sizes` / `Kolt.typography`
+when Kolt has one — no literals, no duplicate app tokens, and no deprecated Kolt tokens (replace them with the current one when you touch the code). Rules in
+[theming.md](theming.md#rules).
+
 | Module | Path | Why it's safe |
 |---|---|---|
-| `compose-kmp` theme | `compose-kmp/src/{commonMain,androidMain,iosMain,desktopMain}/.../theme/` | Genuine `expect`/`actual` KMP. `Kolt` object + `LocalColors`/`LocalTypography`/`LocalSizes` + `CompositionBaseProvider` is exactly the pattern in [theming.md](theming.md). Text roles: `Kolt.textRoles.*` (the 15 M3 roles, also provided as `MaterialTheme.typography`). Typography: `Kolt.typography.text*` covers 6–48 sp incl. `textMediumLargeMid` (17 sp) and `textXLargeMid` (22 sp) — use a slot, not `TextStyle(fontSize = …)`; full scale in [theming.md](theming.md#kolt-type-scale). |
+| `compose-kmp` theme | `compose-kmp/src/{commonMain,androidMain,iosMain,desktopMain}/.../theme/` | Genuine `expect`/`actual` KMP. `Kolt` object + `LocalColors`/`LocalTypography`/`LocalSizes` + `CompositionBaseProvider` is exactly the pattern in [theming.md](theming.md). Text: `Kolt.typography.title.*` / `Kolt.typography.body.*` (full scale each, weight via `.bold` etc.), covering 6–48 sp incl. `body.mediumLargeMid` (17 sp) and `body.xLargeMid` (22 sp) — use a slot, not `TextStyle(fontSize = …)`. The old flat `Kolt.typography.text*` names for these same slots are deprecated, removed in 0.3.0 — don't reuse them even as an example; full scale in [theming.md](theming.md#kolt-type-scale). Sizes: `Kolt.sizes.padding*`/`cornerRadius*`/`icon*`/`size*`/`image*` — no raw `.dp` for anything on a scale; own `LocalSizes` starts from `KoltDefaults.sizes()`; families in [theming.md](theming.md#kolt-size-scale). |
 | `compose-kmp` component library | `compose-kmp/src/commonMain/.../components/` — buttons, text/text fields, containers (card, accordion, tooltip, divider), messages (snackbar/banner/dialog), image, badges, progress, rating bar, slider, stepper, shimmer | `commonMain`-first; only `image/` drops to `androidMain`/`iosMain`/`desktopMain` `actual` (platform image loading — Coil on Android). This is the reusable-component target from [architecture.md](architecture.md#reuse-over-duplication) already built — check here before writing a new `KoltButton`/`KoltCard`/etc. |
 | `utils` → `AsyncState` | `utils/src/commonMain/.../state/AsyncState.kt` | Plain `commonMain` sealed class (`Idle`/`Loading`/`Success`/`Error`) with `map`/`onSuccess`/`getOrElse`. Clean, no platform deps. Use it in `State` fields per [presentation-mvi.md](presentation-mvi.md). |
 | `logutils` | `logutils/` | Real `commonMain`/`androidMain`/`desktopMain`/`nativeMain` KMP logging, auto debug/release gating on Android via App Startup. Fine to use as-is. |

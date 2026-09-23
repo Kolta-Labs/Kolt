@@ -29,7 +29,7 @@ fun KoltImageText(
     text: UiText,
     modifier: Modifier = Modifier,
     color: Color = Kolt.colors.onMainSurface,
-    style: TextStyle = Kolt.typography.textMedium,
+    style: TextStyle = Kolt.typography.body.medium,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,

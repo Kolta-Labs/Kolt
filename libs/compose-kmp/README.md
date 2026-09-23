@@ -25,7 +25,7 @@ Wrap your app root in a `CompositionBaseProvider`, then read tokens off `Kolt`:
 
 ```kotlin
 CompositionBaseProvider(isDarkTheme = isSystemInDarkTheme(), font = AppFont.Roboto) {
-    Text("Hello", color = Kolt.colors.onBackground, style = Kolt.typography.textMedium)
+    Text("Hello", color = Kolt.colors.onBackground, style = Kolt.typography.body.medium)
 }
 ```
 

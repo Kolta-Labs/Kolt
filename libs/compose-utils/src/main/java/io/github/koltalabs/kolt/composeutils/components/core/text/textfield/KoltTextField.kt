@@ -64,7 +64,7 @@ fun KoltTextField(
     helperText: UiText? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    textStyle: TextStyle = typography.textMediumMid.semiBold,
+    textStyle: TextStyle = typography.body.mediumMid.semiBold,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     singleLine: Boolean = true,
@@ -75,7 +75,7 @@ fun KoltTextField(
     labelStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultLabel(),
     placeHolderStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultItem(
         unselectedColor = Kolt.colors.subText.copy(alpha = 0.8f),
-        unselectedTextStyle = typography.textMedium.normal
+        unselectedTextStyle = typography.body.medium.normal
     ),
     helperStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultHelper(),
     leadingIcon: (@Composable () -> Unit)? = null,
@@ -187,7 +187,7 @@ fun KoltTextField(
                 modifier = Modifier.weight(1f)
             ) {
                 val textToShow = errorText ?: helperText
-                val styleToUse = if (errorText != null) typography.textSmall else helperStyle.unselectedTextStyle
+                val styleToUse = if (errorText != null) typography.body.small else helperStyle.unselectedTextStyle
                 val colorToUse = if (errorText != null) colors.errorColor else helperStyle.unselectedColor
 
                 textToShow?.let {
@@ -203,7 +203,7 @@ fun KoltTextField(
             if (showCounter) {
                 KoltText(
                     text = UiText.DynamicString("$currentLength / $maxLength"),
-                    style = typography.textSmall,
+                    style = typography.body.small,
                     color = if (currentLength > maxLength) colors.errorColor else Kolt.colors.subText,
                     modifier = Modifier.align(Alignment.Bottom)
                 )
@@ -234,7 +234,7 @@ object KoltTextFieldDefaults {
     @Composable
     fun defaultItem(
         unselectedColor: Color = colors.onBackground.copy(alpha = 0.7f),
-        unselectedTextStyle: TextStyle = typography.textMediumMid.medium,
+        unselectedTextStyle: TextStyle = typography.body.mediumMid.medium,
         errorColor: Color = colors.error,
         modifier: Modifier = Modifier
     ): TextFieldItemStyle {
@@ -274,7 +274,7 @@ object KoltTextFieldDefaults {
     @Composable
     fun defaultLabel(
         color: Color = colors.subText,
-        textStyle: TextStyle = typography.textSmallMedium,
+        textStyle: TextStyle = typography.body.smallMedium,
         modifier: Modifier = Modifier.padding(
             start = sizes.paddingXSmall,
             bottom = sizes.paddingXSmall
@@ -291,7 +291,7 @@ object KoltTextFieldDefaults {
     @Composable
     fun defaultHelper(
         color: Color = colors.subText,
-        textStyle: TextStyle = typography.textSmall,
+        textStyle: TextStyle = typography.body.small,
         modifier: Modifier = Modifier.padding(
             start = sizes.paddingXSmall,
             bottom = sizes.paddingXSmall

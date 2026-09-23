@@ -106,8 +106,8 @@ fun KoltAccordion(
     contentPadding: PaddingValues = PaddingValues(16.dp),
     cardColors: CardColors = CardDefaults.cardColors(),
     shape: Shape = SmoothCornerShape(),
-    titleStyle: TextStyle = Kolt.typography.textMedium.semiBold,
-    subtitleStyle: TextStyle = Kolt.typography.textSmall,
+    titleStyle: TextStyle = Kolt.typography.body.medium.semiBold,
+    subtitleStyle: TextStyle = Kolt.typography.body.small,
     content: @Composable AnimatedVisibilityScope.() -> Unit
 ) {
     KoltAccordion(
@@ -140,8 +140,8 @@ fun KoltAccordionHeader(
     expanded: Boolean,
     modifier: Modifier = Modifier,
     subtitle: UiText? = null,
-    titleStyle: TextStyle = Kolt.typography.textMedium.semiBold,
-    subtitleStyle: TextStyle = Kolt.typography.textSmall,
+    titleStyle: TextStyle = Kolt.typography.body.medium.semiBold,
+    subtitleStyle: TextStyle = Kolt.typography.body.small,
 ) {
     val rotation by animateFloatAsState(targetValue = if (expanded) 180f else 0f)
 

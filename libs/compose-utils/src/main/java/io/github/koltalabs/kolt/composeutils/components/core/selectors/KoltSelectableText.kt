@@ -168,7 +168,7 @@ object KoltSelectableDefaults{
 
     @Composable fun selectedText(
         textColor: Color = Kolt.colors.onMainSurface,
-        textStyle: TextStyle = Kolt.typography.textMedium,
+        textStyle: TextStyle = Kolt.typography.body.medium,
         isHtml: Boolean = false,
         letterSpacing: TextUnit = TextUnit.Unspecified,
         textDecoration: TextDecoration? = null,
@@ -194,7 +194,7 @@ object KoltSelectableDefaults{
 
     @Composable fun unselectedText(
         textColor: Color = Kolt.colors.onMainSurface,
-        textStyle: TextStyle = Kolt.typography.textMedium,
+        textStyle: TextStyle = Kolt.typography.body.medium,
         isHtml: Boolean = false,
         letterSpacing: TextUnit = TextUnit.Unspecified,
         textDecoration: TextDecoration? = null,

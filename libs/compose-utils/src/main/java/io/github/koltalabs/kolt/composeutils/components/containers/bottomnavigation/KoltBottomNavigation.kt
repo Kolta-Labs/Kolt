@@ -208,7 +208,7 @@ fun RowScope.DefaultBottomNavigationItem(
             KoltText(
                 text = route.name.toUiText(),
                 color = if (isSelected) selectedColor else unselectedColor,
-                style = if (isSelected) Kolt.typography.textSmall.semiBold else Kolt.typography.textSmall,
+                style = if (isSelected) Kolt.typography.body.small.semiBold else Kolt.typography.body.small,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = Kolt.sizes.paddingXXSmall)
             )

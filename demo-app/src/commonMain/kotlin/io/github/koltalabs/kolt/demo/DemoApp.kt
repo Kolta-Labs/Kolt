@@ -63,7 +63,7 @@ fun DemoApp(
                 ) {
                     KoltText(
                         text = "Kolt Showcase".toUiText(),
-                        style = Kolt.typography.textXLarge.bold,
+                        style = Kolt.typography.body.xLarge.bold,
                         color = Kolt.colors.primary
                     )
                     Row(
@@ -178,7 +178,7 @@ fun LayoutsShowcase() {
 
                     KoltText(
                         text = "Adjust smoothness & corner radius to see G2 continuous curves:".toUiText(),
-                        style = Kolt.typography.textSmall,
+                        style = Kolt.typography.body.small,
                         color = Kolt.colors.onMainSurface.copy(alpha = 0.7f)
                     )
 
@@ -293,7 +293,7 @@ fun LayoutsShowcase() {
                         Icon(Icons.Default.Home, contentDescription = null, tint = Kolt.colors.secondary)
                         KoltText(
                             text = "Generic TitledCardView".toUiText(),
-                            style = Kolt.typography.textLarge.bold,
+                            style = Kolt.typography.body.large.bold,
                             color = Kolt.colors.onSecondaryCardContainer
                         )
                     }
@@ -480,7 +480,7 @@ fun ButtonsInputsShowcase() {
 
                 KoltText(
                     text = "KoltSlider (Gradient fill, pulsing thumb, snaps):".toUiText(),
-                    style = Kolt.typography.textSmall
+                    style = Kolt.typography.body.small
                 )
                 KoltSlider(
                     value = sliderValue,
@@ -491,7 +491,7 @@ fun ButtonsInputsShowcase() {
 
                 KoltText(
                     text = "KoltProgressBar (Synced):".toUiText(),
-                    style = Kolt.typography.textSmall
+                    style = Kolt.typography.body.small
                 )
                 KoltProgressBar(
                     progress = sliderValue / 100f,
@@ -520,7 +520,7 @@ fun ButtonsInputsShowcase() {
 
                 KoltText(
                     text = "Interactive (Value: $currentRating):".toUiText(),
-                    style = Kolt.typography.textSmall
+                    style = Kolt.typography.body.small
                 )
                 KoltRatingBar(
                     rating = currentRating,

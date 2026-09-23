@@ -185,7 +185,7 @@ private fun BadgeIndicator(
             ) {
                 KoltText(
                     text = badge.displayText,
-                    style = Kolt.typography.textXXSmall,
+                    style = Kolt.typography.body.xxSmall,
                     color = contentColor,
                     maxLines = 1,
                 )

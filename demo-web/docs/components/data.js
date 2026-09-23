@@ -38,7 +38,7 @@ ButtonStyle.primaryPositive()   // accent / confirmed action`,
             { name: 'KoltImageText', desc: 'Perfectly centered inline icon/image + text alignment', path: 'libs/compose-kmp/.../components/core/text/KoltImageText.kt' },
             { name: 'KeyValuePairText / PrefixedText', desc: 'Formatted text rows for summary views', path: 'libs/compose-kmp/.../components/core/text/KeyValuePairText.kt' },
         ],
-        usage: `KoltText(text = uiText, style = Kolt.typography.textMedium)
+        usage: `KoltText(text = uiText, style = Kolt.typography.body.medium)
 KeyValuePairText(key = uiText, value = uiText)
 PrefixedText(prefix = uiText, value = uiText)
 KoltImageText(image = uiImage, text = uiText)`,

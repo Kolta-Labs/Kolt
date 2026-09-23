@@ -159,12 +159,13 @@ Additive only. New slots, appended at the end of each constructor:
 No existing slot was renamed, reordered or re-valued, and the Material3 aliases
 are unchanged. Optional cleanup: replace hand-written
 `TextStyle(fontSize = 17.sp)` / `TextStyle(fontSize = 22.sp)` with
-`Kolt.typography.textMediumLargeMid` / `Kolt.typography.textXLargeMid`.
+`Kolt.typography.body.mediumLargeMid` / `Kolt.typography.body.xLargeMid`.
 
 Also in `0.2.1.dev-02`:
 
-- **`Kolt.textRoles`** — the 15 Material3 roles built from the Kolt scale. `CompositionBaseProvider` now also provides them as `MaterialTheme.typography`, so Material components inside it switch from the M3 default typography to the Kolt font and sizes. If you want your own M3 typography, wrap your own `MaterialTheme(typography = …)` inside `CompositionBaseProvider`.
-- **Deprecated aliases** — `Kolt.typography.bodyXXXSmall`, `bodyXSmall`, `bodySmall`, `bodyMedium`, `bodyMediumLarge`, `bodyLarge`, `labelSmall`, `labelMedium`, `labelLarge`, `titleSmall`, `titleMedium`, `titleLarge`, `headlineSmall`, `headlineMedium`, `displaySmall`. They still work. The IDE quick-fix swaps in the identical `text*` step (no visual change); move to `Kolt.textRoles.*` when you're ready to accept M3 sizes.
+- **Title / body sets** — `Kolt.typography.title` and `Kolt.typography.body` each hold the whole size scale (`title.xLarge`, `body.xSmall`, …); weight stays an extension (`.bold`). `CompositionBaseProvider` now also fills `MaterialTheme.typography` from the Kolt scale, so Material components inside it switch from the M3 default typography to the Kolt font and sizes. If you want your own M3 typography, wrap your own `MaterialTheme(typography = …)` inside `CompositionBaseProvider`.
+- **Deprecated aliases** — `Kolt.typography.bodyXXXSmall`, `bodyXSmall`, `bodySmall`, `bodyMedium`, `bodyMediumLarge`, `bodyLarge`, `labelSmall`, `labelMedium`, `labelLarge`, `titleSmall`, `titleMedium`, `titleLarge`, `headlineSmall`, `headlineMedium`, `displaySmall`. They still work. The IDE quick-fix swaps in the identical `body.*` style (no visual change).
+- **Deprecated `text*` styles** — `Kolt.typography.textMinimum` … `textGiant`, `textMediumLargeMid`, `textXLargeMid`. Use `Kolt.typography.body.<size>` (or `title.<size>` for titles); the quick-fix gives the identical style. They're removed in 0.3.0; `BaseTextStyles(textX = …)` constructor args go with them.
 - **iOS / wasmJs** — `Kolt.sizes`, `Kolt.uiSizes` and `Kolt.typography` now have the desktop default values instead of all-`Unspecified`. If you override `LocalSizes`/`LocalTypography`, nothing changes for you.
 - **`UiSizes.fontSizeXBig`** (36 sp) added, appended last.
 

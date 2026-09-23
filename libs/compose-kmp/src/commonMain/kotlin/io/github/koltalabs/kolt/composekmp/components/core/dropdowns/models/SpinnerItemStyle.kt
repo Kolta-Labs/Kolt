@@ -31,6 +31,6 @@ object SpinnerStyleDefaults {
         @Composable get() = SpinnerStyle(
             background = Kolt.colors.primaryCardContainer,
             textColor = Kolt.colors.onMainSurface,
-            textStyle = Kolt.typography.textMedium
+            textStyle = Kolt.typography.body.medium
         )
 }

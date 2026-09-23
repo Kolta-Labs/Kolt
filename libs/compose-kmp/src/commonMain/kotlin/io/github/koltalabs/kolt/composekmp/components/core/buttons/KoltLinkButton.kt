@@ -67,7 +67,7 @@ fun KoltLinkButton(
     enabled: Boolean = true,
     color: Color = Kolt.colors.primary,
     disabledColor: Color = color.copy(alpha = 0.38f),
-    textStyle: TextStyle = Kolt.typography.textMedium.copy(
+    textStyle: TextStyle = Kolt.typography.body.medium.copy(
         textDecoration = TextDecoration.Underline,
     ),
     iconSize: Dp = Kolt.sizes.iconSmall,

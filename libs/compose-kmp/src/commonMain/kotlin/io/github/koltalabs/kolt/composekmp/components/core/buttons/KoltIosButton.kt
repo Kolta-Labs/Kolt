@@ -153,7 +153,7 @@ fun KoltIosButton(
             text?.let {
                 KoltText(
                     text = it,
-                    style = Kolt.typography.textMedium.copy(fontWeight = FontWeight.Medium),
+                    style = Kolt.typography.body.medium.copy(fontWeight = FontWeight.Medium),
                     color = contentColor,
                     textAlign = TextAlign.Center
                 )

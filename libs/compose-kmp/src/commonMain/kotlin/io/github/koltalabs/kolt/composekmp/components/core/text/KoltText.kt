@@ -21,7 +21,7 @@ import io.github.koltalabs.kolt.composekmp.wrappers.asAnnotatedString
 fun KoltText(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Kolt.typography.textMedium,
+    style: TextStyle = Kolt.typography.body.medium,
     color: Color = Kolt.colors.onMainSurface,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,
@@ -60,7 +60,7 @@ fun KoltText(
 fun KoltText(
     text: UiText,
     modifier: Modifier = Modifier,
-    style: TextStyle = Kolt.typography.textMedium,
+    style: TextStyle = Kolt.typography.body.medium,
     color: Color = Kolt.colors.onMainSurface,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,
@@ -100,7 +100,7 @@ fun KoltText(
 fun KoltText(
     text: AnnotatedString,
     modifier: Modifier = Modifier,
-    style: TextStyle = Kolt.typography.textMedium,
+    style: TextStyle = Kolt.typography.body.medium,
     color: Color = Kolt.colors.onMainSurface,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,

@@ -37,7 +37,7 @@ KoltTheme(
 
 // Inside any composable
 val color = Kolt.colors.primary
-val textStyle = Kolt.typography.textMedium
+val textStyle = Kolt.typography.body.medium
 val padding = Kolt.sizes.paddingMedium
 ```
 

@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.text.style.TextAlign
 import io.github.koltalabs.kolt.composekmp.components.containers.types.KoltBottomBarButton
 import io.github.koltalabs.kolt.composekmp.components.core.HorizontalSpacer
@@ -53,6 +54,7 @@ import io.github.koltalabs.kolt.composekmp.wrappers.toUiText
  * @param selectedColor The color for the icon and text of the currently selected item.
  * @param unselectedColor The color for the icon and text of unselected items.
  * @param selectedBubbleColor The background color for the bubble displayed behind the selected item.
+ * @param iconSize Height of each item's icon (default [Sizes.iconMedium]).
  * @param itemContent A composable lambda that defines the content of each navigation item.
  */
 @Composable
@@ -66,6 +68,7 @@ fun KoltBottomNavBar(
     selectedColor: Color = Kolt.colors.primary,
     unselectedColor: Color = Kolt.colors.onPrimaryCardContainer,
     selectedBubbleColor: Color = Color.Transparent,
+    iconSize: Dp = Kolt.sizes.iconMedium,
     itemContent: @Composable RowScope.(route: KoltBottomBarButton, isSelected: Boolean, selectedColor: Color, unselectedColor: Color) -> Unit = { route, isSelected, selColor, unselColor ->
         DefaultBottomNavigationItem(
             route = route,
@@ -73,6 +76,7 @@ fun KoltBottomNavBar(
             selectedColor = selColor,
             unselectedColor = unselColor,
             selectedBubbleColor = selectedBubbleColor,
+            iconSize = iconSize,
             onClick = { onRouteClick(route.route) }
         )
     }
@@ -111,6 +115,7 @@ fun KoltBottomNavBar(
                 selectedColor = selectedColor,
                 unselectedColor = unselectedColor,
                 selectedBubbleColor = selectedBubbleColor,
+                iconSize = iconSize,
                 onClick = { showMoreMenu = true }
             )
             Box {
@@ -143,20 +148,21 @@ fun RowScope.DefaultBottomNavigationItem(
     selectedColor: Color,
     unselectedColor: Color,
     selectedBubbleColor: Color,
+    iconSize: Dp = Kolt.sizes.iconMedium,
     onClick: () -> Unit
 ) {
     BottomNavigationItem(
         icon = {
             KoltIcon(
                 icon = route.icon.setTint(if (isSelected) selectedColor.toUiColor() else unselectedColor.toUiColor()),
-                iconHeight = Kolt.sizes.iconMedium
+                iconHeight = iconSize
             )
         },
         label = {
             KoltText(
                 text = route.name.toUiText(),
                 color = if (isSelected) selectedColor else unselectedColor,
-                style = if (isSelected) Kolt.typography.textSmall.semiBold else Kolt.typography.textSmall,
+                style = if (isSelected) Kolt.typography.body.small.semiBold else Kolt.typography.body.small,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = Kolt.sizes.paddingXXSmall)
             )

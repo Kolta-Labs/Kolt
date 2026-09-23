@@ -353,7 +353,7 @@ ButtonStyle.primaryPositive()            // accent / confirmed action
 
 **Text:**
 ```kotlin
-KoltText(text = uiText, style = Kolt.typography.textMedium, color = ...)
+KoltText(text = uiText, style = Kolt.typography.body.medium, color = ...)
 MalayalamText(text = uiText)             // same params, Malayalam-font override
 KeyValuePairText(key = uiText, value = uiText)
 PrefixedText(prefix = uiText, value = uiText)
@@ -426,25 +426,43 @@ val speechState = rememberSpeechToText()
 Kolt.colors.primary
 Kolt.colors.onMainSurface
 Kolt.colors.accentedBlueText
-Kolt.textRoles.bodyMedium       // M3 role: size + weight + line height
-Kolt.textRoles.headlineLarge
-Kolt.typography.textMediumLargeMid  // raw size step, when no role fits
+Kolt.typography.body.medium          // body set, any size
+Kolt.typography.title.xLarge.bold    // title set + weight extension
+Kolt.typography.body.mediumLargeMid  // raw size step, when no role fits
 Kolt.sizes.paddingMedium
 ```
 
-**Type scale** — `Kolt.typography.textX` is built from `Kolt.sizes.fontSizeX`
+**Own `LocalSizes`** (theme bridge onto an app palette) — start from Kolt's scale and
+override only what differs, never a bare `Sizes(...)` (unset fields are `Unspecified`):
+`LocalSizes provides KoltDefaults.sizes().copy(paddingLarge = 24.dp)`.
+
+**Element sizes** — `Kolt.sizes.sizeX` for non-icon dimensions (button/row/bar heights,
+avatars, dots); `icon*` stays for icons:
+
+| 8 | 16 | 24 | 32 | 36 | 40 | 48 | 56 | 64 | 80 | 96 | 128 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| XXXSmall | XXSmall | XSmall | Small | SmallMedium | Medium | MediumLarge | Large | XLarge | XXLarge | XXXLarge | Giant |
+
+**Image sizes** — `Kolt.sizes.imageX` for avatars, thumbnails and illustrations:
+
+| 24 | 32 | 40 | 48 | 56 | 64 | 80 | 96 | 120 | 160 | 200 | 240 | 320 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| XXSmall | XSmall | Small | SmallMedium | SmallMediumPlus | Medium | MediumLarge | Large | XLarge | XXLarge | XXXLarge | Huge | Giant |
+
+**Type scale** — `Kolt.typography.body.x` / `title.x` is built from `Kolt.sizes.fontSizeX`
 (Android `values/dimens.xml` / desktop values, sp):
 
 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 20 | 22 | 24 | 28 | 32 | 36 | 40 | 48 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Minimum | Tiny | XXXSmall | XXSmall | XSmall | XSmallMedium | Small | SmallMedium | Medium | MediumMid | MediumLarge | **MediumLargeMid** | Large | XLarge | **XLargeMid** | XXLarge | XXXLarge | Big | XBig | Huge | Giant |
 
-**Text roles** — `Kolt.textRoles` holds the 15 Material3 roles (display/headline/
-title/body/label × Large/Medium/Small) built from this scale, and
-`CompositionBaseProvider` also provides them as `MaterialTheme.typography`.
-Prefer a role; the `Kolt.typography.bodyX`/`titleX`/… aliases are deprecated.
+**Title / body sets** — `Kolt.typography.title` and `Kolt.typography.body` each hold
+this whole scale with short names (`title.xLarge`, `body.xSmall`, …); add weight
+with `.bold`, `.light`, etc. `CompositionBaseProvider` also fills
+`MaterialTheme.typography` from this scale. The flat `Kolt.typography.bodyMedium`/
+`titleLarge`/… aliases are deprecated.
 
-`textMediumLargeMid` (17 sp) and `textXLargeMid` (22 sp) were added in
+`mediumLargeMid` (17 sp) and `xLargeMid` (22 sp) were added in
 compose-kmp `0.2.1.dev-02`, appended at the end of the `Sizes`/`UiSizes`/
 `BaseTextStyles` constructors so nothing existing moved. Use a slot for any
 size on the scale; a raw `TextStyle(fontSize = …)` only for runtime-computed

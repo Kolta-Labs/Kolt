@@ -306,12 +306,12 @@ the end of the `Sizes`, `UiSizes` and `BaseTextStyles` constructors, with
 - `compose-kmp` compiles for android, desktop, iOS and wasmJs; `COMPOSE_KMP_DEV` bumped and the changelog notes the JVM constructor-signature change.
 - Theming steering, `KOLT.md`, `MIGRATION.md` and the demo-web type-scale table list both slots.
 
-## 13. compose-kmp text roles and platform defaults
+## 13. compose-kmp title/body sets and platform defaults
 
-**Requirement.** `Kolt.textRoles` exposes the 15 Material3 roles built from the Kolt scale (with weight, line height and letter spacing), and `CompositionBaseProvider` provides them as `MaterialTheme.typography` on every platform. The pre-existing `BaseTextStyles` M3-style aliases stay, deprecated, with `ReplaceWith` pointing at the identical `text*` step. Desktop, iOS and wasmJs share one set of default sizes; `UiSizes` has every font size `Sizes` has.
+**Requirement.** `Kolt.typography.title` and `Kolt.typography.body` each expose the whole size scale (short names, e.g. `title.xLarge`), with weight as an extension, without extra `TextStyle` copies. `CompositionBaseProvider` provides a Material3 `Typography` built from the Kolt scale as `MaterialTheme.typography` on every platform. The pre-existing `BaseTextStyles` M3-style aliases stay, deprecated, with `ReplaceWith` pointing at the identical `text*` step. Desktop, iOS and wasmJs share one set of default sizes; `UiSizes` has every font size `Sizes` has.
 
 **Acceptance criteria.**
-- `createTextRoles` maps `titleLarge` to 22 sp, `bodyMedium` to 14/20 sp, and title/label roles to `FontWeight.Medium` (covered by `BaseTypographyTest`).
+- `title`/`body` properties are the same instances as the (deprecated) `text*` storage, and `MaterialTheme.typography` maps `titleLarge` to 22 sp and `bodyMedium` to 14 sp (covered by `BaseTypographyTest`).
 - `defaultSizes()`/`defaultUiSizes()` return specified values, including `fontSizeXBig` (covered by `DefaultDimensTest`), and back the desktop, iOS and wasmJs actuals.
 - No deprecation warnings from Kolt's own use of the old aliases.
 

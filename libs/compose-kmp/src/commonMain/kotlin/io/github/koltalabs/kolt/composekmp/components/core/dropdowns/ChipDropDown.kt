@@ -29,7 +29,7 @@ fun ChipDropDown(
     trailingIcon: UiImage? = null,
     chipBackground: Color = AssistChipDefaults.assistChipColors().containerColor,
     chipTextColor: Color = AssistChipDefaults.assistChipColors().labelColor,
-    chipTextStyle: TextStyle = Kolt.typography.textMedium,
+    chipTextStyle: TextStyle = Kolt.typography.body.medium,
     onItemSelected: (index: Int) -> Unit
 ) {
     DropDownSpinner(

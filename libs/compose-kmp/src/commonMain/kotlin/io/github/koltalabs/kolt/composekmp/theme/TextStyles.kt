@@ -54,31 +54,63 @@ val TextStyle.noto: TextStyle
 
 data class BaseTextStyles(
     val baseTextStyle: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.minimum (or title.minimum).", ReplaceWith("body.minimum"))
     val textMinimum: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.tiny (or title.tiny).", ReplaceWith("body.tiny"))
     val textTiny: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xxxSmall (or title.xxxSmall).", ReplaceWith("body.xxxSmall"))
     val textXXXSmall: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xxSmall (or title.xxSmall).", ReplaceWith("body.xxSmall"))
     val textXXSmall: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xSmall (or title.xSmall).", ReplaceWith("body.xSmall"))
     val textXSmall: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xSmallMedium (or title.xSmallMedium).", ReplaceWith("body.xSmallMedium"))
     val textXSmallMedium: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.small (or title.small).", ReplaceWith("body.small"))
     val textSmall: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.smallMedium (or title.smallMedium).", ReplaceWith("body.smallMedium"))
     val textSmallMedium: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.medium (or title.medium).", ReplaceWith("body.medium"))
     val textMedium: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.mediumMid (or title.mediumMid).", ReplaceWith("body.mediumMid"))
     val textMediumMid: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.mediumLarge (or title.mediumLarge).", ReplaceWith("body.mediumLarge"))
     val textMediumLarge: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.large (or title.large).", ReplaceWith("body.large"))
     val textLarge: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xLarge (or title.xLarge).", ReplaceWith("body.xLarge"))
     val textXLarge: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xxLarge (or title.xxLarge).", ReplaceWith("body.xxLarge"))
     val textXXLarge: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xxxLarge (or title.xxxLarge).", ReplaceWith("body.xxxLarge"))
     val textXXXLarge: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.big (or title.big).", ReplaceWith("body.big"))
     val textBig: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.xBig (or title.xBig).", ReplaceWith("body.xBig"))
     val textXBig: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.huge (or title.huge).", ReplaceWith("body.huge"))
     val textHuge: TextStyle = TextStyle.Default,
+    @Deprecated("Use body.giant (or title.giant).", ReplaceWith("body.giant"))
     val textGiant: TextStyle = TextStyle.Default,
     // Appended last (not in scale order) so existing positional args / componentN() stay stable.
     /** 17 sp ([Sizes.fontSizeMediumLargeMid]) — between [textMediumLarge] (16) and [textLarge] (18). */
+    @Deprecated("Use body.mediumLargeMid (or title.mediumLargeMid).", ReplaceWith("body.mediumLargeMid"))
     val textMediumLargeMid: TextStyle = TextStyle.Default,
     /** 22 sp ([Sizes.fontSizeXLargeMid]) — between [textXLarge] (20) and [textXXLarge] (24). */
+    @Deprecated("Use body.xLargeMid (or title.xLargeMid).", ReplaceWith("body.xLargeMid"))
     val textXLargeMid: TextStyle = TextStyle.Default,
 ) {
+    // ── Title / body sets ─────────────────────────────────────────────────────
+    // The full scale under each role, weight via the extensions below
+    // (e.g. Kolt.typography.title.xLarge.bold). Both reference the text* styles above, so
+    // no extra TextStyle copies; they diverge once titles get their own font. Body
+    // properties, not constructor params, so equals()/componentN()/copy() are unchanged.
+
+    /** Every step of the scale, for titles and headings. */
+    val title: TextScale = TextScale(this)
+    /** Every step of the scale, for running text. Same styles as the `text*` steps. */
+    val body: TextScale = TextScale(this)
+
     // ── Material3-compatible aliases ──────────────────────────────────────────
     // These allow components designed with M3 typography names to work with the
     // Kolt theme without mechanical find-and-replace in each file.
@@ -86,50 +118,50 @@ data class BaseTextStyles(
     // text scale shifted by ~2 steps).
 
     /** M3 alias → [textXXSmall] (≈10 sp) */
-    @Deprecated("Not an M3 role. Use textXXSmall (identical).", ReplaceWith("textXXSmall"))
-    val bodyXXXSmall: TextStyle get() = textXXSmall
+    @Deprecated("Not an M3 role. Use body.xxSmall (identical).", ReplaceWith("body.xxSmall"))
+    val bodyXXXSmall: TextStyle get() = body.xxSmall
     /** M3 alias → [textXSmall] (≈12 sp) */
-    @Deprecated("Not an M3 role. Use textXSmall (identical).", ReplaceWith("textXSmall"))
-    val bodyXSmall: TextStyle get() = textXSmall
+    @Deprecated("Not an M3 role. Use body.xSmall (identical).", ReplaceWith("body.xSmall"))
+    val bodyXSmall: TextStyle get() = body.xSmall
     /** M3 alias → [textSmall] (≈13 sp) */
-    @Deprecated("Size differs from the M3 role. Use textSmall (identical) or Kolt.textRoles.bodySmall.", ReplaceWith("textSmall"))
-    val bodySmall: TextStyle get() = textSmall
+    @Deprecated("Size differs from the M3 role. Use body.small (identical).", ReplaceWith("body.small"))
+    val bodySmall: TextStyle get() = body.small
     /** M3 alias → [textMedium] (≈14 sp) */
-    @Deprecated("Size differs from the M3 role. Use textMedium (identical) or Kolt.textRoles.bodyMedium.", ReplaceWith("textMedium"))
-    val bodyMedium: TextStyle get() = textMedium
+    @Deprecated("Size differs from the M3 role. Use body.medium (identical).", ReplaceWith("body.medium"))
+    val bodyMedium: TextStyle get() = body.medium
     /** M3 alias → [textMediumMid] (≈15 sp) */
-    @Deprecated("Not an M3 role. Use textMediumMid (identical).", ReplaceWith("textMediumMid"))
-    val bodyMediumLarge: TextStyle get() = textMediumMid
+    @Deprecated("Not an M3 role. Use body.mediumMid (identical).", ReplaceWith("body.mediumMid"))
+    val bodyMediumLarge: TextStyle get() = body.mediumMid
     /** M3 alias → [textLarge] (≈16 sp) */
-    @Deprecated("Size differs from the M3 role. Use textLarge (identical) or Kolt.textRoles.bodyLarge.", ReplaceWith("textLarge"))
-    val bodyLarge: TextStyle get() = textLarge
+    @Deprecated("Size differs from the M3 role. Use body.large (identical).", ReplaceWith("body.large"))
+    val bodyLarge: TextStyle get() = body.large
     /** M3 alias → [textSmall] */
-    @Deprecated("Size differs from the M3 role. Use textSmall (identical) or Kolt.textRoles.labelSmall.", ReplaceWith("textSmall"))
-    val labelSmall: TextStyle get() = textSmall
+    @Deprecated("Size differs from the M3 role. Use body.small (identical).", ReplaceWith("body.small"))
+    val labelSmall: TextStyle get() = body.small
     /** M3 alias → [textSmallMedium] */
-    @Deprecated("Size differs from the M3 role. Use textSmallMedium (identical) or Kolt.textRoles.labelMedium.", ReplaceWith("textSmallMedium"))
-    val labelMedium: TextStyle get() = textSmallMedium
+    @Deprecated("Size differs from the M3 role. Use body.smallMedium (identical).", ReplaceWith("body.smallMedium"))
+    val labelMedium: TextStyle get() = body.smallMedium
     /** M3 alias → [textMedium] */
-    @Deprecated("Size differs from the M3 role. Use textMedium (identical) or Kolt.textRoles.labelLarge.", ReplaceWith("textMedium"))
-    val labelLarge: TextStyle get() = textMedium
+    @Deprecated("Size differs from the M3 role. Use body.medium (identical).", ReplaceWith("body.medium"))
+    val labelLarge: TextStyle get() = body.medium
     /** M3 alias → [textMediumLarge] (≈16 sp) */
-    @Deprecated("Size differs from the M3 role. Use textMediumLarge (identical) or Kolt.textRoles.titleSmall.", ReplaceWith("textMediumLarge"))
-    val titleSmall: TextStyle get() = textMediumLarge
+    @Deprecated("Size differs from the M3 role. Use body.mediumLarge (identical).", ReplaceWith("body.mediumLarge"))
+    val titleSmall: TextStyle get() = body.mediumLarge
     /** M3 alias → [textLarge] (≈18 sp) */
-    @Deprecated("Size differs from the M3 role. Use textLarge (identical) or Kolt.textRoles.titleMedium.", ReplaceWith("textLarge"))
-    val titleMedium: TextStyle get() = textLarge
+    @Deprecated("Size differs from the M3 role. Use body.large (identical).", ReplaceWith("body.large"))
+    val titleMedium: TextStyle get() = body.large
     /** M3 alias → [textXLarge] (≈20 sp) */
-    @Deprecated("Size differs from the M3 role. Use textXLarge (identical) or Kolt.textRoles.titleLarge.", ReplaceWith("textXLarge"))
-    val titleLarge: TextStyle get() = textXLarge
+    @Deprecated("Size differs from the M3 role. Use body.xLarge (identical).", ReplaceWith("body.xLarge"))
+    val titleLarge: TextStyle get() = body.xLarge
     /** M3 alias → [textXXLarge] (≈24 sp) */
-    @Deprecated("Size differs from the M3 role. Use textXXLarge (identical) or Kolt.textRoles.headlineSmall.", ReplaceWith("textXXLarge"))
-    val headlineSmall: TextStyle get() = textXXLarge
+    @Deprecated("Size differs from the M3 role. Use body.xxLarge (identical).", ReplaceWith("body.xxLarge"))
+    val headlineSmall: TextStyle get() = body.xxLarge
     /** M3 alias → [textXXXLarge] (≈28 sp) */
-    @Deprecated("Size differs from the M3 role. Use textXXXLarge (identical) or Kolt.textRoles.headlineMedium.", ReplaceWith("textXXXLarge"))
-    val headlineMedium: TextStyle get() = textXXXLarge
+    @Deprecated("Size differs from the M3 role. Use body.xxxLarge (identical).", ReplaceWith("body.xxxLarge"))
+    val headlineMedium: TextStyle get() = body.xxxLarge
     /** M3 alias → [textBig] (≈32 sp) */
-    @Deprecated("Size differs from the M3 role. Use textBig (identical) or Kolt.textRoles.displaySmall.", ReplaceWith("textBig"))
-    val displaySmall: TextStyle get() = textBig
+    @Deprecated("Size differs from the M3 role. Use body.big (identical).", ReplaceWith("body.big"))
+    val displaySmall: TextStyle get() = body.big
 }
 
 // Not @Composable: pure mapping, no composition reads — keeps it unit-testable from commonTest.
@@ -209,31 +241,59 @@ internal fun createBaseTypography(baseSize: Sizes, fontFamily: FontFamily?): Bas
 }
 
 /**
- * The 15 Material3 text roles, built from the Kolt size steps. Sizes follow the M3 baseline
- * except display, which is capped at the top of the Kolt scale (48/40/36 instead of 57/45/36).
- * Roles carry weight, line height and letter spacing; the `text*` steps carry size only.
- *
- * Provided as `MaterialTheme.typography` by [CompositionBaseProvider], and read via [Kolt.textRoles].
+ * The whole Kolt size scale under one role. Properties reference [BaseTextStyles]' `text*`
+ * styles directly (no copies). New steps go at the end, like the constructor params.
+ */
+@Suppress("DEPRECATION") // reads the text* storage; public API is this class
+class TextScale internal constructor(steps: BaseTextStyles) {
+    val minimum: TextStyle = steps.textMinimum
+    val tiny: TextStyle = steps.textTiny
+    val xxxSmall: TextStyle = steps.textXXXSmall
+    val xxSmall: TextStyle = steps.textXXSmall
+    val xSmall: TextStyle = steps.textXSmall
+    val xSmallMedium: TextStyle = steps.textXSmallMedium
+    val small: TextStyle = steps.textSmall
+    val smallMedium: TextStyle = steps.textSmallMedium
+    val medium: TextStyle = steps.textMedium
+    val mediumMid: TextStyle = steps.textMediumMid
+    val mediumLarge: TextStyle = steps.textMediumLarge
+    val mediumLargeMid: TextStyle = steps.textMediumLargeMid
+    val large: TextStyle = steps.textLarge
+    val xLarge: TextStyle = steps.textXLarge
+    val xLargeMid: TextStyle = steps.textXLargeMid
+    val xxLarge: TextStyle = steps.textXXLarge
+    val xxxLarge: TextStyle = steps.textXXXLarge
+    val big: TextStyle = steps.textBig
+    val xBig: TextStyle = steps.textXBig
+    val huge: TextStyle = steps.textHuge
+    val giant: TextStyle = steps.textGiant
+}
+
+/**
+ * Material3 [Typography] for `MaterialTheme`, so Material components use the Kolt font and scale.
+ * Internal: app code uses [BaseTextStyles]' steps / [TextScale] sets plus weight extensions.
+ * Sizes follow the M3 baseline, except display, capped at the top of the Kolt scale.
  */
 internal fun createTextRoles(steps: BaseTextStyles): Typography {
+    val body = steps.body
     fun TextStyle.role(lineHeight: Int, letterSpacing: Double, weight: FontWeight = FontWeight.Normal) =
         copy(fontWeight = weight, lineHeight = lineHeight.sp, letterSpacing = letterSpacing.sp)
     return Typography(
-        displayLarge = steps.textGiant.role(56, -0.25),
-        displayMedium = steps.textHuge.role(48, 0.0),
-        displaySmall = steps.textXBig.role(44, 0.0),
-        headlineLarge = steps.textBig.role(40, 0.0),
-        headlineMedium = steps.textXXXLarge.role(36, 0.0),
-        headlineSmall = steps.textXXLarge.role(32, 0.0),
-        titleLarge = steps.textXLargeMid.role(28, 0.0),
-        titleMedium = steps.textMediumLarge.role(24, 0.15, FontWeight.Medium),
-        titleSmall = steps.textMedium.role(20, 0.1, FontWeight.Medium),
-        bodyLarge = steps.textMediumLarge.role(24, 0.5),
-        bodyMedium = steps.textMedium.role(20, 0.25),
-        bodySmall = steps.textSmall.role(16, 0.4),
-        labelLarge = steps.textMedium.role(20, 0.1, FontWeight.Medium),
-        labelMedium = steps.textSmall.role(16, 0.5, FontWeight.Medium),
-        labelSmall = steps.textXSmallMedium.role(16, 0.5, FontWeight.Medium),
+        displayLarge = body.giant.role(56, -0.25),
+        displayMedium = body.huge.role(48, 0.0),
+        displaySmall = body.xBig.role(44, 0.0),
+        headlineLarge = body.big.role(40, 0.0),
+        headlineMedium = body.xxxLarge.role(36, 0.0),
+        headlineSmall = body.xxLarge.role(32, 0.0),
+        titleLarge = body.xLargeMid.role(28, 0.0),
+        titleMedium = body.mediumLarge.role(24, 0.15, FontWeight.Medium),
+        titleSmall = body.medium.role(20, 0.1, FontWeight.Medium),
+        bodyLarge = body.mediumLarge.role(24, 0.5),
+        bodyMedium = body.medium.role(20, 0.25),
+        bodySmall = body.small.role(16, 0.4),
+        labelLarge = body.medium.role(20, 0.1, FontWeight.Medium),
+        labelMedium = body.small.role(16, 0.5, FontWeight.Medium),
+        labelSmall = body.xSmallMedium.role(16, 0.5, FontWeight.Medium),
     )
 }
 

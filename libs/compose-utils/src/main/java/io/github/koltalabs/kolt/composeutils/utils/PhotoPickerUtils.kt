@@ -305,7 +305,7 @@ private fun SourceItem(
         KoltText(
             text = text,
             color = textColor,
-            style = Kolt.typography.textMedium
+            style = Kolt.typography.body.medium
         )
     }
 }

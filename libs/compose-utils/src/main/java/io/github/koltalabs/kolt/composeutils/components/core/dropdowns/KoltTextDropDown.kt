@@ -50,7 +50,7 @@ fun KoltTextDropDown(
     modifier: Modifier = Modifier,
     placeholderText: UiText? = null,
     enabled: Boolean = true,
-    textStyle: TextStyle = Kolt.typography.textMedium,
+    textStyle: TextStyle = Kolt.typography.body.medium,
     textColor: Color = Kolt.colors.onMainSurface,
     arrowTint: Color = Kolt.colors.subText,
     arrowSize: Dp = Kolt.sizes.iconSmall,

@@ -39,7 +39,7 @@ fun KoltAvatar(
     modifier: Modifier = Modifier,
     image: UiImage? = null,
     size: Dp = Kolt.sizes.iconXLarge,
-    textStyle: TextStyle = Kolt.typography.textLarge,
+    textStyle: TextStyle = Kolt.typography.body.large,
     backgroundColor: Color? = null,
     contentColor: Color = Color.White,
     showShimmerWhileLoading: Boolean = true,

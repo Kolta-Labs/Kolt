@@ -74,7 +74,7 @@ fun KoltPasswordTextField(
     placeholder: UiText? = null,
     helperText: UiText? = null,
     enabled: Boolean = true,
-    textStyle: TextStyle = Kolt.typography.textMediumMid.semiBold,
+    textStyle: TextStyle = Kolt.typography.body.mediumMid.semiBold,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         keyboardType = KeyboardType.Password,
         imeAction = ImeAction.Done,
@@ -85,7 +85,7 @@ fun KoltPasswordTextField(
     labelStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultLabel(),
     placeHolderStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultItem(
         unselectedColor = Kolt.colors.subText.copy(alpha = 0.8f),
-        unselectedTextStyle = Kolt.typography.textMedium,
+        unselectedTextStyle = Kolt.typography.body.medium,
     ),
     helperStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultHelper(),
     errorConfig: FieldError = FieldError.Default,

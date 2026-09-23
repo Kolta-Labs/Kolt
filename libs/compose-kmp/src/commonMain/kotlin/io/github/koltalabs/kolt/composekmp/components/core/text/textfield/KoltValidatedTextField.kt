@@ -56,7 +56,7 @@ fun KoltValidatedTextField(
     helperText: UiText? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    textStyle: TextStyle = Kolt.typography.textMediumMid.semiBold,
+    textStyle: TextStyle = Kolt.typography.body.mediumMid.semiBold,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onKeyboardAction: ((defaultAction: () -> Unit) -> Unit)? = null,
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.SingleLine,
@@ -67,7 +67,7 @@ fun KoltValidatedTextField(
     labelStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultLabel(),
     placeHolderStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultItem(
         unselectedColor = Kolt.colors.subText.copy(alpha = 0.8f),
-        unselectedTextStyle = Kolt.typography.textMedium.normal
+        unselectedTextStyle = Kolt.typography.body.medium.normal
     ),
     helperStyle: TextFieldItemStyle = KoltTextFieldDefaults.defaultHelper(),
     errorConfig: FieldError = FieldError.Default,
@@ -173,7 +173,7 @@ fun KoltValidatedTextField(
                     footerText?.let {
                         KoltText(
                             text = it,
-                            style = if (isError) Kolt.typography.textSmall else helperStyle.unselectedTextStyle,
+                            style = if (isError) Kolt.typography.body.small else helperStyle.unselectedTextStyle,
                             color = if (isError) (errorConfig.color ?: colors.errorColor) else helperStyle.unselectedColor,
                             modifier = helperStyle.modifier
                         )
@@ -184,7 +184,7 @@ fun KoltValidatedTextField(
             if (state.showCounter && state.maxLength < Int.MAX_VALUE) {
                 KoltText(
                     text = UiText.DynamicString("${state.value.length} / ${state.maxLength}"),
-                    style = Kolt.typography.textSmall,
+                    style = Kolt.typography.body.small,
                     color = if (state.value.length >= state.maxLength) colors.errorColor else Kolt.colors.subText
                 )
             }
@@ -214,7 +214,7 @@ object KoltTextFieldDefaults {
     @Composable
     fun defaultItem(
         unselectedColor: Color = Kolt.colors.onBackground.copy(alpha = 0.7f),
-        unselectedTextStyle: TextStyle = Kolt.typography.textMediumMid.medium,
+        unselectedTextStyle: TextStyle = Kolt.typography.body.mediumMid.medium,
         errorColor: Color = Kolt.colors.error,
         modifier: Modifier = Modifier
     ): TextFieldItemStyle {
@@ -254,7 +254,7 @@ object KoltTextFieldDefaults {
     @Composable
     fun defaultLabel(
         color: Color = Kolt.colors.subText,
-        textStyle: TextStyle = Kolt.typography.textSmallMedium,
+        textStyle: TextStyle = Kolt.typography.body.smallMedium,
         modifier: Modifier = Modifier.padding(
             start = Kolt.sizes.paddingXSmall,
             bottom = Kolt.sizes.paddingXSmall
@@ -271,7 +271,7 @@ object KoltTextFieldDefaults {
     @Composable
     fun defaultHelper(
         color: Color = Kolt.colors.subText,
-        textStyle: TextStyle = Kolt.typography.textSmall,
+        textStyle: TextStyle = Kolt.typography.body.small,
         modifier: Modifier = Modifier.padding(
             start = Kolt.sizes.paddingXSmall,
             bottom = Kolt.sizes.paddingXSmall

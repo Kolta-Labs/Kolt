@@ -67,4 +67,31 @@
     <dimen name="font_size_xlarge_mid">22sp</dimen>
 
 
+    <!-- General element sizes (Sizes.size*) -->
+    <dimen name="size_xxxsmall">8dp</dimen>
+    <dimen name="size_xxsmall">16dp</dimen>
+    <dimen name="size_xsmall">24dp</dimen>
+    <dimen name="size_small">32dp</dimen>
+    <dimen name="size_small_medium">36dp</dimen>
+    <dimen name="size_medium">40dp</dimen>
+    <dimen name="size_medium_large">48dp</dimen>
+    <dimen name="size_large">56dp</dimen>
+    <dimen name="size_xlarge">64dp</dimen>
+    <dimen name="size_xxlarge">80dp</dimen>
+    <dimen name="size_xxxlarge">96dp</dimen>
+    <dimen name="size_giant">128dp</dimen>
+    <!-- Image/illustration sizes (Sizes.image*) -->
+    <dimen name="image_xxsmall">24dp</dimen>
+    <dimen name="image_xsmall">32dp</dimen>
+    <dimen name="image_small">40dp</dimen>
+    <dimen name="image_small_medium">48dp</dimen>
+    <dimen name="image_medium">64dp</dimen>
+    <dimen name="image_medium_large">80dp</dimen>
+    <dimen name="image_large">96dp</dimen>
+    <dimen name="image_xlarge">120dp</dimen>
+    <dimen name="image_xxlarge">160dp</dimen>
+    <dimen name="image_xxxlarge">200dp</dimen>
+    <dimen name="image_huge">240dp</dimen>
+    <dimen name="image_giant">320dp</dimen>
+    <dimen name="image_small_medium_plus">56dp</dimen>
 </resources>

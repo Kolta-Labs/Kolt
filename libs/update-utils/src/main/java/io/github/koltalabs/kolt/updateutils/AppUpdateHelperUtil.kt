@@ -284,7 +284,7 @@ class AppUpdateHelperUtilImpl : AppUpdateHelperUtil {
             ) {
                 KoltText(
                     text = "Update ${stringResource(appName)}".toUiText(),
-                    style = Kolt.typography.textLarge.bold
+                    style = Kolt.typography.body.large.bold
                 )
 
                 Image(

@@ -59,7 +59,7 @@ actual fun CompositionBaseProvider(
         val uiSizes = createUiSizes()
 
         val fontFamily = remember(font) { font.toFontFamily(provider) }
-        val typography = createBaseTypography(baseSize = sizes, fontFamily = fontFamily)
+        val typography = remember(sizes, fontFamily) { createBaseTypography(baseSize = sizes, fontFamily = fontFamily) }
 
         val isNotoFont = font is AppFont.Noto
         val flags = BaseFlags(

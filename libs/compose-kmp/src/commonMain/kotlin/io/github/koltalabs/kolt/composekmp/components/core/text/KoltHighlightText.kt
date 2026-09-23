@@ -32,7 +32,7 @@ fun KoltHighlightText(
     text: String,
     query: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Kolt.typography.textMedium,
+    style: TextStyle = Kolt.typography.body.medium,
     color: Color = Kolt.colors.onMainSurface,
     highlightStyle: SpanStyle = SpanStyle(
         background = Kolt.colors.primary.copy(alpha = 0.20f),

@@ -1,1 +1,1 @@
-KOLTX.md
+../Standards/KOLT.md

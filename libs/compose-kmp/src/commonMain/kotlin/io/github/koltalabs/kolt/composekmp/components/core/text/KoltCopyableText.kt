@@ -104,7 +104,7 @@ private var _contentCopy: ImageVector? = null
 fun KoltCopyableText(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Kolt.typography.textMedium,
+    style: TextStyle = Kolt.typography.body.medium,
     color: Color = Kolt.colors.onMainSurface,
     copiedColor: Color = Kolt.colors.success,
     maxLines: Int = Int.MAX_VALUE,

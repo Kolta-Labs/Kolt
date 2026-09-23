@@ -205,7 +205,7 @@ fun KoltSlider(
             ) {
                 KoltText(
                     text = UiText.DynamicString(value.roundToInt().toString()),
-                    style = Kolt.typography.textXXSmall.semiBold,
+                    style = Kolt.typography.body.xxSmall.semiBold,
                     color = Kolt.colors.onPrimary
                 )
             }

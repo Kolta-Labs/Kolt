@@ -149,7 +149,7 @@ private fun KoltSnackbarItem(snackbarData: SnackbarData) {
             }
             KoltText(
                 text = snackbarData.visuals.message.toUiText(),
-                style = Kolt.typography.textSmall,
+                style = Kolt.typography.body.small,
                 color = contentColor,
             )
         }
