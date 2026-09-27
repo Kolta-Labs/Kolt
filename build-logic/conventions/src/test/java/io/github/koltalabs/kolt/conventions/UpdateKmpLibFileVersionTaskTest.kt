@@ -136,9 +136,11 @@ class UpdateKmpLibFileVersionTaskTest {
                         logger.warn("⚠️ kmplibs.versions.toml not found — skipping")
                         return@doLast
                     }
-                    val rawToml = tomlFile.readText()
+                    val rawToml = tomlFile.readText().replace("\r\n", "\n").replace("\r", "\n")
                     val processedToml = rawToml.replace("LIBVERSION", "$testVersion")
                     val escapedToml = processedToml
+                        .replace("\r\n", "\n")
+                        .replace("\r", "\n")
                         .replace("\\", "\\\\")
                         .replace("\$", "\${'$'}")
                         .replace("\"", "\\\"")
@@ -175,5 +177,79 @@ class UpdateKmpLibFileVersionTaskTest {
         assertFalse("LIBVERSION placeholder should be replaced", content.contains("LIBVERSION"))
         assertTrue("Should contain kmpTomlName", content.contains("kmpTomlName"))
         assertTrue("Should contain kmpTomlContents", content.contains("kmpTomlContents"))
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // CRLF normalization — ensures Windows checkouts do not corrupt generated Kotlin
+    // ─────────────────────────────────────────────────────────────────────────
+
+    @Test
+    fun `generated KmpConstants handles CRLF line endings without raw carriage returns`() {
+        val gradleDir = File(projectDir, "gradle").also { it.mkdirs() }
+        // Simulate Windows git checkout with CRLF
+        File(gradleDir, "kmplibs.versions.toml").writeBytes(
+            "[versions]\r\nkmpKolt = \"LIBVERSION\"\r\nkotlin = \"2.1.21\"\r\n".toByteArray(Charsets.UTF_8)
+        )
+
+        val testVersion = "1.2.3"
+
+        buildFile.writeText(
+            """
+            import java.util.Properties
+
+            val kmpGeneratedSourceDir = layout.buildDirectory.dir("generated/kmp/kotlin")
+
+            tasks.register("updateKmpLibFileVersion") {
+                group = "versioning"
+                val tomlFile = file("gradle/kmplibs.versions.toml")
+                val constantsFile = kmpGeneratedSourceDir.map {
+                    it.file("io/github/koltalabs/kolt/conventions/extensions/KmpConstants.kt")
+                }
+                inputs.file(tomlFile)
+                inputs.property("pluginVersion", "$testVersion")
+                outputs.dir(kmpGeneratedSourceDir)
+
+                doLast {
+                    if (!tomlFile.exists()) {
+                        logger.warn("⚠️ kmplibs.versions.toml not found — skipping")
+                        return@doLast
+                    }
+                    val rawToml = tomlFile.readText().replace("\r\n", "\n").replace("\r", "\n")
+                    val processedToml = rawToml.replace("LIBVERSION", "$testVersion")
+                    val escapedToml = processedToml
+                        .replace("\r\n", "\n")
+                        .replace("\r", "\n")
+                        .replace("\\", "\\\\")
+                        .replace("\$", "\${'$'}")
+                        .replace("\"", "\\\"")
+                        .replace("\n", "\\n")
+                    val file = constantsFile.get().asFile
+                    file.parentFile.mkdirs()
+                    file.writeText(
+                        ""${'"'}
+                        package io.github.koltalabs.kolt.conventions.extensions
+                        internal const val kmpTomlName = "kmplibs"
+                        internal const val kmpLibVersion = "$testVersion"
+                        internal const val kmpTomlContents = "${'$'}escapedToml"
+                        ""${'"'}.trimIndent()
+                    )
+                    logger.lifecycle("✅ KmpConstants.kt generated with version: $testVersion")
+                }
+            }
+            """.trimIndent()
+        )
+
+        val result = GradleRunner.create()
+            .withProjectDir(projectDir)
+            .withArguments("updateKmpLibFileVersion")
+            .build()
+
+        assertEquals(TaskOutcome.SUCCESS, result.task(":updateKmpLibFileVersion")?.outcome)
+        val generatedFile = File(projectDir, "build/generated/kmp/kotlin/io/github/koltalabs/kolt/conventions/extensions/KmpConstants.kt")
+        assertTrue("KmpConstants.kt should be generated", generatedFile.exists())
+
+        val testContent = generatedFile.readText()
+        assertFalse("KmpConstants.kt must not contain any raw carriage return characters", testContent.contains(13.toChar()))
+        assertTrue("Should contain escaped newline", testContent.contains("\\n"))
     }
 }

@@ -229,7 +229,7 @@ fun registerConstantsGenerator(
             return@doLast
         }
 
-        val rawToml = tomlFile.readText()
+        val rawToml = tomlFile.readText().replace("\r\n", "\n").replace("\r", "\n")
         // Replace per-artifact version placeholders — ORDER MATTERS: longer/more-specific
         // tokens must be replaced before shorter ones that are substrings of them:
         //   LOGUTILS_VERSION    ends with UTILS_VERSION
@@ -278,6 +278,8 @@ fun registerConstantsGenerator(
         }
 
         val escapedToml = processedToml
+            .replace("\r\n", "\n")
+            .replace("\r", "\n")
             .replace("\\", "\\\\")
             .replace("\$", "\${'$'}")
             .replace("\"", "\\\"")
