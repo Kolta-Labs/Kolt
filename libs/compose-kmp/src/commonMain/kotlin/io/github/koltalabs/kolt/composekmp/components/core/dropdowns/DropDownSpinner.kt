@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.Dp
 import io.github.koltalabs.kolt.composekmp.components.core.dropdowns.models.DropDownItem
 import io.github.koltalabs.kolt.composekmp.components.core.dropdowns.models.SpinnerStyle
 import io.github.koltalabs.kolt.composekmp.components.core.dropdowns.models.SpinnerStyleDefaults
+import io.github.koltalabs.kolt.composekmp.components.core.image.KoltIcon
 import io.github.koltalabs.kolt.composekmp.components.core.text.KoltText
 import io.github.koltalabs.kolt.composekmp.wrappers.UiText
 import io.github.koltalabs.kolt.composekmp.wrappers.toUiText
@@ -59,18 +61,23 @@ fun DropDownModelSpinner(
     dropdownModifier: Modifier = Modifier,
     containerColor: Color = Kolt.colors.background,
     placeholderText: UiText? = null,
+    // Controlled when non-null (the caller owns the selection, e.g. it can change from
+    // elsewhere too); uncontrolled (this composable tracks its own state) when null —
+    // existing callers that never passed this keep working unchanged.
+    selectedIndex: Int? = null,
     onSelectedIndexChange: (Int) -> Unit = {},
     itemStyle: SpinnerStyle = SpinnerStyleDefaults.defaultSpinner,
     spinnerComposable: @Composable (index: Int, text: UiText, expanded: Boolean, onClick: () -> Unit) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedIndex by remember { mutableIntStateOf(0) }
-    val selectedText by remember {
-        derivedStateOf { items.getOrNull(selectedIndex)?.label ?: placeholderText }
+    var internalSelectedIndex by remember { mutableIntStateOf(0) }
+    val currentIndex = selectedIndex ?: internalSelectedIndex
+    val selectedText by remember(currentIndex, items, placeholderText) {
+        derivedStateOf { items.getOrNull(currentIndex)?.label ?: placeholderText }
     }
     Box(contentAlignment = Alignment.Center) {
         Box {
-            spinnerComposable(selectedIndex, selectedText ?: "Not Selected".toUiText(), expanded) {
+            spinnerComposable(currentIndex, selectedText ?: "Not Selected".toUiText(), expanded) {
                 expanded = true
             }
         }
@@ -93,9 +100,21 @@ fun DropDownModelSpinner(
                             )
                         }
                     },
+                    leadingIcon = item.leadingIcon?.let { icon ->
+                        { KoltIcon(icon, size = Kolt.sizes.iconMedium) }
+                    },
+                    trailingIcon = when {
+                        index == currentIndex -> {
+                            { Icon(Icons.Filled.Check, contentDescription = null, tint = Kolt.colors.primary) }
+                        }
+                        item.trailingIcon != null -> {
+                            { KoltIcon(item.trailingIcon, size = Kolt.sizes.iconMedium) }
+                        }
+                        else -> null
+                    },
                     onClick = {
                         expanded = false
-                        selectedIndex = index
+                        internalSelectedIndex = index
                         onSelectedIndexChange(index)
                     }
                 )
