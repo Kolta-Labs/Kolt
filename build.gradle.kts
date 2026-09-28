@@ -121,6 +121,7 @@ tasks.register("publishAllToMavenLocal") {
     dependsOn(":libs:update-utils:publishToMavenLocal")
     dependsOn(":libs:location:publishToMavenLocal")
     dependsOn(":libs:location-picker:publishToMavenLocal")
+    dependsOn(":libs:detekt-rules:publishToMavenLocal")
 }
 
 // ── Version bump tasks (delegate to build-logic) ──────────────────────────────

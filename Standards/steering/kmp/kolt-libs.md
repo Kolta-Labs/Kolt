@@ -36,6 +36,41 @@ never silently default:**
 Once answered, treat it as decided for the life of the project — don't
 re-ask on later tasks; re-check the project state above instead.
 
+## External tooling coordinates
+
+[tooling.md](tooling.md)'s enforcement stack, pinned:
+
+```toml
+# gradle/libs.versions.toml
+[versions]
+konsist = "0.17.3"
+detekt = "1.23.7"
+ktlintGradle = "12.1.1"
+
+[libraries]
+konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
+
+[plugins]
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
+```
+
+Konsist is a plain JVM test dependency (`testImplementation`), not a Gradle
+plugin. Bump these against each tool's own release notes before pinning —
+don't carry stale versions forward from this doc indefinitely.
+
+**Detekt custom rules live in Kolt, not per-app.** The two rules
+[tooling.md](tooling.md#detekt-custom-rules) specifies (no hardcoded
+`Color`/`.dp`/`.sp`, no plain collection in a `State`) are published once as
+`io.github.koltalabs.kolt:detekt-rules:<version>` and consumed the same way
+as any other Kolt module (see [How to consume it](#how-to-consume-it--ask-once-at-project-creation)
+above) — writing a project-local `RuleSetProvider` for either of these two
+duplicates a module that already exists a few files over, exactly the
+[architecture.md](architecture.md#reuse-over-duplication) violation this
+whole doc exists to prevent. Only author a project-local Detekt rule for a
+check that's specific to that project, not one already covered by
+`detekt-rules`.
+
 ## Reuse as-is (mandatory when present)
 
 If `Kolt/libs` is in the workspace, use these — don't hand-write a new
