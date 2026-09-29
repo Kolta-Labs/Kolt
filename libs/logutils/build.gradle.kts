@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.koltsystems.koltx.kmp.library")
+    id("io.github.koltalabs.kolt.kmp.library")
     id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }

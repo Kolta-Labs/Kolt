@@ -442,74 +442,74 @@ gradlePlugin {
     plugins {
         // ----- Android -----
         create("androidApplication") {
-            id = "io.github.koltsystems.koltx.application"
+            id = "io.github.koltalabs.kolt.application"
             displayName = "Kolt Application"
             description = "Standardized setup for Android application modules (Compose + Hilt by default)."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.AndroidApplicationConventionPlugin"
         }
         create("androidLibrary") {
-            id = "io.github.koltsystems.koltx.library"
+            id = "io.github.koltalabs.kolt.library"
             displayName = "Kolt Library"
             description = "Minimal Android library module setup."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.AndroidLibraryConventionPlugin"
         }
         create("androidHiltLibrary") {
-            id = "io.github.koltsystems.koltx.library-hilt"
+            id = "io.github.koltalabs.kolt.library-hilt"
             displayName = "Kolt Library (Hilt)"
             description = "Android library module with Hilt dependency injection."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.AndroidLibraryHiltConventionPlugin"
         }
         create("androidComposeLibrary") {
-            id = "io.github.koltsystems.koltx.library-compose"
+            id = "io.github.koltalabs.kolt.library-compose"
             displayName = "Kolt Library (Compose)"
             description = "Android library module with Jetpack Compose UI."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.AndroidLibraryComposeConventionPlugin"
         }
         create("androidHiltComposeLibrary") {
-            id = "io.github.koltsystems.koltx.library-hilt-compose"
+            id = "io.github.koltalabs.kolt.library-hilt-compose"
             displayName = "Kolt Library (Hilt + Compose)"
             description = "Android library module with both Hilt and Jetpack Compose."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.AndroidLibraryHiltComposeConventionPlugin"
         }
         create("androidDataLayerLibrary") {
-            id = "io.github.koltsystems.koltx.data"
+            id = "io.github.koltalabs.kolt.data"
             displayName = "Kolt Data Layer"
             description = "Data layer setup with opt-in Room, Retrofit, DataStore, Security, and WorkManager."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.feature.AndroidDataLayerConventionPlugin"
         }
         // ----- KMP -----
         create("kmpLibrary") {
-            id = "io.github.koltsystems.koltx.kmp.library"
+            id = "io.github.koltalabs.kolt.kmp.library"
             displayName = "Kolt KMP Library"
             description = "Base KMP shared module setup (Android target always on, iOS/Desktop/WASM opt-in)."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.KmpLibraryConventionPlugin"
         }
         create("kmpLibraryCompose") {
-            id = "io.github.koltsystems.koltx.kmp.library-compose"
+            id = "io.github.koltalabs.kolt.kmp.library-compose"
             displayName = "Kolt KMP Library (Compose)"
             description = "KMP shared module with Compose Multiplatform UI."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.KmpLibraryComposeConventionPlugin"
         }
         create("kmpLibraryKoin") {
-            id = "io.github.koltsystems.koltx.kmp.library-koin"
+            id = "io.github.koltalabs.kolt.kmp.library-koin"
             displayName = "Kolt KMP Library (Koin)"
             description = "KMP shared module with Koin dependency injection."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.KmpLibraryKoinConventionPlugin"
         }
         create("kmpLibraryKoinCompose") {
-            id = "io.github.koltsystems.koltx.kmp.library-koin-compose"
+            id = "io.github.koltalabs.kolt.kmp.library-koin-compose"
             displayName = "Kolt KMP Library (Koin + Compose)"
             description = "KMP shared module with Koin DI and Compose Multiplatform UI."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.KmpLibraryKoinComposeConventionPlugin"
         }
         create("kmpData") {
-            id = "io.github.koltsystems.koltx.kmp.data"
+            id = "io.github.koltalabs.kolt.kmp.data"
             displayName = "Kolt KMP Data Layer"
             description = "KMP data layer with opt-in SQLDelight, Ktor, DataStore, and Serialization."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.feature.KmpDataLayerConventionPlugin"
         }
         create("kmpApplication") {
-            id = "io.github.koltsystems.koltx.kmp.application"
+            id = "io.github.koltalabs.kolt.kmp.application"
             displayName = "Kolt KMP Application"
             description = "Android host app module for a KMP project (Compose + coroutines by default)."
             implementationClass = "io.github.koltalabs.kolt.conventions.plugins.KmpApplicationConventionPlugin"

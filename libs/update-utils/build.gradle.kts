@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.koltsystems.koltx.library-compose")
+    id("io.github.koltalabs.kolt.library-compose")
     id("io.github.koltalabs.kolt.publish")
     alias(libs.plugins.dokka)
 }

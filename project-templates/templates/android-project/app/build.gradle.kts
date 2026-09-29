@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.koltsystems.koltx.application")
+    id("io.github.koltalabs.kolt.application")
 }
 
 android {

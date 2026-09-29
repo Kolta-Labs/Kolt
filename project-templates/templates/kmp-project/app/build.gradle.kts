@@ -1,6 +1,6 @@
 // Android host module — thin launcher that starts the KMP shared module
 plugins {
-    id("io.github.koltsystems.koltx.kmp.application")
+    id("io.github.koltalabs.kolt.kmp.application")
 }
 
 android {

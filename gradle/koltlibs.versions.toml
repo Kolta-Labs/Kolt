@@ -97,9 +97,9 @@ google-firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref =
 google-android-test = { id = "com.android.test", version.ref = "agp" }
 
 # KoltX Convention Plugins
-kolt-application = { id = "io.github.koltsystems.koltx.application", version.ref = "kolt" }
-kolt-library = { id = "io.github.koltsystems.koltx.library", version.ref = "kolt" }
-kolt-library-compose = { id = "io.github.koltsystems.koltx.library-compose", version.ref = "kolt" }
-kolt-library-hilt = { id = "io.github.koltsystems.koltx.library-hilt", version.ref = "kolt" }
-kolt-library-hilt-compose = { id = "io.github.koltsystems.koltx.library-hilt-compose", version.ref = "kolt" }
-kolt-data = { id = "io.github.koltsystems.koltx.data", version.ref = "kolt" }
+kolt-application = { id = "io.github.koltalabs.kolt.application", version.ref = "kolt" }
+kolt-library = { id = "io.github.koltalabs.kolt.library", version.ref = "kolt" }
+kolt-library-compose = { id = "io.github.koltalabs.kolt.library-compose", version.ref = "kolt" }
+kolt-library-hilt = { id = "io.github.koltalabs.kolt.library-hilt", version.ref = "kolt" }
+kolt-library-hilt-compose = { id = "io.github.koltalabs.kolt.library-hilt-compose", version.ref = "kolt" }
+kolt-data = { id = "io.github.koltalabs.kolt.data", version.ref = "kolt" }

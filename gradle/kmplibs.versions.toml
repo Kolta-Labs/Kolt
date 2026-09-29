@@ -91,16 +91,16 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 # KoltX KMP Convention Plugins (supports kmp-* and kolt-kmp-* aliases)
-kmp-library = { id = "io.github.koltsystems.koltx.kmp.library", version.ref = "kmpKolt" }
-kmp-library-compose = { id = "io.github.koltsystems.koltx.kmp.library-compose", version.ref = "kmpKolt" }
-kmp-library-koin = { id = "io.github.koltsystems.koltx.kmp.library-koin", version.ref = "kmpKolt" }
-kmp-library-koin-compose = { id = "io.github.koltsystems.koltx.kmp.library-koin-compose", version.ref = "kmpKolt" }
-kmp-data = { id = "io.github.koltsystems.koltx.kmp.data", version.ref = "kmpKolt" }
-kmp-application = { id = "io.github.koltsystems.koltx.kmp.application", version.ref = "kmpKolt" }
+kmp-library = { id = "io.github.koltalabs.kolt.kmp.library", version.ref = "kmpKolt" }
+kmp-library-compose = { id = "io.github.koltalabs.kolt.kmp.library-compose", version.ref = "kmpKolt" }
+kmp-library-koin = { id = "io.github.koltalabs.kolt.kmp.library-koin", version.ref = "kmpKolt" }
+kmp-library-koin-compose = { id = "io.github.koltalabs.kolt.kmp.library-koin-compose", version.ref = "kmpKolt" }
+kmp-data = { id = "io.github.koltalabs.kolt.kmp.data", version.ref = "kmpKolt" }
+kmp-application = { id = "io.github.koltalabs.kolt.kmp.application", version.ref = "kmpKolt" }
 
-kolt-kmp-library = { id = "io.github.koltsystems.koltx.kmp.library", version.ref = "kmpKolt" }
-kolt-kmp-library-compose = { id = "io.github.koltsystems.koltx.kmp.library-compose", version.ref = "kmpKolt" }
-kolt-kmp-library-koin = { id = "io.github.koltsystems.koltx.kmp.library-koin", version.ref = "kmpKolt" }
-kolt-kmp-library-koin-compose = { id = "io.github.koltsystems.koltx.kmp.library-koin-compose", version.ref = "kmpKolt" }
-kolt-kmp-data = { id = "io.github.koltsystems.koltx.kmp.data", version.ref = "kmpKolt" }
-kolt-kmp-application = { id = "io.github.koltsystems.koltx.kmp.application", version.ref = "kmpKolt" }
+kolt-kmp-library = { id = "io.github.koltalabs.kolt.kmp.library", version.ref = "kmpKolt" }
+kolt-kmp-library-compose = { id = "io.github.koltalabs.kolt.kmp.library-compose", version.ref = "kmpKolt" }
+kolt-kmp-library-koin = { id = "io.github.koltalabs.kolt.kmp.library-koin", version.ref = "kmpKolt" }
+kolt-kmp-library-koin-compose = { id = "io.github.koltalabs.kolt.kmp.library-koin-compose", version.ref = "kmpKolt" }
+kolt-kmp-data = { id = "io.github.koltalabs.kolt.kmp.data", version.ref = "kmpKolt" }
+kolt-kmp-application = { id = "io.github.koltalabs.kolt.kmp.application", version.ref = "kmpKolt" }
