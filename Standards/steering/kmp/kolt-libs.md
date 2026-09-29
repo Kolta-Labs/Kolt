@@ -22,6 +22,10 @@ anything — don't assume "it's in the KMP repo" means "it works on iOS."
 
 ## How to consume it — ask once, at project creation
 
+*(In the `Tech/KMP` workspace this is already decided: composite build — see
+[Composite-build rules](#composite-build-rules-mandatory-when-kolt-is-an-includebuild). Only ask for
+a project outside it.)*
+
 Before wiring the first Kolt dependency into a new project, check whether
 consumption is already decided: look for an `includeBuild(...)` pointing at
 `Kolt/libs` in `settings.gradle.kts`, a copied module directory, or an
@@ -35,6 +39,43 @@ never silently default:**
 
 Once answered, treat it as decided for the life of the project — don't
 re-ask on later tasks; re-check the project state above instead.
+
+## Composite-build rules (mandatory when Kolt is an `includeBuild`)
+
+Any project in this workspace that consumes Kolt does so as a composite build — apps and
+shared libraries alike — and **option 1 above is already decided**, don't re-ask. This
+applies to every link in a dependency chain (app → library → library …), not just apps:
+a *chained build* means any included build that itself applies a Kolt plugin.
+
+1. **No versioned/published Kolt coordinates.** Never `io.github.koltsystems…`,
+   `io.github.appspiriment…`, or a literal `io.github.koltalabs.kolt:<module>:<version>` that
+   only resolves from `~/.m2`/Maven. Declare Kolt libraries through the version catalog and let
+   the included build *substitute* them.
+2. **Apply Kolt plugins by raw ID, with no version** — `id("io.github.koltalabs.kolt.kmp.library")`,
+   never a catalog `alias(...)` with `version.ref`, and never `alias(...) apply false` for them in
+   the root build. A version makes Gradle demand a published artifact.
+3. **Every build that uses Kolt includes both parts in its own `settings.gradle.kts`:**
+   `includeBuild("<path>/KoltLibs/build-logic")` (plugins) and
+   `includeBuild("<path>/KoltLibs") { dependencySubstitution { … } }` (libraries), with a
+   substitution for **every** Kolt module the plugins inject (`kolt-bom`, `utils`, `logutils`,
+   `compose`, `compose-kmp`, `location`, `location-picker`). Relative paths. This is what lets
+   each link in a chain build standalone.
+4. **Depend on sibling projects by source, not by published jar.** If project A depends on
+   project B (same workspace), `includeBuild` B with a `dependencySubstitution` for B's
+   coordinate. A published B still carries whatever Kolt coordinate it was built with — the
+   stale-coordinate problem, one hop removed.
+5. **Include order is significant: chained builds first, Kolt last.** In any build that includes
+   other builds which themselves use Kolt, every such `includeBuild` must appear *before* the two
+   Kolt `includeBuild`s. Reversed, the chained builds fail plugin lookup ("None of the included
+   builds contain this plugin"). This holds for however deep the chain goes: the build at the
+   top of a chain lists its dependencies first, Kolt at the very end. The cause isn't
+   understood — found empirically, and gating the chained builds' own Kolt includes on
+   `gradle.parent == null` made it worse — so treat it as a hard rule and keep a comment beside
+   the includes stating it.
+6. **Prove it before calling it done:** temporarily move
+   `~/.m2/repository/io/github/{koltalabs,koltsystems,appspiriment}` aside and run the project's
+   tests / assemble with `--offline`. If it only builds with those present, something is still
+   resolving from Maven.
 
 ## External tooling coordinates
 
