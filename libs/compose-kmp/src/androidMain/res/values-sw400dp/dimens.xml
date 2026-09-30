@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_minimum">6sp</dimen>
+    <dimen name="font_size_tiny">7sp</dimen>
+    <dimen name="font_size_xxxsmall">8sp</dimen>
+    <dimen name="font_size_xxsmall">9sp</dimen>
+    <dimen name="font_size_xsmall">10sp</dimen>
+    <dimen name="font_size_xsmall_medium">11sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_size_small_medium">13sp</dimen>
+    <dimen name="font_size_medium">14sp</dimen>
+    <dimen name="font_size_medium_mid">15sp</dimen>
+    <dimen name="font_size_medium_large">16sp</dimen>
+    <dimen name="font_size_large">18sp</dimen>
+    <dimen name="font_size_xlarge">20sp</dimen>
+    <dimen name="font_size_xxlarge">24sp</dimen>
+    <dimen name="font_size_xxxlarge">28sp</dimen>
+    <dimen name="font_size_big">32sp</dimen>
+    <dimen name="font_size_xbig">36sp</dimen>
+    <dimen name="font_size_huge">40sp</dimen>
+    <dimen name="font_size_giant">48sp</dimen>
+    <dimen name="font_size_medium_large_mid">17sp</dimen>
+    <dimen name="font_size_xlarge_mid">22sp</dimen>
+</resources>
