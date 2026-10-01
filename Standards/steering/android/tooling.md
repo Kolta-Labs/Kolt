@@ -50,48 +50,17 @@ class ArchitectureTest {
     }
 
     @Test
-    fun `RepositoryImpl depends only on its DataSource, never another Repository`() {
-        codebase
-            .classes()
-            .withNameEndingWith("RepositoryImpl")
-            .assertFalse {
-                it.hasImports { imp -> imp.name.contains("Repository") && !imp.name.contains("DataSource") }
-            }
-    }
-
-    @Test
-    fun `DataSource never depends on another DataSource`() {
-        codebase
-            .classes()
-            .withNameEndingWith("DataSource")
-            .assertFalse {
-                it.hasImports { imp -> imp.name.endsWith("DataSource") && !imp.name.endsWith(it.name) }
-            }
-    }
-
-    @Test
-    fun `Contract file declares State data class plus sealed Intent and Effect`() {
-        codebase.files().withNameEndingWith("Contract.kt").assertTrue { file ->
-            file.classes().any { it.name.endsWith("State") && it.hasDataModifier } &&
-                file.interfaces().any { it.name.endsWith("Intent") && it.hasSealedModifier } &&
-                file.interfaces().any { it.name.endsWith("Effect") && it.hasSealedModifier }
-        }
-    }
-
-    @Test
-    fun `every presentation file lives in a screen subpackage, not the bare presentation package`() {
-        codebase
-            .files()
-            .filter { it.packagee?.name?.contains(".presentation") == true }
-            .assertFalse { it.packagee?.name?.substringAfterLast('.') == "presentation" }
-    }
-
-    @Test
     fun `exactly one NavDisplay call exists in the whole app`() {
         val navDisplayCalls = codebase.functions().flatMap { it.functionCalls() }
             .filter { it.name == "NavDisplay" }
         assertEquals(1, navDisplayCalls.size)
     }
+
+    // Same shape covers the rest — one `codebase` query + one assertion each:
+    // - RepositoryImpl depends only on its DataSource, never another Repository
+    // - DataSource never depends on another DataSource
+    // - Contract.kt declares a data-class State plus sealed Intent/Effect
+    // - every presentation/ file lives in a screen subpackage, not the bare package
 }
 ```
 
@@ -178,3 +147,56 @@ tasks.named("check") {
 
 One command (`./gradlew check`) is the actual enforcement — an agent that
 skips reading a rule mid-doc still hits it here before the change lands.
+
+## Keep failure output cheap
+
+`tooling.md` itself costs an agent near nothing — it's behind the same
+on-demand table as the rest of this steering set. The real token cost is a
+`check` failure landing in the agent's context: Detekt's default HTML
+report, full Gradle stack traces, whole-project noise for a one-file
+violation. Cut it at the source, not by trimming this doc:
+
+```yaml
+# detekt.yml
+console-reports:
+  active: true
+  exclude: ['NotificationReport']
+```
+
+```kotlin
+// wherever Detekt is configured
+detekt {
+    reports {
+        html.required.set(false)
+        xml.required.set(false)
+        txt.required.set(true)
+    }
+}
+```
+
+The HTML/XML reports still get written to disk either way — this only stops
+an agent from being handed one. And when an agent is chasing a specific
+failure:
+
+- **Scope the run**: `./gradlew :libs:foo:detekt` or
+  `:architecture-test:test --tests "*Contract*"`, never bare `check` — output
+  scales with what runs, not what broke.
+- **`--console=plain`** on every invocation — strips progress bars and
+  "Incubating"/deprecation banners that are pure filler in a transcript.
+
+## Don't run the full build after every small edit
+
+A build (even a scoped one) costs wall-clock time and, on any failure,
+context tokens — neither is free just because the change was one line.
+Batch verification instead of running it reflexively:
+
+- **A rename, a comment, a single-line non-logic tweak**: don't run anything;
+  the IDE/compiler-on-save signal (or the next real build) catches a typo.
+- **Mid-refactor, several files still in flight**: keep editing. Run once
+  when the change is internally consistent, not after each file.
+- **Before calling a task done, or before a commit**: this is when a real
+  `check` run earns its cost — not "just to be safe" after every edit along
+  the way.
+
+The threshold is "would a failure here tell me something I don't already
+know," not "did I just save a file."
