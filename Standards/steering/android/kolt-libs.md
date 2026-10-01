@@ -102,41 +102,12 @@ when Kolt has one — no literals, no duplicate app tokens, and no deprecated Ko
 | `utils` → `AsyncState` | `utils/src/commonMain/.../state/AsyncState.kt` | Plain sealed class (`Idle`/`Loading`/`Success`/`Error`) with `map`/`onSuccess`/`getOrElse`. Use it in `State` fields per [presentation-mvi.md](presentation-mvi.md). |
 | `logutils` | `logutils/` | Auto debug/release gating on Android via App Startup. Fine to use as-is. |
 | `location` | `location/` | Fine if a journey needs location. |
-| `location-picker` | `location-picker/` | All-in-one Search/Map/Current-location/Manual-entry picker UI built on `location` — `LocationPickerActivity` + `LocationPickerContract` for `registerForActivityResult`, or `LocationPicker.rememberLauncher` from Compose. Fine to consume as a black-box UI dependency for a "pick a location" screen. |
+| `location-picker` | `location-picker/` | All-in-one Search/Map/Current-location/Manual-entry picker UI built on `location` — `LocationPickerActivity` + `LocationPickerContract` for `registerForActivityResult`, or `LocationPicker.rememberLauncher` from Compose. Fine to consume as a black-box UI dependency for a "pick a location" screen. Follows this steering set (MVI, `ImmutableList` state, `compose-kmp` theme, test coverage); self-contained permission/services flow, no extra `ACCESS_FINE_LOCATION` request needed — full detail in [kolt-libs-reference.md](kolt-libs-reference.md) if you're integrating it. |
 
-On Android, `location-picker` follows this steering set:
-`LocationPickerViewModel` extends the `MviViewModel` base from
-[presentation-mvi.md](presentation-mvi.md); `State`/`Intent`/`Effect` live in
-their own `LocationPickerMviContract.kt`; `LocationPickerScreenContent` is a
-stateless renderer owned by `LocationPickerScreen`, which collects its
-effects; its list field is `ImmutableList`; its UI reuses `compose-kmp`'s
-theme/components instead of a hand-rolled theme; and `LocationPickerViewModel`
-has test coverage (`LocationPickerViewModelTest` in `commonTest`, via a
-`LocationPickerGateway` fake seam wrapping `libs/location`'s otherwise
-unfakeable `CurrentLocationProvider`/`searchPlaces`/etc.). Safe to treat as a
-reference example here, not just a black box.
-
-It also handles its own runtime-permission flow — `rememberLocationAccessGate`
-gates "use current location" behind a permission check, showing a
-`compose-kmp` `KoltBottomSheet` rationale (not a dialog), falling back to an
-"open app settings" bottomsheet if permanently denied. Once permission is
-granted, it resolves "location services off" via `libs/location`'s own
-`rememberLocationSettingsResolver` — a Google Play Services `SettingsClient`
-check that, in the common case, shows the system's in-app "Turn on location"
-dialog directly (no bottomsheet, no navigation out to Settings); only a
-device Play Services can't resolve automatically falls back to a bottomsheet
-deep-linking to the device's location settings. Every title/message/button
-label across all of this is configurable via `LocationPickerConfig`. You do
-**not** need to request `ACCESS_FINE_LOCATION`/`ACCESS_COARSE_LOCATION`
-yourself before using this module — it's the one caller `libs/location`'s own
-doc defers that responsibility to.
-
-**Don't import `compose-utils`' `KoltBanner`/`KoltBottomSheet`/`KoltSnackbar`/
-`DialogButtonStyle`/`MessageDialog`/`ColorUtils`** even though those
-filenames exist there too — they're 10-line backward-compat `typealias`
-stubs pointing at the `compose-kmp` versions above (each file says so in a
-header comment: "Moved to compose-kmp. This file is a backward-compatibility
-stub."). Import from `compose-kmp` directly.
+Also in `kolt-libs-reference.md`: why not to import `compose-utils`'
+`KoltBanner`/`KoltBottomSheet`/`KoltSnackbar`/`DialogButtonStyle`/
+`MessageDialog`/`ColorUtils` (they're backward-compat stubs for the
+`compose-kmp` versions above — import from `compose-kmp` directly).
 
 ## Don't reuse
 
@@ -148,14 +119,11 @@ stub."). Import from `compose-kmp` directly.
 
 ## Dead code — don't copy the pattern
 
-`compose-utils/.../base/ViewModelDelegate.kt` is an `internal class` meant to
-de-duplicate `UiStateEventsViewModel` and `UiStateEventsAndroidViewModel` (its
-own doc comment says so). Nothing in the repo constructs it — grep confirms
-zero usages. `UiStateEventsAndroidViewModel` reimplements the same
-state/effect-channel logic by hand instead of delegating to it. Net effect:
-two divergent copies of the same logic plus one unused third copy. Don't
-carry this inconsistency into a new project; the `MviViewModel` in
-[presentation-mvi.md](presentation-mvi.md) is the single version to use.
+`compose-utils/.../base/ViewModelDelegate.kt` is an unused internal class
+that duplicates logic already reimplemented by hand elsewhere — two
+divergent copies plus one unused third. Don't carry the inconsistency
+forward; use the `MviViewModel` in [presentation-mvi.md](presentation-mvi.md).
+Full trace in [kolt-libs-reference.md](kolt-libs-reference.md#dead-code--dont-copy-the-pattern).
 
 ## Not evaluated
 
