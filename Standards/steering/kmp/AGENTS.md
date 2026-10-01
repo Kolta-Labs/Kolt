@@ -24,8 +24,23 @@ entirely otherwise:
 | [navigation.md](navigation.md) | add a route/screen, touch `NavDisplay`/back stack/deep links, or the question is Activity-per-journey vs single-Activity | navigation isn't part of the task |
 | [theming.md](theming.md) | add a color/dimension/font/user-facing string/token, or touch the theme module | you're just referencing `AppTheme.colors.x` that already exists |
 | [kolt-libs.md](kolt-libs.md) | about to add a dependency or write a new util/component, **and** `Kolt/libs` exists in this workspace — check first, its vetted pieces are mandatory to reuse | `Kolt/libs` isn't present — the rest of this steering set doesn't need it |
+| [kolt-libs-reference.md](kolt-libs-reference.md) | `kolt-libs.md`'s table already pointed you at a module (usually `location-picker`) and you need more than the one-line summary | the table's one-liner already answers it |
 | [testing.md](testing.md) | write a unit test for a UseCase/ViewModel, or reach for a mocking library | the task has no test-writing in it |
 | [tooling.md](tooling.md) | set up or edit Konsist/Detekt/ktlint config, or a `./gradlew check` failure needs fixing | not touching lint/architecture-test config |
+| [release.md](release.md) | prepare a build for release: version bump, R8/signing, launch optimization + baseline profile, whole-journey tests, store checklist, staged rollout | the task is ordinary feature/bug work, not a release |
+
+**Three more ways to keep this cheap, not just the table above:**
+
+- Loaded a file already this session? Don't re-read it for a second,
+  unrelated task — its content hasn't changed. Re-read only if you actually
+  edited it since, or genuinely can't recall its content.
+- The tl;dr's non-negotiables list is usually the whole answer. Follow a
+  `[link]` into a full doc only when the tl;dr's one line doesn't settle the
+  question — not as a reflex "the tl;dr told me this file exists, so I
+  should read it."
+- If this list of non-negotiables keeps growing past ~20, that's a signal to
+  split it into "read every time" vs. "read on demand" tiers, not to keep
+  appending — a tl;dr an agent skims in one pass is the whole point of it.
 
 If this file was reached through a `.standards` symlink in a consuming app
 repo (see the root `AGENTS.md`'s `scripts/link-standards.sh`), the table
