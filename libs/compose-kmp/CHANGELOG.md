@@ -4,6 +4,9 @@ All notable changes to `compose-kmp` (`io.github.koltalabs.kolt:compose-kmp`) ar
 here, newest first. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+- Android: font sizes are now smaller on screens narrower than 400dp (e.g. Galaxy S23, ~360dp) — about ×0.88 of the previous values, rounded to whole sp (`values/dimens.xml`). Screens ≥ 400dp (Pixel-class phones, tablets, foldables) keep the previous sizes via the new `values-sw400dp/dimens.xml`. iOS, desktop and wasmJs unchanged.
+
 ## [0.2.1.dev-03] - 2026-09-24
 - Added `KoltDefaults.sizes()` / `KoltDefaults.uiSizes()`: public access to the per-platform default `Sizes`/`UiSizes` (Android `dimens.xml`, shared defaults elsewhere), so an app providing its own `LocalSizes` can `copy()` a few fields instead of leaving the rest `Unspecified`. Additive only.
 - Added a general element-size scale to `Sizes`/`UiSizes` (appended last): `sizeXXXSmall` 8, `sizeXXSmall` 16, `sizeXSmall` 24, `sizeSmall` 32, `sizeSmallMedium` 36, `sizeMedium` 40, `sizeMediumLarge` 48, `sizeLarge` 56, `sizeXLarge` 64, `sizeXXLarge` 80, `sizeXXXLarge` 96, `sizeGiant` 128 dp — for button/row/bar heights, avatars, dots and boxes, so non-icon dimensions stop borrowing `icon*` names. Android dimens `size_*`.
