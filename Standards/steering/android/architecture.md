@@ -109,6 +109,27 @@ Layers stay as packages *inside* the module, not three modules per feature.
 - Judgment call, not Konsist-enforced: Gradle's module graph already fails
   the build on a forbidden dependency, so don't add a lint rule for it.
 
+### Starting small: shared core first, split later
+
+A small project (one team, up to ~6 features, most data shared) starts with
+the shared layout, not full vertical slices:
+
+```
+:core:domain   shared models, Repository interfaces, UseCases
+:core:data     RepositoryImpl + DataSources (local/remote stay packages, not modules)
+:feature:x     presentation + feature-only helpers
+```
+
+- Inside `:core:domain`/`:core:data`, group by feature package
+  (`domain/orders/`, `data/orders/`), never one flat folder, so a later split
+  is a move, not a rewrite.
+- Layer rules don't relax: same call chain, no same-layer dependencies.
+- **Split a feature's domain+data out of `:core` into its own module** when
+  any of these hits: more than ~6 features, a second team, or a `:core`
+  change recompiles unrelated features enough to hurt. Move only what that
+  feature alone uses; models and repositories two or more features share
+  stay in `:core`.
+
 ## UseCase shape
 
 One `operator fun invoke(...)` per UseCase, named `{VerbPresentTense}{Noun}UseCase`
