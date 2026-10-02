@@ -93,10 +93,10 @@ data class BaseTextStyles(
     @Deprecated("Use body.giant (or title.giant).", ReplaceWith("body.giant"))
     val textGiant: TextStyle = TextStyle.Default,
     // Appended last (not in scale order) so existing positional args / componentN() stay stable.
-    /** 17 sp ([Sizes.fontSizeMediumLargeMid]) — between [textMediumLarge] (16) and [textLarge] (18). */
+    /** [Sizes.fontSizeMediumLargeMid] — between [textMediumLarge] and [textLarge]. */
     @Deprecated("Use body.mediumLargeMid (or title.mediumLargeMid).", ReplaceWith("body.mediumLargeMid"))
     val textMediumLargeMid: TextStyle = TextStyle.Default,
-    /** 22 sp ([Sizes.fontSizeXLargeMid]) — between [textXLarge] (20) and [textXXLarge] (24). */
+    /** [Sizes.fontSizeXLargeMid] — between [textXLarge] and [textXXLarge]. */
     @Deprecated("Use body.xLargeMid (or title.xLargeMid).", ReplaceWith("body.xLargeMid"))
     val textXLargeMid: TextStyle = TextStyle.Default,
 ) {
@@ -117,22 +117,22 @@ data class BaseTextStyles(
     // The mappings follow rough visual equivalence (M3 body scale ≈ Kolt
     // text scale shifted by ~2 steps).
 
-    /** M3 alias → [textXXSmall] (≈10 sp) */
+    /** M3 alias → [textXXSmall] */
     @Deprecated("Not an M3 role. Use body.xxSmall (identical).", ReplaceWith("body.xxSmall"))
     val bodyXXXSmall: TextStyle get() = body.xxSmall
-    /** M3 alias → [textXSmall] (≈12 sp) */
+    /** M3 alias → [textXSmall] */
     @Deprecated("Not an M3 role. Use body.xSmall (identical).", ReplaceWith("body.xSmall"))
     val bodyXSmall: TextStyle get() = body.xSmall
-    /** M3 alias → [textSmall] (≈13 sp) */
+    /** M3 alias → [textSmall] */
     @Deprecated("Size differs from the M3 role. Use body.small (identical).", ReplaceWith("body.small"))
     val bodySmall: TextStyle get() = body.small
-    /** M3 alias → [textMedium] (≈14 sp) */
+    /** M3 alias → [textMedium] */
     @Deprecated("Size differs from the M3 role. Use body.medium (identical).", ReplaceWith("body.medium"))
     val bodyMedium: TextStyle get() = body.medium
-    /** M3 alias → [textMediumMid] (≈15 sp) */
+    /** M3 alias → [textMediumMid] */
     @Deprecated("Not an M3 role. Use body.mediumMid (identical).", ReplaceWith("body.mediumMid"))
     val bodyMediumLarge: TextStyle get() = body.mediumMid
-    /** M3 alias → [textLarge] (≈16 sp) */
+    /** M3 alias → [textLarge] */
     @Deprecated("Size differs from the M3 role. Use body.large (identical).", ReplaceWith("body.large"))
     val bodyLarge: TextStyle get() = body.large
     /** M3 alias → [textSmall] */
@@ -144,22 +144,22 @@ data class BaseTextStyles(
     /** M3 alias → [textMedium] */
     @Deprecated("Size differs from the M3 role. Use body.medium (identical).", ReplaceWith("body.medium"))
     val labelLarge: TextStyle get() = body.medium
-    /** M3 alias → [textMediumLarge] (≈16 sp) */
+    /** M3 alias → [textMediumLarge] */
     @Deprecated("Size differs from the M3 role. Use body.mediumLarge (identical).", ReplaceWith("body.mediumLarge"))
     val titleSmall: TextStyle get() = body.mediumLarge
-    /** M3 alias → [textLarge] (≈18 sp) */
+    /** M3 alias → [textLarge] */
     @Deprecated("Size differs from the M3 role. Use body.large (identical).", ReplaceWith("body.large"))
     val titleMedium: TextStyle get() = body.large
-    /** M3 alias → [textXLarge] (≈20 sp) */
+    /** M3 alias → [textXLarge] */
     @Deprecated("Size differs from the M3 role. Use body.xLarge (identical).", ReplaceWith("body.xLarge"))
     val titleLarge: TextStyle get() = body.xLarge
-    /** M3 alias → [textXXLarge] (≈24 sp) */
+    /** M3 alias → [textXXLarge] */
     @Deprecated("Size differs from the M3 role. Use body.xxLarge (identical).", ReplaceWith("body.xxLarge"))
     val headlineSmall: TextStyle get() = body.xxLarge
-    /** M3 alias → [textXXXLarge] (≈28 sp) */
+    /** M3 alias → [textXXXLarge] */
     @Deprecated("Size differs from the M3 role. Use body.xxxLarge (identical).", ReplaceWith("body.xxxLarge"))
     val headlineMedium: TextStyle get() = body.xxxLarge
-    /** M3 alias → [textBig] (≈32 sp) */
+    /** M3 alias → [textBig] */
     @Deprecated("Size differs from the M3 role. Use body.big (identical).", ReplaceWith("body.big"))
     val displaySmall: TextStyle get() = body.big
 }
