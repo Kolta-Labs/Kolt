@@ -39,6 +39,28 @@ takes both repositories as constructor params — not inside either
 `Repository` interface, so a test fakes each one it needs — still no mocking
 framework, no database, no network, just N simple fakes instead of one.
 
+## Project layout (new project)
+
+One thin app module per platform, plus shared feature modules. No
+`composeApp` catch-all that mixes shared UI with one platform's entry point.
+
+```
+androidApp/    com.android.application — Activity, manifest, Hilt/Koin start, signing, R8
+desktopApp/    JVM main(), window, packaging (jpackage)
+iosApp/        Xcode project + SwiftUI/UIKit host that embeds the shared Compose view controller
+webApp/        (only if wasmJs is a target) browser entry point
+shared/        or :feature:* + :theme — all commonMain code; the apps depend on these, never the reverse
+```
+
+- Apps contain only platform wiring: entry point, DI bootstrap, the single
+  `NavDisplay` host (see [navigation.md](navigation.md)), platform
+  permissions/manifest/Info.plist. Zero screens, `UseCase`s or `Repository`s.
+- Shared modules never depend on an app module, and never apply
+  `com.android.application`.
+- Name by platform (`androidApp`/`desktopApp`/`iosApp`), not by role (`app`,
+  `composeApp`), so a KMP project reads the same in every repo.
+- Drop the platforms you don't ship; don't create an empty `desktopApp`.
+
 ## Module layout (per journey/feature)
 
 `presentation/` is one package per screen — never a flat folder shared by
