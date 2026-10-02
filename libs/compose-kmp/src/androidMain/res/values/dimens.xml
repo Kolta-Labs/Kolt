@@ -44,27 +44,27 @@
     <dimen name="fab_button_size">48dp</dimen>
     <dimen name="fab_button_size_large">56dp</dimen>
 
-    <dimen name="font_size_minimum">5.5sp</dimen>
+    <dimen name="font_size_minimum">5sp</dimen>
     <dimen name="font_size_tiny">6sp</dimen>
     <dimen name="font_size_xxxsmall">7sp</dimen>
     <dimen name="font_size_xxsmall">8sp</dimen>
     <dimen name="font_size_xsmall">9sp</dimen>
-    <dimen name="font_size_xsmall_medium">9.5sp</dimen>
-    <dimen name="font_size_small">10.5sp</dimen>
-    <dimen name="font_size_small_medium">11.5sp</dimen>
-    <dimen name="font_size_medium">12.5sp</dimen>
+    <dimen name="font_size_xsmall_medium">10sp</dimen>
+    <dimen name="font_size_small">11sp</dimen>
+    <dimen name="font_size_small_medium">11sp</dimen>
+    <dimen name="font_size_medium">12sp</dimen>
     <dimen name="font_size_medium_mid">13sp</dimen>
     <dimen name="font_size_medium_large">14sp</dimen>
     <dimen name="font_size_large">16sp</dimen>
-    <dimen name="font_size_xlarge">17.5sp</dimen>
+    <dimen name="font_size_xlarge">18sp</dimen>
     <dimen name="font_size_xxlarge">21sp</dimen>
-    <dimen name="font_size_xxxlarge">24.5sp</dimen>
+    <dimen name="font_size_xxxlarge">25sp</dimen>
     <dimen name="font_size_big">28sp</dimen>
-    <dimen name="font_size_xbig">31.5sp</dimen>
+    <dimen name="font_size_xbig">32sp</dimen>
     <dimen name="font_size_huge">35sp</dimen>
     <dimen name="font_size_giant">42sp</dimen>
     <dimen name="font_size_medium_large_mid">15sp</dimen>
-    <dimen name="font_size_xlarge_mid">19.5sp</dimen>
+    <dimen name="font_size_xlarge_mid">19sp</dimen>
 
 
     <!-- General element sizes (Sizes.size*) -->
