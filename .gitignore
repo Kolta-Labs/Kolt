@@ -50,3 +50,6 @@ scripts/projects.txt
 
 # ─── Machine-specific steering symlinks (scripts/link-standards.sh) ──────────
 .standards
+
+# ─── Personal paths — never publish ───────────────────────────────────────────
+Standards/scripts/projects.txt
