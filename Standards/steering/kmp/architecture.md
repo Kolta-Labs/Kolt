@@ -101,6 +101,34 @@ that the app module's single `NavDisplay` aggregates — see
 and nothing in one screen's package imports from another screen's package —
 shared state goes through `domain`, not a cross-screen import.
 
+## Feature module separation
+
+One Gradle module per feature journey (`:feature:orders`, `:feature:profile`).
+Layers stay as packages *inside* the module, not three modules per feature.
+
+```
+`androidApp`/`desktopApp`/`iosApp` → :feature:* → :core:* (:theme, shared domain models, shared data, UI components)
+```
+
+- **Features never depend on each other.** No `:feature:orders` →
+  `:feature:profile` import, in either direction. Cross-feature navigation
+  goes through route keys (`NavKey`) that live in a shared `:core:navigation`
+  module or are passed as lambdas by the app module; cross-feature data
+  goes through a shared `domain` model/`Repository` in `:core`.
+- **Dependencies point one way**: apps → feature → core. `:core` never
+  depends on a feature; no cycles.
+- **`internal` by default.** Everything in a feature module is `internal`
+  except its public surface (its `NavKey` routes and its one `entryProvider`
+  fragment, above). A class another module can see is a class another
+  module will depend on.
+- **DI per feature.** Each feature exposes one DI module (a Koin `module {}`) that the
+  app module aggregates; a feature never reaches into another's graph.
+- **Extract to `:core` on the second consumer**, not speculatively — same
+  rule as [Reuse over duplication](#reuse-over-duplication). Until then it
+  lives in the one feature that uses it.
+- Judgment call, not Konsist-enforced: Gradle's module graph already fails
+  the build on a forbidden dependency, so don't add a lint rule for it.
+
 ## UseCase shape
 
 One `operator fun invoke(...)` per UseCase, named `{VerbPresentTense}{Noun}UseCase`
